@@ -15,7 +15,8 @@
     @include('layouts.header')
 
     {{-- hero section --}}
-    <section class="flex flex-col justify-center mt-20 md:mt-[90px] bg-kuningMM pb-20">
+    <section class="flex flex-col justify-center mt-20 md:mt-[85px] bg-kuningMM pb-[250px] md:pb-20">
+        {{-- ukuran Kiri kanan --}}
         <div class="px-4 md:mx-24">
             {{-- pembungkus --}}
             <div class="flex items-center flex-col md:flex-row">
@@ -46,6 +47,34 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    {{-- stats section --}}
+    <section class="mt-[-200px] md:mt-[-65px]">
+        <div class="relative">
+            <div class="absolute inset-0 h-1/2"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto">
+                    <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
+                        <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+                            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Pengguna</dt>
+                            <dd class="order-1 text-5xl font-extrabold text-merahMM">10</dd>
+                        </div>
+                        <div
+                            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+                            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Tenant</dt>
+                            <dd class="order-1 text-5xl font-extrabold text-merahMM">5</dd>
+                        </div>
+                        <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
+                            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Universitas</dt>
+                            <dd class="order-1 text-5xl font-extrabold text-merahMM">10+</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+
     </section>
 
 
