@@ -33,7 +33,7 @@
 
              <div class="text-black font-medium">
                  <!-- Text Sign In -->
-                 <a href="#" class="hover:text-gray-300">Sign In</a>
+                 <a href="/signin" class="hover:text-gray-300">Sign In</a>
              </div>
          </div>
      </div>
