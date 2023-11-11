@@ -19,7 +19,7 @@
 
 <body class="flex flex-col min-h-screen font-sahabatLariku">
     {{-- header --}}
-     @include('layouts.header')
+    @include('layouts.header')
 
     {{-- width layout --}}
     <div class="flex flex-col flex-grow justify-center items-center md:mt-[110px] mt-[60px]">
