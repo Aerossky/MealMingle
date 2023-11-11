@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'jenis_kelamin',
+        'alamat',
+        'universitas_id',
+        'role_id',
     ];
 
     /**
@@ -42,4 +46,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function universitas(){
+        return $this->belongsTo(Universitas::class);
+    }
+
+    public function tenant(){
+        return $this->hasMany(Tenant::class);
+    }
+
+    public function ulasan_tenant(){
+        return $this->hasMany(UlasanTenant::class);
+    }
+
+    public function riwayat_pesanan(){
+        return $this->hasMany(RiwayatPesanan::class);
+    }
+
+    public function keranjang(){
+        return $this->hasMany(Keranjang::class);
+    }
 }
