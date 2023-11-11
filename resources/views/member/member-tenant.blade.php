@@ -2,9 +2,9 @@
 @section('title', 'Tenant')
 
 @section('content')
-    <div class="md:px-48">
+    <div class="md:px-48 mt-3">
         <form>
-            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white ">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -22,9 +22,9 @@
         </form>
 
     </div>
-    <div class="bg-white font-Montserrat px-14">
+    <div class="bg-white font-Montserrat md:px-14">
         <div class="sm:px-6 lg:max-w-7xl lg:px-8">
-            <div class="md:flex md:items-center md:justify-between">
+            <div class="md:flex md:items-center md:justify-between mt-5">
                 <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Tenant</h2>
             </div>
 
@@ -47,10 +47,7 @@
 
             </div>
 
-            <div class="mt-8 text-sm md:hidden">
-                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Shop the collection<span
-                        aria-hidden="true"> &rarr;</span></a>
-            </div>
+
         </div>
     </div>
 
