@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('member.member-home');
 });
 
+Route::get('/tenant', function () {
+    return view('member.member-tenant');
+});
 Route::get('/signin', function () {
     return view('auth.signin');
 });

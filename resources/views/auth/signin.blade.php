@@ -22,7 +22,7 @@
                 <form action="" method="POST">
                     @csrf
                     <input type="email" id="email" name="email" placeholder="Email"
-                        class="md:w-full md:px-4 md:py-2 md:border md:rounded md:mb-4" required>
+                        class="md:w-full md:px-4 md:py-2 ebr md:rounded md:mb-4" required>
                     <input type="password" id="password" name="password" placeholder="Password"
                         class="md:w-full md:px-4 md:py-2 md:border md:rounded md:mb-4" required>
 
