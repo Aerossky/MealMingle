@@ -40,7 +40,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Lengkap</label>
                             <input type="text" id="nama"
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Nama Lengkap" required>
                         </div>
 
@@ -48,7 +48,7 @@
                             <label for="gender"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
                             <select id="gender"
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                 <option>Pria</option>
                                 <option>Wanita</option>
@@ -60,7 +60,7 @@
                             <label for="email"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                             <input type="email" id="email"
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Email" required>
                         </div>
 
@@ -68,7 +68,7 @@
                             <label for="address"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
                             <input type="text" id="address"
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Address" required>
                         </div>
 
@@ -77,7 +77,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                                 password</label>
                             <input type="password" id="password"
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
                         </div>
 
@@ -85,7 +85,7 @@
                             <label for="university"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">University</label>
                             <select id="university"
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                 <option>UCLA</option>
                                 <option>UKP</option>
@@ -98,12 +98,12 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Of
                                 Birth</label>
                             <input type="date" name="birth" id="birth"
-                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
 
                         <div class="mb-6 col-span-2 md:w-full flex justify-center items-center flex-col gap-2 md:gap-0">
                             <button type="button"
-                                class="w-full md:w-1/2 px-5 py-2.5 text-sm font-medium text-white bg-merahMM hover:bg-merahMM focus:ring-4 focus:outline-none focus:ring-merahMM rounded-lg text-center">Submit</button>
+                                class="w-full md:w-1/2 text-sm font-medium text-white bg-merahMM hover:bg-red-700 px-4 py-2 rounded text-center">Submit</button>
                             {{-- Redirect --}}
                             <p class="md:mt-4">Sudah punya akun? <a href="/signin"
                                     class="md:text-merahMM font-bold">login yuk</a>
