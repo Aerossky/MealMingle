@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
+            $table->string('foto_produk');
+            $table->string('nama_makanan');
+            $table->string('deskripsi');
+            $table->integer('harga_produk');
+            $table->foreignId('tenant_id')->constrained('tenants')->onDelete('cascade');
             $table->timestamps();
         });
     }
