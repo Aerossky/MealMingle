@@ -77,7 +77,26 @@
 
     </section>
 
+    {{-- about section --}}
+    <section class="bg-merahMM mt-[-190px] md:mt-[-65px] text-center">
+        <div class="py-12 mt-[190px] md:mt-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:text-center">
+                    <h2 class="text-base text-kuningMM font-semibold tracking-wide uppercase">Apa Sih MealMingle</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-kuningMM sm:text-4xl">Solusi
+                        Catering Mahasiswa</p>
+                    <p class="mt-4 max-w-2xl text-xl text-white lg:mx-auto text-justify">Temukan makanan praktis dan
+                        enak tanpa
+                        repot mencari. Kami membebaskanmu dari kekhawatiran mencari makanan yang sesuai dengan anda,
+                        sehingga perkuliahanmu jadi lebih fokus dan tenang.</p>
+                </div>
 
+    </section>
+
+    {{-- eksplor section --}}
+    <section>
+        das
+    </section>
     {{-- Footer --}}
     {{-- @include('layouts.footer') --}}
 
