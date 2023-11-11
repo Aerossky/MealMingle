@@ -1,5 +1,4 @@
-
- <header class="py-3 lg:pt-6 lg:pb-14 bg-pink-200 font-Montserrat">
+  <header class="py-3 lg:pt-6 lg:pb-14 bg-pink-200 font-Montserrat">
      <div class="container mx-auto lg:relative flex flex-col lg:flex-row lg:justify-between  lg:gap-y-0">
          {{-- Left Section --}}
          <div class="flex justify-center lg:justify-normal">
