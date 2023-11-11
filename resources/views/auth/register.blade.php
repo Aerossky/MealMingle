@@ -35,6 +35,7 @@
                     @csrf
                     <div class="md:grid sm:grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="mb-6">
+
                             <label for="nama"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Lengkap</label>
@@ -48,12 +49,14 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
                             <select id="gender"
                                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
                                 <option>Pria</option>
                                 <option>Wanita</option>
                             </select>
                         </div>
 
                         <div class="mb-6">
+
                             <label for="email"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                             <input type="email" id="email"
@@ -83,12 +86,14 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">University</label>
                             <select id="university"
                                 class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
                                 <option>UCLA</option>
                                 <option>UKP</option>
                             </select>
                         </div>
 
                         <div class="mb-6 md:col-span-full">
+
                             <label for="dateofbirth"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Of
                                 Birth</label>
@@ -103,6 +108,7 @@
                             <p class="md:mt-4">Sudah punya akun? <a href="/signin"
                                     class="md:text-merahMM font-bold">login yuk</a>
                             </p>
+
                         </div>
                     </div>
                 </form>
