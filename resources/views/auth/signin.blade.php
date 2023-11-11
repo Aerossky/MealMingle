@@ -30,7 +30,8 @@
                         class="md:bg-merahMM md:hover:bg-red-700 md:text-white md:px-4 md:py-2 md:rounded cursor-pointer md:w-full">Sign
                         In</button>
                 </form>
-                <p class="md:mt-4">Belum punya akun? <a href="" class="md:text-merahMM">daftar yuk</a></p>
+                <p class="md:mt-4">Belum punya akun? <a href="" class="md:text-merahMM font-bold">daftar yuk</a>
+                </p>
             </div>
         </div>
 
