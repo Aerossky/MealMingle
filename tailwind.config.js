@@ -7,6 +7,11 @@ export default {
         "./node_modules/flowbite/**/*.js"
     ],
     theme: {
+        container:{
+            padding:{
+                default : '15px'
+            }
+        },
         screens: {
             sm: "480px",
             md: "768px",
