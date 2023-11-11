@@ -94,8 +94,31 @@
     </section>
 
     {{-- eksplor section --}}
-    <section>
-        das
+    <section class="flex flex-col justify-center mt-20">
+        {{-- ukuran Kiri kanan --}}
+        <div class="px-4 md:mx-24">
+            {{-- pembungkus --}}
+            <div class="flex items-center flex-col md:flex-row">
+                {{-- kiri --}}
+                <div class="w-full md:w-2/3">
+                    <img src="" alt="foto eksplor" srcset="">
+                </div>
+
+                {{-- kanan --}}
+                <div class="w-full md:w-1/3">
+                    <h1 class="font-bold text-[25px]">Eksplor Makanan <br>
+                        Favorit di Sekitar Kampus Anda.</h1>
+
+                    <p class="mt-5">Eksplorasi kuliner terbaik di sekitar kampus dengan kami.
+                        Rasakan cita rasa unik dan nikmati pengalaman makanan yang tak terlupakan.
+                        Mulailah petualangan kuliner Anda sekarang</p>
+                    <div class="flex justify-center md:justify-start">
+                        <button type="button"
+                            class="mt-[30px] text-black bg-kuningMM hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Pesan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     {{-- Footer --}}
     {{-- @include('layouts.footer') --}}
