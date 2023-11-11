@@ -1,18 +1,37 @@
+# Set to true if you want to use EditorConfig settings for all files.
 root = true
 
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 4
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+# JavaScript files
+[*.js]
+indent_size = 2
+
+# HTML files
+*.html
+indent_size = 4
+
+# CSS files
+[*.css]
+indent_size = 2
+
+# PHP files
+[*.php]
+indent_size = 4
+
+# Disable trailing whitespace trimming for Markdown files
 [*.md]
 trim_trailing_whitespace = false
 
+# Set YAML indentation size
 [*.{yml,yaml}]
 indent_size = 2
 
+# Set Docker Compose YAML indentation size
 [docker-compose.yml]
 indent_size = 4
