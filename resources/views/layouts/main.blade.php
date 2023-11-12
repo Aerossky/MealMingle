@@ -9,6 +9,8 @@
     {{-- tailwind --}}
     @vite(['resources/css/app.css', 'resources/css/header.css', 'resources/css/tenant.css', 'resources/js/app.js'])
 
+    {{-- scroll reveal --}}
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
 
 <body class="flex flex-col min-h-screen font-sahabatLariku">
