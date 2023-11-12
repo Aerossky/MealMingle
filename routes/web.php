@@ -20,6 +20,10 @@ Route::get('/', function () {
 Route::get('/tenant', function () {
     return view('member.tenant.tenant');
 });
+
+Route::get('/tenant-detail', function () {
+    return view('member.tenant.detail');
+});
 Route::get('/signin', function () {
     return view('auth.signin');
 });
