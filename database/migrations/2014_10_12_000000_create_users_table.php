@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->foreignId('universitas_id')->constrained('universitas')->onDelete('cascade');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
