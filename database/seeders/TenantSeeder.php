@@ -15,30 +15,26 @@ class TenantSeeder extends Seeder
     {
         $data = [
             [
-                'name' => "Risky",
-                'user_id' => '1',
+                'nama_tenant' => "PAPA JOE'S",
+                'deskripsi' => "restorant papa joe",
+                'user_id' => "3",
+                'foto_tenant' => "PAPA JOE",
             ],
             [
-                'name' => "Reynaldo",
-                'user_id' => '3',
+                'nama_tenant' => "PAPA JOV",
+                'deskripsi' => "restorant papa jov",
+                'user_id' => "4",
+                'foto_tenant' => "PAPA JOV",
             ],
-            [
-                'name' => "Joseph",
-                'user_id' => '2',
-            ]
-
         ];
 
         //insert data
         foreach ($data as $item) {
             Tenant::create([
-                'name' => $item['name'],
-                'email' => $item['email'],
-                'password' => $item['password'],
-                'jenis_kelamin' => $item['jenis_kelamin'],
-                'alamat' => $item['alamat'],
-                'universitas_id' => $item['universitas_id'],
-                'role_id' => $item['role_id'],
+                'nama_tenant' => $item['nama_tenant'],
+                'deskripsi' => $item['deskripsi'],
+                'user_id' => $item['user_id'],
+                'foto_tenant' => $item['foto_tenant'],
             ]);
         }
     }

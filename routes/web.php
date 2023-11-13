@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TenantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ Route::get('/', function () {
     return view('member.home');
 });
 
-Route::get('/tenant', function () {
-    return view('member.tenant.tenant');
-});
+// Route::get('/tenant', function () {
+//     return view('member.tenant.tenant');
+// });
 
 Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
@@ -39,6 +40,9 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('auth.signup');
 });
+// TENANT ROUTE
+Route::resource('tenant', TenantController::class);
+// Route::get('tenant/show',[TenantController::class,'index'])->name('show.tenant');
 
 // USER ROUTE
 Route::resource('user', UserController::class);
