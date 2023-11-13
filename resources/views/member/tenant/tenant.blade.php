@@ -32,25 +32,26 @@
                 <div class="md:flex md:items-center md:justify-between mt-5">
                     <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Tenant</h2>
                 </div>
-
-                {{-- DEV --}}
-                <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-                    <div class="group relative">
-                        <div
-                            class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
-                            <img src="{{ asset('img/tenant/apple.jpg') }}" alt="Hand stitched, orange leather long wallet."
-                                class="w-full h-full object-center object-cover">
+                {{-- array tenant --}}
+                @foreach ($tenants as $item)
+                    <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+                        <div class="group relative">
+                            <div
+                                class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
+                                <img src="{{ asset('img/tenant/apple.jpg') }}"
+                                    alt="Hand stitched, orange leather long wallet."
+                                    class="w-full h-full object-center object-cover">
+                            </div>
+                            <h3 class="mt-4 text-sm text-gray-700">
+                                <a href="/tenant-detail">
+                                    <span class="absolute inset-0"></span>
+                                    {{ $item->nama_tenant }}
+                                </a>
+                            </h3>
                         </div>
-                        <h3 class="mt-4 text-sm text-gray-700">
-                            <a href="/tenant-detail">
-                                <span class="absolute inset-0"></span>
-                                PapaJoe's
-                            </a>
-                        </h3>
                     </div>
-                    <!-- More products... -->
+                @endforeach
 
-                </div>
             </div>
         </div>
     </div>

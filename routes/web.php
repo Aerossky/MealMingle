@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TenantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ Route::get('/', function () {
     return view('member.home');
 });
 
-Route::get('/tenant', function () {
-    return view('member.tenant.tenant');
-});
+// Route::get('/tenant', function () {
+//     return view('member.tenant.tenant');
+// });
 
 Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
@@ -43,6 +44,32 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('auth.signup');
 });
+// TENANT ROUTE
+Route::resource('tenant', TenantController::class);
+// Route::get('tenant/show',[TenantController::class,'index'])->name('show.tenant');
+
+
+// ADMIN
+Route::get('/admin-dashboard', function () {
+    return view('admin.dashboard');
+});
+
+
+Route::get('/admin-tenant', function () {
+    return view('admin.tenant.tenant ');
+});
+
+Route::get('/admin-tenant-add', function () {
+    return view('admin.tenant.tenant-add');
+});
+
+Route::get('/admin-tenant-detail', function () {
+    return view('admin.tenant.tenant-detail');
+});
+
+Route::get('/admin-menu-menu-add', function () {
+    return view('admin.menu.menu-add');
+});
 
 
 // USER ROUTE
@@ -50,3 +77,6 @@ Route::resource('user', UserController::class);
 Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
+
+Route::get('login', [UserController::class, 'index'])->name('login');
+
