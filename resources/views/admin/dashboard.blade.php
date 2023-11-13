@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1 class="font-bold text-xl">Dashboard</h1>
+    <h1 class="font-bold text-2xl py-5">Dashboard</h1>
 
     <div>
 

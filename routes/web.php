@@ -38,3 +38,12 @@ Route::get('/signup', function () {
 Route::get('/admin-dashboard', function () {
     return view('admin.dashboard');
 });
+
+
+Route::get('/admin-tenant', function () {
+    return view('admin.tenant.tenant ');
+});
+
+Route::get('/admin-tenant-add', function () {
+    return view('admin.tenant.tenant-add');
+});
