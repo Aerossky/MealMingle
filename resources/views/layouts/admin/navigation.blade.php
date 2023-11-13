@@ -12,6 +12,14 @@
 <aside id="sidebar-multi-level-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar">
+
+
+    <!-- Menampilkan nama pengguna di bagian paling bawah -->
+    <div class="mt-auto px-4 pt-4 bg-gray-50 dark:bg-gray-800 text-center">
+        <p class="text-base text-dark dark:text-gray-400">
+            Halo, <span class="font-bold">Admin</span>!
+        </p>
+    </div>
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li class="font-bold">
@@ -125,8 +133,8 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Logout</span>
                 </a>
             </li>
-
-
         </ul>
     </div>
+
+
 </aside>
