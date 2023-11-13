@@ -12,10 +12,10 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $fillable = [
-      'foto_produk',
       'nama_makanan',
       'deskripsi',
       'harga_produk',
+      'foto_produk',
       'tenant_id',
     ];
 
