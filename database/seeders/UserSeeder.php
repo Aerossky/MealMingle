@@ -35,7 +35,35 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => "Joseph",
-                'email' => "tenant@gmail.com",
+                'email' => "tenant1@gmail.com",
+                'password' => Hash::make('anjay123'), // password
+                'jenis_kelamin' => 'male',
+                'alamat' => 'North West',
+                'universitas_id' => '3',
+                'role_id' => '2',
+            ],
+            [
+                'name' => "Jovan",
+                'email' => "tenant2@gmail.com",
+                'password' => Hash::make('anjay123'), // password
+                'jenis_kelamin' => 'male',
+                'alamat' => 'North West',
+                'universitas_id' => '3',
+                'role_id' => '2',
+            ],
+            [
+                'name' => "William",
+                'email' => "tenant3@gmail.com",
+                'password' => Hash::make('anjay123'), // password
+                'jenis_kelamin' => 'male',
+                'alamat' => 'North West',
+                'universitas_id' => '3',
+                'role_id' => '2',
+            ]
+            ,
+            [
+                'name' => "Ilham",
+                'email' => "tenant4@gmail.com",
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
