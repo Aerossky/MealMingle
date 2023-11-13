@@ -2,7 +2,7 @@
     <div class="fixed overflow-y-auto left-0 top-0 bg-gray-500 bg-opacity-50 w-full h-full justify-center items-center hidden"
         id="dialog">
         <div
-            class="bg-white border border-2 border-kuningMM rounded-xl h-full sm:h-5/6 shadow-md p-4 sm:p-8 w-full flex flex-col overflow-y-auto mx-auto max-w-md sm:max-w-3xl">
+            class="bg-white border-2 border-kuningMM rounded-xl h-full sm:h-5/6 shadow-md p-4 sm:p-8 w-full flex flex-col overflow-y-auto mx-auto max-w-md sm:max-w-3xl">
             <div class="flex flex-col max-w-3xl p-6 space-y-4 h-fit sm:p-10 dark:bg-gray-900 dark:text-gray-100">
                 <h2 class="text-xl font-semibold">Keranjang</h2>
                 {{-- List Items --}}
