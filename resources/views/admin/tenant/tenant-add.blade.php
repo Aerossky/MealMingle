@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between">
         <h1 class="font-bold text-2xl py-5">Tambah Tenant</h1>
         <div class="">
-            <a href=""
+            <a href="/admin-tenant"
                 class="focus:outline-none text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Kembali</a>
         </div>
     </div>
