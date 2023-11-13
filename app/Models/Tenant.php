@@ -12,6 +12,7 @@ class Tenant extends Model
     protected $table = 'tenants';
 
     protected $fillable = [
+      'nama_tenant',
       'deskripsi',
       'user_id',
     ];
