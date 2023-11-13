@@ -38,7 +38,7 @@ class TenantController extends Controller
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
-            // 'picture' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048'
         ]);
 
         if ($validator->fails()) {
@@ -48,15 +48,15 @@ class TenantController extends Controller
                 ->withErrors($validator);
         }
 
-        // $newName = '';
-        // if ($request->file('picture')) {
-        //     $extension = $request->file('picture')->getClientOriginalExtension();
-        //     $newName = $request->email . '-' . now()->timestamp . '.' . $extension;
-        //     $request->file('picture')->storeAs('user_picture', $newName);
-        // }
+        $newName = '';
+        if ($request->file('foto_tenant')) {
+            $extension = $request->file('foto_tenant')->getClientOriginalExtension();
+            $newName = $request->email . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto_tenant')->storeAs('tenant', $newName);
+        }
 
         $validatedData = $validator->validated();
-        // $validatedData['picture'] = $newName;
+        $validatedData['foto_tenant'] = $newName;
         Tenant::create($validatedData);
 
         return redirect()->route('tenant.index')->with('status', 'Data berhasil ditambahkan!');
@@ -95,7 +95,7 @@ class TenantController extends Controller
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
-            // 'picture' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048'
         ]);
 
         if ($validator->fails()) {
@@ -105,25 +105,25 @@ class TenantController extends Controller
                 ->withErrors($validator);
         }
 
-        // if ($request->file('picture')) {
-        //     $extension = $request->file('picture')->getClientOriginalExtension();
-        //     $newName = $request->email . '-' . now()->timestamp . '.' . $extension;
-        //     $request->file('picture')->storeAs('user_picture', $newName);
-        // } else {
-        //     $newName = null;
-        // }
+        if ($request->file('foto_tenant')) {
+            $extension = $request->file('foto_tenant')->getClientOriginalExtension();
+            $newName = $request->email . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto_tenant')->storeAs('tenant', $newName);
+        } else {
+            $newName = null;
+        }
 
         $tenant = Tenant::findOrFail($id);
 
-        // if ($user->picture && $newName) {
-        //     Storage::disk('public')->delete('user_picture/' . $user->picture);
-        // }
+        if ($tenant->foto_tenant && $newName) {
+            Storage::disk('public')->delete('tenant/' . $tenant->foto_tenant);
+        }
 
         $tenant->update([
             'nama_tenant' => $request->nama_tenant,
             'deskripsi' => $request->deskripsi,
             'user_id' => $request->user_id,
-            // 'picture' => $newName ?: $user->picture,
+            'foto_tenant' => $newName ?: $tenant->foto_tenant,
         ]);
 
         return redirect()->route('tenant.index')->with('status', 'Tenant berhasil diperbarui!');
