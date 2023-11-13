@@ -38,7 +38,7 @@ class TenantController extends Controller
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
-            'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -51,7 +51,7 @@ class TenantController extends Controller
         $newName = '';
         if ($request->file('foto_tenant')) {
             $extension = $request->file('foto_tenant')->getClientOriginalExtension();
-            $newName = $request->email . '-' . now()->timestamp . '.' . $extension;
+            $newName = $request->nama_tenant . '-' . now()->timestamp . '.' . $extension;
             $request->file('foto_tenant')->storeAs('tenant', $newName);
         }
 
@@ -72,8 +72,7 @@ class TenantController extends Controller
 
         $menus = Menu::select('id', 'foto_produk', 'nama_makanan', 'deskripsi', 'harga_produk', 'tenant_id')
             ->orderBy('id', 'asc')
-            ->where('tenant_id', $id)
-            ->paginate(5);
+            ->where('tenant_id', $id);
         return view('member.tenant.detail', ['tenant' => $tenant, 'menus' => $menus, 'tenantId' => $tenantId]);
     }
 
@@ -95,7 +94,7 @@ class TenantController extends Controller
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
-            'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -107,7 +106,7 @@ class TenantController extends Controller
 
         if ($request->file('foto_tenant')) {
             $extension = $request->file('foto_tenant')->getClientOriginalExtension();
-            $newName = $request->email . '-' . now()->timestamp . '.' . $extension;
+            $newName = $request->nama_tenant . '-' . now()->timestamp . '.' . $extension;
             $request->file('foto_tenant')->storeAs('tenant', $newName);
         } else {
             $newName = null;
