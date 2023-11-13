@@ -15,6 +15,7 @@ class Tenant extends Model
       'nama_tenant',
       'deskripsi',
       'user_id',
+      'foto_tenant',
     ];
 
     public function user(){

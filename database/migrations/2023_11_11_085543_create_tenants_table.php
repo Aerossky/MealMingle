@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_tenant');
             $table->string('deskripsi');
+            $table->string('foto_tenant');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
