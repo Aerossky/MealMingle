@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.signin');
     }
 
     /**
@@ -25,7 +25,7 @@ class UserController extends Controller
     public function create()
     {
         $universitas = Universitas::select('id','universitas')->get();
-        return view('auth.register',['options' => $universitas]);
+        return view('auth.signup',['options' => $universitas]);
     }
 
     /**
@@ -48,7 +48,7 @@ class UserController extends Controller
         User::create($validatedData);
 
         //ke halaman login
-        return view('auth.signin');
+        return redirect('login');
     }
 
     /**
