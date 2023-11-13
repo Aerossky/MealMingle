@@ -47,6 +47,9 @@
                 </a> --}}
             </div>
             <div class="mt-8 md:mt-0 md:order-1">
+                <a class="text-center text-base text-gray-400 font-semibold" href="/reviewweb">Review Us Here !</a>
+            </div>
+            <div class="mt-8 md:mt-0 md:order-1">
                 <p class="text-center text-base text-gray-400">&copy; 2023 MealMingle.</p>
             </div>
         </div>

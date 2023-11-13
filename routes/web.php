@@ -27,6 +27,15 @@ Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
 });
 
+Route::get('/reviewweb', function(){
+    return view('member.reviewweb');
+});
+
+// ADMIN
+Route::get('/admin', function () {
+    return view('admin.home');
+});
+
 // AUTH
 Route::get('/signin', function () {
     return view('auth.signin');
@@ -61,6 +70,7 @@ Route::get('/admin-tenant-detail', function () {
 Route::get('/admin-menu-menu-add', function () {
     return view('admin.menu.menu-add');
 });
+
 
 // USER ROUTE
 Route::resource('user', UserController::class);
