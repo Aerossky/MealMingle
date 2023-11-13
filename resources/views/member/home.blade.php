@@ -7,8 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home | MealMingle</title>
     {{-- tailwind --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/header.css', 'resources/js/app.js', 'resources/js/home.js'])
 
+    {{-- scroll reveal --}}
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/js/splide.min.js"></script>
 </head>
@@ -18,34 +20,37 @@
     @include('layouts.header')
 
     {{-- hero section --}}
-    <section class="flex flex-col justify-center mt-20 md:mt-[85px] bg-kuningMM pb-[250px] md:pb-20">
+    <section class="flex flex-col justify-center mt-20 md:mt-[85px] bg-kuningMM pb-[250px] md:pb-20" id="hero">
         {{-- ukuran Kiri kanan --}}
         <div class="px-4 md:mx-24">
             {{-- pembungkus --}}
             <div class="flex items-center flex-col md:flex-row">
                 {{-- Left Section --}}
-                <div class="md:w-2/3 order-2 md:order-1">
+                <div class="md:w-2/3 order-2 md:order-1 hero__text">
                     <h1 class="font-bold text-center text-2xl md:text-left md:text-4xl">Teman Makan Mahasiswa<br>
                         Selama Perjalanan <span class="text-merahMM">Kuliah</span>.
                     </h1>
                     {{-- mobile --}}
-                    <p class="mt-4 md:mt-[50px] md:hidden">
-                        Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami.Fokus pada kuliah
-                        Anda, biarkan kami mengurus masalah kuliner Anda.
-                    </p>
-                    {{-- Desktop --}}
-                    <p class="mt-4 md:mt-[50px] hidden md:block">
-                        Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami. <br>
-                        Fokus pada kuliah Anda, biarkan kami mengurus masalah kuliner Anda.
-                    </p>
-                    <div class=" flex justify-center md:justify-start">
+                    <div class="tagline">
+                        <p class="mt-4 md:mt-[50px] md:hidden">
+                            Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami.Fokus pada
+                            kuliah
+                            Anda, biarkan kami mengurus masalah kuliner Anda.
+                        </p>
+                        {{-- Desktop --}}
+                        <p class="mt-4 md:mt-[50px] hidden md:block">
+                            Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami. <br>
+                            Fokus pada kuliah Anda, biarkan kami mengurus masalah kuliner Anda.
+                        </p>
+                    </div>
+                    <div class=" flex justify-center md:justify-start ">
                         <button type="button"
                             class="mt-[30px] text-white bg-merahMM hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Pesan</button>
                     </div>
                 </div>
 
                 {{-- Right Section --}}
-                <div class="order-1 md:order-2">
+                <div class="order-1 md:order-2 hero__img">
                     <img src="{{ asset('img/hero-image.png') }}" class="" alt="Flowbite Logo">
                 </div>
             </div>
@@ -53,24 +58,32 @@
     </section>
 
     {{-- stats section --}}
-    <section class="mt-[-200px] md:mt-[-65px]">
+    <section class="mt-[-200px] md:mt-[-65px]" id="stats">
         <div class="relative">
             <div class="absolute inset-0 h-1/2"></div>
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto">
                     <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
-                        <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-                            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Pengguna</dt>
-                            <dd class="order-1 text-5xl font-extrabold text-merahMM">10</dd>
+                        <div
+                            class="stat-item flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r ">
+                            <div class="pengguna">
+                                <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Pengguna</dt>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">10</dd>
+                            </div>
                         </div>
                         <div
-                            class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-                            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Tenant</dt>
-                            <dd class="order-1 text-5xl font-extrabold text-merahMM">5</dd>
+                            class="stat-item flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r ">
+                            <div class="tenant">
+                                <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500 ">Tenant</dt>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">5</dd>
+                            </div>
                         </div>
-                        <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
-                            <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Universitas</dt>
-                            <dd class="order-1 text-5xl font-extrabold text-merahMM">10+</dd>
+                        <div
+                            class="stat-item flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
+                            <div class="universitas">
+                                <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Universitas</dt>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">10+</dd>
+                            </div>
                         </div>
                     </dl>
                 </div>
@@ -78,11 +91,12 @@
         </div>
 
 
+
     </section>
 
     {{-- about section --}}
-    <section class="bg-merahMM mt-[-190px] md:mt-[-65px] text-center">
-        <div class="py-12 mt-[190px] md:mt-10">
+    <section class="bg-merahMM mt-[-190px] md:mt-[-65px] text-center aboutbg" id="about">
+        <div class="py-12 mt-[190px] md:mt-10 about">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center">
                     <h2 class="text-base text-kuningMM font-semibold tracking-wide uppercase">Apa Sih MealMingle</h2>
@@ -93,13 +107,14 @@
                         repot mencari. Kami membebaskanmu dari kekhawatiran mencari makanan yang sesuai dengan anda,
                         sehingga perkuliahanmu jadi lebih fokus dan tenang.</p>
                 </div>
-
+            </div>
+        </div>
     </section>
 
     {{-- eksplor section --}}
-    <section class="flex flex-col justify-center mt-20">
+    <section class="flex flex-col justify-center mt-20" id="eksplor">
         {{-- ukuran Kiri kanan --}}
-        <div class="px-4 md:mx-24">
+        <div class="px-4 md:mx-24 ">
             {{-- pembungkus --}}
             <div class="flex items-center flex-col md:flex-row">
                 {{-- kiri --}}
@@ -108,7 +123,7 @@
                 </div>
 
                 {{-- kanan --}}
-                <div class="w-full md:w-1/3">
+                <div class="w-full md:w-1/3 ">
                     <h1 class="font-bold text-[25px]">Eksplor Makanan <br>
                         Favorit di Sekitar Kampus Anda.</h1>
 
@@ -127,7 +142,7 @@
     {{-- @include('layouts.footer') --}}
 
     {{-- Testimoni section --}}
-    <section class="flex flex-col justify-center mt-20 bg-kuningMM p-3">
+    <section class="flex flex-col justify-center mt-20 bg-kuningMM p-3" id="testimoni">
         <div class="px-4 md:mx-24">
             <div class="lg:text-center">
                 <h2 class="text-base text-merahMM font-semibold tracking-wide uppercase">Testimonial</h2>
@@ -163,7 +178,7 @@
     </section>
 
     {{-- FAQ section --}}
-    <section class="flex flex-col justify-center mt-20 ">
+    <section class="flex flex-col justify-center mt-20 " id="faq">
         <div class="px-4 md:mx-24">
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="">
@@ -174,7 +189,7 @@
                         <!-- HTML -->
                         <dl class="mt-6 space-y-6 divide-y divide-gray-200">
                             <div x-data="{ open: false }">
-                                <dt class="text-lg">
+                                <dt class="text-lg faqtitle">
                                     <button type="button" @click="open = !open" aria-controls="faq-1"
                                         :aria-expanded="open.toString()"
                                         class="text-left w-full flex justify-between items-start text-gray-400">
@@ -206,7 +221,7 @@
 
 
                             <div x-data="{ open: false }">
-                                <dt class="text-lg">
+                                <dt class="text-lg faqtitle">
                                     <button type="button" @click="open = !open" aria-controls="faq-1"
                                         :aria-expanded="open.toString()"
                                         class="text-left w-full flex justify-between items-start text-gray-400">
@@ -236,7 +251,7 @@
                                 </dd>
                             </div>
                             <div x-data="{ open: false }">
-                                <dt class="text-lg">
+                                <dt class="text-lg faqtitle">
                                     <button type="button" @click="open = !open" aria-controls="faq-1"
                                         :aria-expanded="open.toString()"
                                         class="text-left w-full flex justify-between items-start text-gray-400">
@@ -266,7 +281,7 @@
                                 </dd>
                             </div>
                             <div x-data="{ open: false }">
-                                <dt class="text-lg">
+                                <dt class="text-lg faqtitle">
                                     <button type="button" @click="open = !open" aria-controls="faq-1"
                                         :aria-expanded="open.toString()"
                                         class="text-left w-full flex justify-between items-start text-gray-400">

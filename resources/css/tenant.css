@@ -1,0 +1,20 @@
+/* styles.css */
+.image-container {
+    width: 100px;
+    height: 100px;
+}
+
+/* Tambahkan media query untuk layar dengan lebar maksimum 768px */
+@media (max-width: 768px) {
+    .image-container {
+        width: 100px; /* Atur lebar gambar menjadi 50px pada layar dengan lebar maksimum 768px */
+        height: 100px; /* Atur tinggi gambar menjadi 50px pada layar dengan lebar maksimum 768px */
+    }
+}
+
+@media (min-width: 769px) {
+    .image-container {
+        width: 250px; /* Atur lebar gambar menjadi 150px pada layar dengan lebar minimum 769px */
+        height: 250px; /* Atur tinggi gambar menjadi 150px pada layar dengan lebar minimum 769px */
+    }
+}
