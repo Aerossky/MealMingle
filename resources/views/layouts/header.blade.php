@@ -27,8 +27,9 @@
             {{-- (DEV)  --}}
             {{-- Belum Login --}}
             <button type="button"
-                class="px-4 py-2 text-sm text-center text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
-                started</button>
+                class="px-4 py-2 text-sm text-center text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <a href="{{ route('user.create') }}">Get started</a>
+            </button>
 
             {{-- sudah login --}}
             {{-- <div class="hidden md:block">
