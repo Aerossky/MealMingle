@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,9 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('auth.signup');
 });
+
+// USER ROUTE
+Route::resource('user', UserController::class);
+Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
