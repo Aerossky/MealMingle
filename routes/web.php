@@ -47,3 +47,11 @@ Route::get('/admin-tenant', function () {
 Route::get('/admin-tenant-add', function () {
     return view('admin.tenant.tenant-add');
 });
+
+Route::get('/admin-tenant-detail', function () {
+    return view('admin.tenant.tenant-detail');
+});
+
+Route::get('/admin-menu-menu-add', function () {
+    return view('admin.menu.menu-add');
+});
