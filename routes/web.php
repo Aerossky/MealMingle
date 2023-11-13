@@ -25,11 +25,6 @@ Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
 });
 
-// ADMIN
-Route::get('/admin', function () {
-    return view('admin.home');
-});
-
 // AUTH
 Route::get('/signin', function () {
     return view('auth.signin');
@@ -37,4 +32,9 @@ Route::get('/signin', function () {
 
 Route::get('/signup', function () {
     return view('auth.signup');
+});
+
+// ADMIN
+Route::get('/admin-dashboard', function () {
+    return view('admin.dashboard');
 });
