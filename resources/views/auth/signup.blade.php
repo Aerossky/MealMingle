@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register | MealMingle</title>
+    <title>Signup | MealMingle</title>
     {{-- tailwind --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
@@ -106,7 +106,7 @@
                                 class="w-full md:w-1/2 text-sm font-medium text-white bg-merahMM hover:bg-red-700 px-4 py-2 rounded text-center">Submit</button>
                             {{-- Redirect --}}
                             <p class="md:mt-4">Sudah punya akun? <a href="/signin"
-                                    class="md:text-merahMM font-bold">login yuk</a>
+                                    class="md:text-merahMM font-bold">Sign in yuk</a>
                             </p>
 
                         </div>

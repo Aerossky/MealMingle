@@ -30,7 +30,7 @@
                         class="md:bg-merahMM md:hover:bg-red-700 md:text-white md:px-4 md:py-2 md:rounded cursor-pointer md:w-full">Sign
                         In</button>
                 </form>
-                <p class="md:mt-4">Belum punya akun? <a href="" class="md:text-merahMM font-bold">daftar yuk</a>
+                <p class="md:mt-4">Belum punya akun? <a href="/signup" class="md:text-merahMM font-bold">Signup yuk</a>
                 </p>
             </div>
         </div>
@@ -38,7 +38,7 @@
         {{-- Gambar Section Kanan --}}
         <div class="md:flex-1 md:bg-gray-200 md:justify-center md:items-center">
             <div class="md:w-fit md:h-fit md:overflow-hidden">
-                <img src="{{ asset('img/signin/logineg.jpeg') }}" alt=""
+                <img src="{{ asset('img/page/signin/logineg.jpeg') }}" alt=""
                     class="md:object-cover md:w-screen md:h-screen">
             </div>
         </div>
