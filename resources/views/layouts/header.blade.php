@@ -29,7 +29,7 @@
                                         </label>
                                         <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                             <button data-action="decrement"
-                                                class=" bg-kuningMM text-merahMM hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                                class="bg-kuningMM text-merahMM hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
                                                 <span class="m-auto text-2xl font-thin">−</span>
                                             </button>
                                             <input type="number"
@@ -46,7 +46,6 @@
                                                 -webkit-appearance: none;
                                                 margin: 0;
                                             }
-
                                             .custom-number-input input:focus {
                                                 outline: none !important;
                                             }
@@ -173,7 +172,7 @@
                             <div class="flex flex-col justify-between w-full pb-4">
                                 <div class="flex justify-between w-full pb-2 space-x-2">
                                     <div class="space-y-1">
-                                        <h3 class="text-lg font-semibold leadi sm:pr-8">Replica headphones</h3>
+                                        <h3 class="text-lg font-semibold leadi sm:pr-8">Replica</h3>
                                         <p class="text-sm dark:text-gray-400">White</p>
                                     </div>
                                     <div class="text-right">
@@ -286,8 +285,12 @@
             );
             const target = btn.nextElementSibling;
             let value = Number(target.value);
-            value--;
-            target.value = value;
+
+            if (value > 0) {
+                value--;
+                target.value = value;
+            }
+
         }
 
         function increment(e) {
