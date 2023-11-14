@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\UniversitasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
 });
 
-Route::get('/reviewweb', function(){
+Route::get('/reviewweb', function () {
     return view('member.reviewweb');
 });
 
@@ -44,9 +45,12 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('auth.signup');
 });
+
 // TENANT ROUTE
 Route::resource('tenant', TenantController::class);
-// Route::get('tenant/show',[TenantController::class,'index'])->name('show.tenant');
+
+// UNIVERSITAS ROUTE
+Route::resource('universitas', UniversitasController::class);
 
 
 // ADMIN
@@ -79,4 +83,3 @@ Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
 
 Route::get('login', [UserController::class, 'index'])->name('login');
-

@@ -32,9 +32,10 @@
                 <div class="md:flex md:items-center md:justify-between mt-5">
                     <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Tenant</h2>
                 </div>
-                {{-- array tenant --}}
-                @foreach ($tenants as $item)
-                    <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+
+                <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+                    {{-- Loop Tenant --}}
+                    @foreach ($tenants as $item)
                         <div class="group relative">
                             <div
                                 class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
@@ -49,8 +50,8 @@
                                 </a>
                             </h3>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
 
             </div>
         </div>
