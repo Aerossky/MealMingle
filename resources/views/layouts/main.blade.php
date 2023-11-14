@@ -18,7 +18,7 @@
     @include('layouts.header')
 
     {{-- width layout --}}
-    <div class="flex flex-col justify-center md:mt-[110px] mt-[85px]">
+    <div class="flex flex-col justify-center md:mt-[80px] mt-[85px]">
         <main class="">
             @yield('content')
         </main>
@@ -30,4 +30,3 @@
 </body>
 
 </html>
-
