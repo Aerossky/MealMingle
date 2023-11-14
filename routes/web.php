@@ -53,6 +53,7 @@ Route::resource('tenant', TenantController::class);
 Route::resource('universitas', UniversitasController::class);
 
 
+
 // ADMIN
 Route::get('/admin-dashboard', function () {
     return view('admin.dashboard');
@@ -77,9 +78,9 @@ Route::get('/admin-menu-menu-add', function () {
 
 
 // USER ROUTE
-Route::resource('user', UserController::class);
-Route::get('user/create', [UserController::class, 'create'])->name('user.create');
-Route::post('user/store', [UserController::class, 'store'])->name('user.store');
-Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
+// Route::resource('user', UserController::class);
+// Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+// Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+// Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
 
 Route::get('login', [UserController::class, 'index'])->name('login');

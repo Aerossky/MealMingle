@@ -98,8 +98,15 @@ class UniversitasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Universitas $universitas)
+    public function destroy($id)
     {
+
         //
+        $universitas = Universitas::findOrFail($id);
+
+        // Melakukan Soft Delete
+        $universitas->delete();
+
+        return redirect()->route('universitas.index')->with('status', 'Data universitas berhasil dihapus!');
     }
 }

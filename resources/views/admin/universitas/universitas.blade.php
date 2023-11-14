@@ -43,10 +43,16 @@
                             <td class="px-6 py-4">
                                 {{ $data->universitas }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 flex gap-2">
                                 <a href="{{ route('universitas.edit', $data->id) }}"
                                     class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                                <a href="#" class="text-red-600 hover:text-red-900">Delete<span class="sr-only"></a>
+                                <form action="{{ route('universitas.softDelete', $data->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                </form>
+
                             </td>
                         </tr>
                     @endforeach
