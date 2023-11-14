@@ -1,5 +1,5 @@
 @extends('layouts.admin.main')
-@section('title', 'Universitas Edit Admin')
+@section('title', 'Universitas Edit')
 
 @section('content')
 

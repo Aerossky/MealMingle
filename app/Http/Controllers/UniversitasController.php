@@ -109,4 +109,29 @@ class UniversitasController extends Controller
 
         return redirect()->route('universitas.index')->with('status', 'Data universitas berhasil dihapus!');
     }
+
+    // SOFT DELETE
+    public function deletedData()
+    {
+        $universitas = Universitas::onlyTrashed()->get();
+        return view('admin.universitas.universitas-deleted', compact('universitas'));
+    }
+
+    public function restore($id)
+    {
+        $universitas = Universitas::onlyTrashed()->where('id', $id)->first();
+        $universitas->restore();
+
+        // redirect
+        return redirect()->route('universitas.index');
+    }
+
+    public function forceDelete($id)
+    {
+        $universitas = Universitas::onlyTrashed()->where('id', $id)->first();
+        $universitas->forceDelete();
+
+        // redirect
+        return redirect()->route('universitas.index');
+    }
 }

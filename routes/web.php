@@ -51,7 +51,9 @@ Route::resource('tenant', TenantController::class);
 
 // UNIVERSITAS ROUTE
 Route::resource('universitas', UniversitasController::class);
-
+Route::get('universitas/data/terhapus', [UniversitasController::class, 'deletedData'])->name('universitas.deletedData');
+Route::get('universitas/data/restore/{id}', [UniversitasController::class, 'restore'])->name('universitas.restore');
+Route::get('universitas/data/force-delete/{id}', [UniversitasController::class, 'forceDelete'])->name('universitas.forceDelete');
 
 
 // ADMIN
@@ -78,9 +80,10 @@ Route::get('/admin-menu-menu-add', function () {
 
 
 // USER ROUTE
+// Note: Tolong perbaiki route ini berantakan!
 // Route::resource('user', UserController::class);
 // Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 // Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 // Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
 
-Route::get('login', [UserController::class, 'index'])->name('login');
+// Route::get('login', [UserController::class, 'index'])->name('login');
