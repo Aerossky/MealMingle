@@ -3,7 +3,7 @@
 
 @section('content')
     {{-- jarak kiri kanan --}}
-    <div class="px-4 md:px-48">
+    <div class="px-4 md:px-48 md:mt-7">
         <div class="mt-3">
             <form>
                 <label for="default-search"
