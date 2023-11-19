@@ -24,13 +24,53 @@
 
     {{-- Content --}}
     <div class="p-4 bg-white border shadow-md min-h-40 rounded-lg overflow-x-auto">
-        <form action="{{ route('universitas.store') }}" method="POST">
+        <form action="{{ route('user.store') }}" method="POST">
             @csrf
             <div class="grid grid-cols-2 gap-2">
+                <!-- Nama -->
+                <div class="mb-4 col-span-2">
+                    <label for="name" class="block text-sm font-medium text-gray-600">Nama</label>
+                    <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md" required>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-4 col-span-2">
+                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md" required>
+                </div>
+
+                <!-- password -->
+                <div class="mb-4 col-span-2">
+                    <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+                    <input type="password" id="password" name="password" class="mt-1 p-2 w-full border rounded-md"
+                        required>
+                </div>
+
+                <!-- Jenis Kelamin -->
+                <div class="mb-4 col-span-2">
+                    <label for="jenis_kelamin" class="block text-sm font-medium text-gray-600">Jenis Kelamin</label>
+                    <select id="jenis_kelamin" name="jenis_kelamin" class="mt-1 p-2 w-full border rounded-md">
+                        <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                        <option value="laki-laki">Laki-laki</option>
+                        <option value="perempuan">Perempuan</option>
+                    </select>
+                </div>
+
+                <!-- Alamat -->
+                <div class="mb-4 col-span-2">
+                    <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat</label>
+                    <input type="text" id="alamat" name="alamat" class="mt-1 p-2 w-full border rounded-md">
+                </div>
+
                 <!-- Nama Universitas -->
                 <div class="mb-4 col-span-2">
-                    <label for="nama" class="block text-sm font-medium text-gray-600">Nama Universitas</label>
-                    <input type="text" id="nama" name="nama" class="mt-1 p-2 w-full border rounded-md">
+                    <label for="universitas_id" class="block text-sm font-medium text-gray-600">Universitas</label>
+                    <select id="universitas_id" name="universitas_id" class="mt-1 p-2 w-full border rounded-md">
+                        <option value="" disabled selected>Pilih Universitas</option>
+                        @foreach ($universitas as $data)
+                            <option value="{{ $data->id }}">{{ $data->universitas }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <!-- Tombol Kirim -->

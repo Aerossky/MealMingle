@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::select('id', 'name', 'email', 'status', 'universitas_id')->with('universitas')->where('role_id', '!=', 1)->get();
         return view('admin.user.user', compact('user'));
     }
 
@@ -25,7 +25,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.user-add');
+        $universitas = Universitas::all();
+        return view('admin.user.user-add', ['universitas' => $universitas]);
     }
 
     /**
@@ -40,23 +41,24 @@ class UserController extends Controller
             'password' => 'required',
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
+            'universitas_id' => 'required|numeric'
         ]);
-
         $validatedData = $validator->validated();
-        $validatedData['universitas_id'] = $request->universitas;
         $validatedData['role_id'] = 3;
         User::create($validatedData);
 
         //ke halaman login
-        return redirect('login');
+        return redirect()->route('user.index')->with('status', 'Data berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
+        $data = User::with('universitas', 'role')->findOrFail($id);
+        return view('admin.user.user-detail', ['user' => $data]);
     }
 
     /**
