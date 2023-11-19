@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Universitas;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:10|max:50',
             'jenis_kelamin' => 'required',
             'alamat' => 'required',
             'universitas_id' => 'required|numeric'
@@ -64,18 +65,56 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        $universitas = Universitas::all();
+        $role = Role::all();
+        return view('admin.user.user-edit', compact('user', 'universitas', 'role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:10|max:50',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'status' => 'required',
+            'universitas_id' => 'required|numeric',
+            'role_id' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Menggunakan password baru jika diisi, atau tetap menggunakan password lama
+        $password = !empty($request->password) ? Hash::make($request->password) : $user->password;
+
+        // Menentukan kolom yang akan diperbarui
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $password,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'status' => $request->status,
+            'universitas_id' => $request->universitas_id,
+            'role_id' => $request->role_id,
+        ]);
+
+        // Redirect atau response lainnya setelah perbarui data
+        return redirect()->route('user.index')->with('success', 'Pengguna berhasil diperbarui.');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -62,7 +62,8 @@
                             <a href="{{ route('user.show', $data->id) }}"
                                 class="text-yellow-600 hover:text-yellow-900">Detail</a>
 
-                            <a href="#" class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
+                            <a href="{{ route('user.edit', $data->id) }}"
+                                class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
                             <a href="#" class="text-red-600 hover:text-red-900">Delete<span class="sr-only"></a>
                         </td>
                     </tr>
