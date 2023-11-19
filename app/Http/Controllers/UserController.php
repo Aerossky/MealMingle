@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('auth.signin');
+        $user = User::all();
+        return view('admin.user.user', compact('user'));
     }
 
     /**
@@ -24,8 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $universitas = Universitas::select('id','universitas')->get();
-        return view('auth.signup',['options' => $universitas]);
+        return view('admin.user.user-add');
     }
 
     /**
