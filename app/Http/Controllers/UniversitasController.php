@@ -104,10 +104,13 @@ class UniversitasController extends Controller
         //
         $universitas = Universitas::findOrFail($id);
 
-        // Melakukan Soft Delete
-        $universitas->delete();
-
-        return redirect()->route('universitas.index')->with('status', 'Data universitas berhasil dihapus!');
+        if ($universitas->user()->exists()) {
+            return redirect()->route('universitas.index')->with('status', 'Data universitas Gagal dihapus!');
+        } else {
+            // Melakukan Soft Delete
+            $universitas->delete();
+            return redirect()->route('universitas.index')->with('status', 'Data universitas berhasil dihapus!');
+        }
     }
 
     // SOFT DELETE
