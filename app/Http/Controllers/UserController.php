@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::select('id', 'name', 'email', 'status', 'universitas_id')->with('universitas')->where('role_id', '!=', 1)->get();
+        $user = User::select('id', 'name', 'email', 'status', 'universitas_id')->with('universitas')->get();
         return view('admin.user.user', compact('user'));
     }
 
@@ -81,19 +81,38 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|unique:users,email,' . $user->id,
-            'password' => 'nullable|min:10|max:50',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'required',
-            'status' => 'required',
-            'universitas_id' => 'required|numeric',
-            'role_id' => 'required|numeric',
-        ]);
+        // Validasi hanya jika terdapat perubahan email
+        if ($request->email !== $user->email) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'nullable|min:10|max:50',
+                'jenis_kelamin' => 'required',
+                'alamat' => 'required',
+                'status' => 'required',
+                'universitas_id' => 'required|numeric',
+                'role_id' => 'required|numeric',
+            ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+        } else {
+            // Jika tidak ada perubahan email, validasi tanpa aturan unique untuk email
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'nullable|min:10|max:50',
+                'jenis_kelamin' => 'required',
+                'alamat' => 'required',
+                'status' => 'required',
+                'universitas_id' => 'required|numeric',
+                'role_id' => 'required|numeric',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
         }
 
         // Menggunakan password baru jika diisi, atau tetap menggunakan password lama
@@ -116,11 +135,17 @@ class UserController extends Controller
     }
 
 
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        // Melakukan Soft Delete
+        $user->delete();
+
+        return redirect()->route('user.index')->with('status', 'Data user berhasil dihapus!');
     }
 }

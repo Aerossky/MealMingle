@@ -58,13 +58,18 @@
                         </td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $data->universitas->universitas }}
                         </td>
-                        <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                        <td class="px-6 py-4 flex gap-2">
                             <a href="{{ route('user.show', $data->id) }}"
                                 class="text-yellow-600 hover:text-yellow-900">Detail</a>
 
                             <a href="{{ route('user.edit', $data->id) }}"
                                 class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                            <a href="#" class="text-red-600 hover:text-red-900">Delete<span class="sr-only"></a>
+                            <form action="{{ route('user.destroy', $data->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
