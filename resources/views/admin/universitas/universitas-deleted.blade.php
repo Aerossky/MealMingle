@@ -47,7 +47,7 @@
                                 {{ $data->universitas }}
                             </td>
                             <td class="px-6 py-4 flex gap-2">
-                                <a href="{{ route('universitas.restore', $data->id) }}"
+                                <a href="{{ route('user.restore', $data->id) }}"
                                     class="text-yellow-600 hover:text-yellow-900">Restore<span class="sr-only"></a>
 
                                 <a href="{{ route('universitas.forceDelete', $data->id) }}"

@@ -148,4 +148,20 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with('status', 'Data user berhasil dihapus!');
     }
+
+    // SOFT DELETE
+    public function deletedData()
+    {
+        $user = User::onlyTrashed()->get();
+        return view('admin.user.user-deleted', compact('user'));
+    }
+
+    public function restore($id)
+    {
+        $user = User::onlyTrashed()->where('id', $id)->first();
+        $user->restore();
+
+        // redirect
+        return redirect()->route('user.index');
+    }
 }
