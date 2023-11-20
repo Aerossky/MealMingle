@@ -15,7 +15,7 @@
                 <div
                     class="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
                     <div class="flex-1 px-4 py-2 text-sm truncate">
-                        <a href="#" class="text-gray-900 font-medium hover:text-gray-600">Total Tenant</a>
+                        <a href="{{ route('tenant.index') }}" class="text-gray-900 font-medium hover:text-gray-600">Total Tenant</a>
                         {{-- DEV --}}
                         <p class="text-gray-500">16 Tenant</p>
                     </div>
