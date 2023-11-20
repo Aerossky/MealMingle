@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
+                'status' => 'aktif',
                 'universitas_id' => '1',
                 'role_id' => '1',
             ],
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
+                'status' => 'tidakaktif',
                 'universitas_id' => '2',
                 'role_id' => '3',
             ],
@@ -39,6 +41,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
+                'status' => 'aktif',
                 'universitas_id' => '3',
                 'role_id' => '2',
             ],
@@ -48,6 +51,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
+                'status' => 'aktif',
                 'universitas_id' => '3',
                 'role_id' => '2',
             ],
@@ -57,16 +61,17 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
+                'status' => 'aktif',
                 'universitas_id' => '3',
                 'role_id' => '2',
-            ]
-            ,
+            ],
             [
                 'name' => "Ilham",
                 'email' => "tenant4@gmail.com",
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
+                'status' => 'aktif',
                 'universitas_id' => '3',
                 'role_id' => '2',
             ]

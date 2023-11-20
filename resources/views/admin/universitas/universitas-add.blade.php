@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between">
         <h1 class="font-bold text-2xl py-5">Tambah Universitas</h1>
         <div class="">
-            <a href="{{ route('universitas.index') }}"
+            <a href="{{ route('user.index') }}"
                 class="focus:outline-none text-white bg-red-700 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Kembali</a>
         </div>
     </div>
