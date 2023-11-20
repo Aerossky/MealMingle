@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\User;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,11 +16,11 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $tenants = Tenant::select('id', 'nama_tenant', 'deskripsi', 'user_id')
+        $tenants = Tenant::select('id', 'nama_tenant', 'deskripsi', 'foto_tenant', 'user_id')
             ->orderBy('id', 'asc')
             ->get();
 
-        return view('member.tenant.tenant', ['tenants' => $tenants]);
+        return view('admin.tenant.tenant', ['tenants' => $tenants]);
     }
 
     /**
@@ -27,7 +28,11 @@ class TenantController extends Controller
      */
     public function create()
     {
-        return view('member.tenant.tenant-add');
+        $users = User::select('id', 'name')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.tenant.tenant-add', ['users' => $users]);
     }
 
     /**
@@ -74,7 +79,7 @@ class TenantController extends Controller
         $menus = Menu::select('id', 'foto_produk', 'nama_makanan', 'deskripsi', 'harga_produk', 'tenant_id')
             ->orderBy('id', 'asc')
             ->where('tenant_id', $id);
-        return view('member.tenant.detail', ['tenant' => $tenant, 'menus' => $menus, 'tenantId' => $tenantId]);
+        return view('admin.tenant.tenant-detail', ['tenant' => $tenant, 'menus' => $menus, 'tenantId' => $tenantId]);
     }
 
     /**
@@ -83,7 +88,7 @@ class TenantController extends Controller
     public function edit(string $id)
     {
         $tenant = Tenant::findOrFail($id);
-        return view('member.tenant.tenant-edit', ['tenant' => $tenant]);
+        return view('admin.tenant.tenant-edit', ['tenant' => $tenant]);
     }
 
     /**
