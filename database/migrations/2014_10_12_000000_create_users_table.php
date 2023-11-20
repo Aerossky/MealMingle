@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('status', ['aktif', 'tidakaktif'])->default('tidakaktif');
             $table->foreignId('universitas_id')->constrained('universitas')->onDelete('cascade');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +31,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
         Schema::dropIfExists('users');
     }
 };

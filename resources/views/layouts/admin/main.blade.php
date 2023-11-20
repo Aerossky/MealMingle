@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/css/header.css', 'resources/css/tenant.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-Montserrat">
+<body class="font-Montserrat overflow-x-hidden md:overflow-x-auto">
 
     {{-- Sidebar --}}
     @include('layouts.admin.navigation')

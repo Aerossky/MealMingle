@@ -4,15 +4,12 @@
 @section('content')
 
     <div class="flex items-center justify-between">
-        <h1 class="font-bold text-2xl py-5">User</h1>
+        <h1 class="font-bold text-2xl py-5">User Deleted Data</h1>
         <div class="">
-            <a href="{{ route('user.deletedData') }}"
-                class="focus:outline-none text-white bg-blue-500 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Data
-                Terhapus</a>
-
-            <a href="{{ route('user.create') }}"
-                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Tambah
-                User</a>
+            <div class="">
+                <a href="{{ route('user.index') }}"
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Kembali</a>
+            </div>
         </div>
     </div>
 
@@ -63,17 +60,12 @@
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $data->universitas->universitas }}
                         </td>
                         <td class="px-6 py-4 flex gap-2">
-                            <a href="{{ route('user.show', $data->id) }}"
-                                class="text-yellow-600 hover:text-yellow-900">Detail</a>
+                            <a href="{{ route('user.restore', $data->id) }}"
+                                class="text-yellow-600 hover:text-yellow-900">Restore<span class="sr-only"></a>
 
-                            <a href="{{ route('user.edit', $data->id) }}"
-                                class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                            <form action="{{ route('user.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
+                            {{-- <a href="{{ route('user.forceDelete', $data->id) }}"
+                                class="text-red-600 hover:text-red-900">Delete<span class="sr-only"></a> --}}
 
-                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                            </form>
                         </td>
                     </tr>
                 @endforeach

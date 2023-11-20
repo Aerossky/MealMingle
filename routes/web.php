@@ -57,6 +57,8 @@ Route::get('universitas/data/force-delete/{id}', [UniversitasController::class, 
 
 // USER ROUTE
 Route::resource('user', UserController::class);
+Route::get('user/data/terhapus', [UserController::class, 'deletedData'])->name('user.deletedData');
+Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
 // Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 // Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 // Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');

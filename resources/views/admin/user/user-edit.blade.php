@@ -39,7 +39,7 @@
                 <div class="mb-4 col-span-2">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
                     <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md"
-                        value="{{ old('name', $user->email) }}" required>
+                        value="{{ old('email', $user->email) }}" required>
                 </div>
 
                 <!-- password -->
