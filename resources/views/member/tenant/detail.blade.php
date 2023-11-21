@@ -3,7 +3,7 @@
 
 @section('content')
     {{-- ukuran Kiri kanan --}}
-    <div class="px-4 py-5 md:mx-24 bg-[#202020] md:rounded-md text-white font-Montserrat">
+    <div class="px-4 py-5 md:mx-28 md:mt-7 bg-[#202020] md:rounded-md text-white font-Montserrat">
         {{-- Detail Tenant --}}
         <div class="grid grid-cols-2">
             <div class="flex justify-center items-center flex-shrink-0 ">
@@ -30,9 +30,9 @@
     </div>
 
     <div class="bg-white font-Montserrat px-4 md:px-14">
-        <div class="max-w-2xl mx-auto px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="max-w-2xl mx-auto px-4 sm:py-6 sm:px-6 lg:max-w-7xl lg:px-8">
             {{-- Button Kembali Dekstop --}}
-            <a href="#" class="hidden text-sm font-medium text-merahMM hover:text-red-700 md:block">Kembali<span
+            <a href="#" class="hidden text-sm font-medium text-merahMM hover:text-red-700 md:inline">Kembali<span
                     aria-hidden="true"> &rarr;</span></a>
 
             {{-- List Produk --}}
