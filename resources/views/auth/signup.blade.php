@@ -31,7 +31,7 @@
             </div>
             <div class="mx-auto my-auto">
                 <p class="text-left sm:pt-5 md:mt-5 text-4xl font-bold">Sign Up Your Account</p>
-                <form class="mt-14" action="{{ route('user.store') }}" method="post">
+                <form class="mt-14" action="{{ route('signup.storeData') }}" method="post">
                     @csrf
                     <div class="md:grid sm:grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="mb-6">

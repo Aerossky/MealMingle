@@ -45,9 +45,8 @@ Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.v
 //     return view('auth.signin');
 // });
 
-Route::get('/signup', function () {
-    return view('auth.signup');
-});
+Route::get('/signup',[AuthController::class, 'signUp'])->name('signup');
+Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
 
 // TENANT ROUTE
 Route::resource('tenant', TenantController::class);
@@ -62,6 +61,8 @@ Route::get('universitas/data/force-delete/{id}', [UniversitasController::class, 
 Route::resource('user', UserController::class);
 Route::get('user/data/terhapus', [UserController::class, 'deletedData'])->name('user.deletedData');
 Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
+Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
+
 // Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 // Route::post('user/store', [UserController::class, 'store'])->name('user.store');
 // Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
