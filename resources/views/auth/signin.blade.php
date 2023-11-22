@@ -19,7 +19,7 @@
             <div class="max-w-md mx-auto my-auto">
                 <h3 class="text-xl font-bold mb-1">Halo Mingy</h3>
                 <p class="text-2xl mb-4">Selamat Datang</p>
-                <form action="" method="POST">
+                <form action="{{ route('signIn.validate') }}" method="POST">
                     @csrf
                     <input type="email" id="email" name="email" placeholder="Email"
                         class="md:w-full md:px-4 md:py-2 ebr md:rounded md:mb-4" required>

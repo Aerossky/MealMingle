@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
@@ -38,9 +39,11 @@ Route::get('/admin', function () {
 });
 
 // AUTH
-Route::get('/signin', function () {
-    return view('auth.signin');
-});
+Route::get('/signin', [AuthController::class, 'signIn'])->name('signIn');
+Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.validate');
+// Route::get('/signin', function () {
+//     return view('auth.signin');
+// });
 
 Route::get('/signup', function () {
     return view('auth.signup');
