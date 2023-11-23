@@ -63,8 +63,8 @@
                             <a href="{{ route('user.restore', $data->id) }}"
                                 class="text-yellow-600 hover:text-yellow-900">Restore<span class="sr-only"></a>
 
-                            {{-- <a href="{{ route('user.forceDelete', $data->id) }}"
-                                class="text-red-600 hover:text-red-900">Delete<span class="sr-only"></a> --}}
+                            <a href="{{ route('user.forceDelete', $data->id) }}"
+                                class="text-red-600 hover:text-red-900">Delete<span class="sr-only"></a>
 
                         </td>
                     </tr>

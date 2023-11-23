@@ -48,7 +48,7 @@ class UserController extends Controller
         $validatedData['role_id'] = 3;
         User::create($validatedData);
 
-        //ke halaman login
+        //ke halaman user
         return redirect()->route('user.index')->with('status', 'Data berhasil ditambahkan!');
     }
 
@@ -160,6 +160,14 @@ class UserController extends Controller
     {
         $user = User::onlyTrashed()->where('id', $id)->first();
         $user->restore();
+
+        // redirect
+        return redirect()->route('user.index');
+    }
+
+    // Delete restore data
+    public function forceDelete($id){
+        User::onlyTrashed()->where('id', $id)->forceDelete();
 
         // redirect
         return redirect()->route('user.index');

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Universitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 class AuthController extends Controller
 {
-    //
+    //sign in
     public function signIn()
     {
         return view('auth.signin');
@@ -71,5 +76,46 @@ class AuthController extends Controller
             // return redirect()->intended('member');
             dd('customer');
         }
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        // flush session
+        $request->session()->flush();
+
+        return redirect('signIn');
+    }
+
+    // sign up
+    public function signUp()
+    {
+        // ambil data universitas
+        $universitas = Universitas::all();
+        return view('auth.signup',['options'=> $universitas]);
+    }
+
+    // sign up a user
+    public function storeData(Request $request){
+        // Validasi data input pengguna
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:8|max:50',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+        ]);
+        $validatedData = $validator->validated();
+        $validatedData['role_id'] = 3;
+        $validatedData['universitas_id']=$request->universitas;
+        User::create($validatedData);
+
+        //ke halaman login
+        return redirect()->route('signIn')->with('status', 'Data berhasil ditambahkan!');
     }
 }
