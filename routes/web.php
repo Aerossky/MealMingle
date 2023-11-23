@@ -30,7 +30,7 @@ Route::get('/tenant-detail', function () {
 });
 
 Route::get('/reviewweb', function () {
-    return view('member.reviewweb');
+    return view('member.review');
 });
 
 // ADMIN
@@ -45,7 +45,7 @@ Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.v
 //     return view('auth.signin');
 // });
 
-Route::get('/signup',[AuthController::class, 'signUp'])->name('signup');
+Route::get('/signup', [AuthController::class, 'signUp'])->name('signup');
 Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
 
 // TENANT ROUTE
