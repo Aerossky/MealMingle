@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Tenant')
+@section('title', 'Menu')
 
 @section('content')
 <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
