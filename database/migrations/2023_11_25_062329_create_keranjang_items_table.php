@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('keranjang_items', function (Blueprint $table) {
             $table->id();
+            $table->integer('jumlah');
+            $table->integer('harga_item');
+            $table->string('note_item');
+            $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade');
+            $table->foreignId('tenant_id')->constrained('tenants')->onDelete('cascade');
             $table->timestamps();
         });
     }
