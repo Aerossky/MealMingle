@@ -26,10 +26,10 @@
                             Nama Tenant
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Universitas
+                            Pemilik
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Pemilik
+                            Universitas
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Deskripsi
@@ -59,7 +59,7 @@
                                 <td class="px-6 py-4">{{ $tenant->user->name }}</td>
                                 <td class="px-6 py-4">
                                 @foreach ($tenant->universitas as $uni)
-                                    {{ $uni->universitas }}
+                                    {{ $uni->universitas_name }}
                                 @endforeach
                                 </td>
                                 <td class="px-6 py-4">{{ $tenant->deskripsi }}</td>

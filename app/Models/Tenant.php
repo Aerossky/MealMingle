@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tenant extends Model
 {
@@ -16,7 +17,6 @@ class Tenant extends Model
       'deskripsi',
       'foto_tenant',
       'user_id',
-      'universitas_id',
     ];
 
     public function user(){
@@ -31,7 +31,8 @@ class Tenant extends Model
         return $this->hasMany(Menu::class);
     }
 
-    public function universitas(){
+    public function universitas(): BelongsToMany
+    {
         return $this->belongsToMany(Universitas::class);
     }
 }
