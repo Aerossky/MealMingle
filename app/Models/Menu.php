@@ -34,4 +34,9 @@ class Menu extends Model
     {
         return $this->belongsToMany(KeranjangItem::class);
     }
+
+    public function riwayat_pesanan_item(): BelongsToMany
+    {
+        return $this->belongsToMany(RiwayatPesananItem::class);
+    }
 }
