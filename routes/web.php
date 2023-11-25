@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\UniversitasController;
 
 /*
@@ -21,17 +22,6 @@ Route::get('/', function () {
     return view('member.home');
 });
 
-// Route::get('/tenant', function () {
-//     return view('member.tenant.tenant');
-// });
-
-Route::get('/tenant-detail', function () {
-    return view('member.tenant.detail');
-});
-
-Route::get('/reviewweb', function () {
-    return view('member.review');
-});
 
 // ADMIN
 Route::get('/admin', function () {
@@ -41,9 +31,6 @@ Route::get('/admin', function () {
 // AUTH
 Route::get('/signin', [AuthController::class, 'signIn'])->name('signIn');
 Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.validate');
-// Route::get('/signin', function () {
-//     return view('auth.signin');
-// });
 
 Route::get('/signup', [AuthController::class, 'signUp'])->name('signup');
 Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
@@ -63,9 +50,13 @@ Route::get('user/data/terhapus', [UserController::class, 'deletedData'])->name('
 Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
 Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
 
-// Route::get('user/create', [UserController::class, 'create'])->name('user.create');
-// Route::post('user/store', [UserController::class, 'store'])->name('user.store');
-// Route::post('user/delete/{id}', [UserController::class, 'softDelete'])->name('user.delete');
+// Ulasan Website
+Route::resource('ulasan', UlasanWebsiteController::class);
+
+
+
+
+// ROUTER HANYA UNTUK TES HALAMAN
 
 // ADMIN
 Route::get('/admin-dashboard', function () {
@@ -86,5 +77,17 @@ Route::get('/admin-menu-menu-add', function () {
 
 
 
+// Route::get('/tenant', function () {
+//     return view('member.tenant.tenant');
+// });
+Route::get('/menu', function () {
+    return view('member.listmenu');
+});
 
-// Route::get('login', [UserController::class, 'index'])->name('login');
+Route::get('/tenant-detail', function () {
+    return view('member.tenant.detail');
+});
+
+Route::get('/reviewweb', function () {
+    return view('member.review');
+});
