@@ -13,7 +13,7 @@ class UlasanSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // data
         $data = [
             [
                 'name' => "Budi",
