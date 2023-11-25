@@ -213,12 +213,19 @@
                                     x-transition:leave-start="opacity-100 transform scale-100"
                                     x-transition:leave-end="opacity-0 transform scale-95">
                                     <p class="text-base text-gray-500">
-                                        1.Login atau Daftar Akun: Pastikan Anda telah login atau mendaftar di platform kami.<br><br>
-                                        2.Pilih Tenant dan Menu: Explore menu dari berbagai tenant catering yang bekerja sama dengan kami yang berada di area Universitas anda. Pilih menu dan jumlah pesanan sesuai keinginan Anda.<br><br>
-                                        3.Tambahkan ke Keranjang: Setelah memilih menu, tambahkan item ke keranjang belanja Anda.<br><br>
-                                        4.Checkout Pesanan : Setelah selesai memilih menu anda bisa masuk ke halaman keranjang dan mengklik tombol Checkout.<br><br>
-                                        4.Pilih Metode Pembayaran: Lanjutkan ke halaman pembayaran dan pilih metode pembayaran yang diinginkan.<br><br>
-                                        5.Konfirmasi Pesanan: Setelah pembayaran selesai, Anda akan menerima konfirmasi pesanan melalui email atau melalui platform kami.</p>
+                                        1.Login atau Daftar Akun: Pastikan Anda telah login atau mendaftar di platform
+                                        kami.<br><br>
+                                        2.Pilih Tenant dan Menu: Explore menu dari berbagai tenant catering yang bekerja
+                                        sama dengan kami yang berada di area Universitas anda. Pilih menu dan jumlah
+                                        pesanan sesuai keinginan Anda.<br><br>
+                                        3.Tambahkan ke Keranjang: Setelah memilih menu, tambahkan item ke keranjang
+                                        belanja Anda.<br><br>
+                                        4.Checkout Pesanan : Setelah selesai memilih menu anda bisa masuk ke halaman
+                                        keranjang dan mengklik tombol Checkout.<br><br>
+                                        4.Pilih Metode Pembayaran: Lanjutkan ke halaman pembayaran dan pilih metode
+                                        pembayaran yang diinginkan.<br><br>
+                                        5.Konfirmasi Pesanan: Setelah pembayaran selesai, Anda akan menerima konfirmasi
+                                        pesanan melalui email atau melalui platform kami.</p>
                                 </dd>
                             </div>
 
@@ -248,8 +255,10 @@
                                     x-transition:leave="transition ease-in duration-200"
                                     x-transition:leave-start="opacity-100 transform scale-100"
                                     x-transition:leave-end="opacity-0 transform scale-95">
-                                    <p class="text-base text-gray-500">Untuk saat ini, kami belum menyediakan fitur pembatalan pesanan.
-                                        Harap pastikan untuk memeriksa pesanan Anda dengan teliti sebelum melakukan pembayaran.</p>
+                                    <p class="text-base text-gray-500">Untuk saat ini, kami belum menyediakan fitur
+                                        pembatalan pesanan.
+                                        Harap pastikan untuk memeriksa pesanan Anda dengan teliti sebelum melakukan
+                                        pembayaran.</p>
                                 </dd>
                             </div>
                             <div x-data="{ open: false }">
@@ -277,9 +286,12 @@
                                     x-transition:leave="transition ease-in duration-200"
                                     x-transition:leave-start="opacity-100 transform scale-100"
                                     x-transition:leave-end="opacity-0 transform scale-95">
-                                    <p class="text-base text-gray-500">Kami terus berupaya untuk memperluas cakupan layanan kami ke berbagai universitas.
-                                        Faktor-faktor seperti permintaan yang tinggi, ketersediaan tenant, dan faktor logistik lainnya mempengaruhi keputusan kami dalam menentukan lokasi layanan.
-                                        Namun, kami terus melakukan evaluasi dan mungkin akan memperluas layanan ke universitas Anda di masa depan.</p>
+                                    <p class="text-base text-gray-500">Kami terus berupaya untuk memperluas cakupan
+                                        layanan kami ke berbagai universitas.
+                                        Faktor-faktor seperti permintaan yang tinggi, ketersediaan tenant, dan faktor
+                                        logistik lainnya mempengaruhi keputusan kami dalam menentukan lokasi layanan.
+                                        Namun, kami terus melakukan evaluasi dan mungkin akan memperluas layanan ke
+                                        universitas Anda di masa depan.</p>
                                 </dd>
                             </div>
                             <div x-data="{ open: false }">
@@ -307,14 +319,29 @@
                                     x-transition:leave="transition ease-in duration-200"
                                     x-transition:leave-start="opacity-100 transform scale-100"
                                     x-transition:leave-end="opacity-0 transform scale-95">
-                                    <p class="text-base text-gray-500">1.Hubungi kami melalui kontak WhatsApp berikut : <br>
-                                         <span><a href="https://wa.me/6282226401130?text=asu%20kon%20iku" style="color: blue">+6282226401130</a></span><br><br>
-                                        2.Pengajuan Permintaan: Ajukan permintaan bergabung dan sertakan informasi mengenai layanan catering yang Anda tawarkan. <br><br>
-                                        3.Verifikasi dan Evaluasi: Tim kami akan melakukan verifikasi dan evaluasi terhadap vendor yang ingin bergabung <br><br>
-                                        4.Pemberitahuan Keputusan: Setelah proses evaluasi selesai, kami akan memberikan pemberitahuan mengenai status keputusan dan langkah selanjutnya. <br><br>
-                                        Terima kasih atas minat Anda untuk bergabung dengan kami sebagai Tenant.
-                                        Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan lebih lanjut atau butuh bantuan.</p>
+                                    <p class="text-base text-gray-500">1. Hubungi kami melalui kontak WhatsApp berikut:
+                                        <br>
+                                        <span>
+                                            <a href="https://wa.me/6282226401130?text=Halo%20Mingy,%20saya%20tertarik%20untuk%20menjadi%20tenant.%20Apa%20syarat-syaratnya%20yang%20harus%20dipenuhi%3F"
+                                                target="_blank" rel="noopener noreferrer"
+                                                style="color: blue">+6282226401130</a>
+                                        </span>
+                                        <br><br>
+                                        2. Pengajuan Permintaan: Ajukan permintaan bergabung dan sertakan informasi
+                                        mengenai layanan catering yang Anda tawarkan.
+                                        <br><br>
+                                        3. Verifikasi dan Evaluasi: Tim kami akan melakukan verifikasi dan evaluasi
+                                        terhadap vendor yang ingin bergabung.
+                                        <br><br>
+                                        4. Pemberitahuan Keputusan: Setelah proses evaluasi selesai, kami akan
+                                        memberikan pemberitahuan mengenai status keputusan dan langkah selanjutnya.
+                                        <br><br>
+                                        Terima kasih atas minat Anda untuk bergabung dengan kami sebagai Tenant. Jangan
+                                        ragu untuk menghubungi kami jika Anda memiliki pertanyaan lebih lanjut atau
+                                        butuh bantuan.
+                                    </p>
                                 </dd>
+
                             </div>
 
                         </dl>
