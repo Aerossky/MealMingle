@@ -17,5 +17,6 @@ class KeranjangItem extends Model
       'note_item',
       'menu_id',
       'tenant_id',
+      'keranjang_id',
     ];
 }

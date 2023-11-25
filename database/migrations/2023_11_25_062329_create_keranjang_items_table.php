@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('note_item');
             $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade');
             $table->foreignId('tenant_id')->constrained('tenants')->onDelete('cascade');
+            $table->foreignId('keranjang_id')->constrained('keranjang_items')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('total_harga');
             $table->string('note_pesanan');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('keranjang_item_id')->constrained('keranjang_items')->onDelete('cascade');
             $table->timestamps();
         });
     }
