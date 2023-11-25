@@ -26,6 +26,9 @@
                             Nama Tenant
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Universitas
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Pemilik
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -54,6 +57,11 @@
                                 </th>
                                 <td class="px-6 py-4">{{ $tenant->nama_tenant }}</td>
                                 <td class="px-6 py-4">{{ $tenant->user->name }}</td>
+                                <td class="px-6 py-4">
+                                @foreach ($tenant->universitas as $uni)
+                                    {{ $uni->universitas }}
+                                @endforeach
+                                </td>
                                 <td class="px-6 py-4">{{ $tenant->deskripsi }}</td>
                                 <td class="px-6 py-4">
                                     <img src="{{ asset('img/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant" srcset="" height="80px"

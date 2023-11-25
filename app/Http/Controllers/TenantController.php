@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\User;
 use App\Models\Tenant;
+use App\Models\Universitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $tenants = Tenant::select('id', 'nama_tenant', 'deskripsi', 'foto_tenant', 'user_id')
+        $tenants = Tenant::select('id', 'nama_tenant', 'deskripsi', 'foto_tenant', 'user_id', 'universitas_id')
             ->orderBy('id', 'asc')
             ->get();
 
@@ -32,7 +33,11 @@ class TenantController extends Controller
             ->orderBy('id', 'asc')
             ->get();
 
-        return view('admin.tenant.tenant-add', ['users' => $users]);
+        $universitas = Universitas::select('id', 'universitas_name')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.tenant.tenant-add', ['users' => $users, 'universitas' => $universitas]);
     }
 
     /**
@@ -40,10 +45,12 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
+            'universitas_id' => 'required',
             'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
@@ -100,6 +107,7 @@ class TenantController extends Controller
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
+            'universitas_id' => 'required',
             'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
@@ -128,6 +136,7 @@ class TenantController extends Controller
             'nama_tenant' => $request->nama_tenant,
             'deskripsi' => $request->deskripsi,
             'user_id' => $request->user_id,
+            'universitas_id' => $request->universitas_id,
             'foto_tenant' => $newName ?: $tenant->foto_tenant,
         ]);
 

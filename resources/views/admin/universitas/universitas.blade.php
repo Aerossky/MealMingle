@@ -49,7 +49,7 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    {{ $data->universitas }}
+                                    {{ $data->universitas_name }}
                                 </td>
                                 <td class="px-6 py-4 flex gap-2">
                                     <a href="{{ route('universitas.edit', $data->id) }}"

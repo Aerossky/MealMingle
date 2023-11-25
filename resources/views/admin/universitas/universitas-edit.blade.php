@@ -30,9 +30,9 @@
             <div class="grid grid-cols-2 gap-2">
                 <!-- Nama Universitas -->
                 <div class="mb-4 col-span-2">
-                    <label for="nama" class="block text-sm font-medium text-gray-600">Nama Universitas</label>
-                    <input type="text" id="nama" name="nama" class="mt-1 p-2 w-full border rounded-md"
-                        value="{{ old('nama', $universitas->universitas) }}">
+                    <label for="universitas_name" class="block text-sm font-medium text-gray-600">Nama Universitas</label>
+                    <input type="text" id="universitas_name" name="universitas_name" class="mt-1 p-2 w-full border rounded-md"
+                        value="{{ old('universitas_name', $universitas->universitas_name) }}">
                 </div>
 
                 <!-- Tombol Kirim -->

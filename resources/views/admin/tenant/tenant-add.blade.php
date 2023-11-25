@@ -28,7 +28,18 @@
                     <select id="user_id" name="user_id" class="mt-1 p-2 w-full border rounded-md">
                         <!-- Pilihan Pemilik -->
                         @foreach ($users as $user)
-                            <option value="{{ $user->user_id }}">{{ $user->name }}</option>
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Universitas -->
+                <div class="mb-4 col-span-1">
+                    <label for="universitas_id" class="block text-sm font-medium text-gray-600">Universitas</label>
+                    <select id="universitas_id" name="universitas_id" class="mt-1 p-2 w-full border rounded-md">
+                        <!-- Pilihan Universitas -->
+                        @foreach ($universitas as $uni)
+                            <option value="{{ $uni->id }}">{{ $uni->universitas_name }}</option>
                         @endforeach
                     </select>
                 </div>
