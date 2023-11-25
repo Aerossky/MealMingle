@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ulasan extends Model
+class Kategori extends Model
 {
     use HasFactory;
 
-    protected $table = 'ulasan';
+    protected $table = 'kategoris';
 
     protected $fillable = [
-        'name',
-        'email',
-        'deskripsi',
-
+      'nama_kategori',
     ];
+
+    public function menu(){
+        return $this->hasMany(Menu::class);
+    }
 }
