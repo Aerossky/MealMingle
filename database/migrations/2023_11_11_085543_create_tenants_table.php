@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->string('foto_tenant');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('universitas_id')->constrained('universitas')->onDelete('cascade');
             $table->timestamps();
         });
     }

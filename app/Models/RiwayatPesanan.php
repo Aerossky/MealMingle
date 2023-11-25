@@ -12,12 +12,10 @@ class RiwayatPesanan extends Model
     protected $table = 'riwayat_pesanans';
 
     protected $fillable = [
-      'jumlah',
       'total_harga',
       'payment_type',
       'transaction_status',
       'user_id',
-      'tenant_id',
     ];
 
     public function user(){

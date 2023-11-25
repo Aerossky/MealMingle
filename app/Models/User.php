@@ -24,9 +24,9 @@ class User extends Authenticatable
         'password',
         'jenis_kelamin',
         'alamat',
+        'status',
         'universitas_id',
         'role_id',
-        'status',
     ];
 
     /**

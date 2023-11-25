@@ -14,8 +14,9 @@ class Tenant extends Model
     protected $fillable = [
       'nama_tenant',
       'deskripsi',
-      'user_id',
       'foto_tenant',
+      'user_id',
+      'universitas_id',
     ];
 
     public function user(){
