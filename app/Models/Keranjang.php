@@ -21,11 +21,7 @@ class Keranjang extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function tenant(){
-        return $this->belongsTo(Tenant::class);
-    }
-
-    public function menu(){
-        return $this->belongsTo(Menu::class);
+    public function keranjang_item(){
+        return $this->hasMany(KeranjangItem::class);
     }
 }

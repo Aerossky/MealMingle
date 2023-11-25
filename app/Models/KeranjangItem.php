@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class KeranjangItem extends Model
 {
@@ -19,4 +20,13 @@ class KeranjangItem extends Model
       'tenant_id',
       'keranjang_id',
     ];
+
+    public function keranjang(){
+        return $this->belongsTo(Keranjang::class);
+    }
+
+    public function menu(): BelongsToMany
+    {
+        return $this->belongsToMany(Menu::class);
+    }
 }
