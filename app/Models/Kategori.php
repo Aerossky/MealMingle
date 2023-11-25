@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Kategori extends Model
 {
@@ -15,7 +16,9 @@ class Kategori extends Model
       'nama_kategori',
     ];
 
-    public function menu(){
-        return $this->hasMany(Menu::class);
+
+    public function menu(): BelongsToMany
+    {
+        return $this->belongsToMany(Menu::class);
     }
 }

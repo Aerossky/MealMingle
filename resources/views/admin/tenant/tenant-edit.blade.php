@@ -1,12 +1,12 @@
 @extends('layouts.admin.main')
-@section('title', 'Universitas Add')
+@section('title', 'Tenant Edit')
 
 @section('content')
 
     <div class="flex items-center justify-between">
-        <h1 class="font-bold text-2xl py-5">Tambah Universitas</h1>
+        <h1 class="font-bold text-2xl py-5">Edit Tenant</h1>
         <div class="">
-            <a href="{{ route('user.index') }}"
+            <a href="{{ route('tenant.index') }}"
                 class="focus:outline-none text-white bg-red-700 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Kembali</a>
         </div>
     </div>
@@ -24,21 +24,20 @@
 
     {{-- Content --}}
     <div class="p-4 bg-white border shadow-md min-h-40 rounded-lg overflow-x-auto">
-        <form action="{{ route('universitas.store') }}" method="POST">
+        <form action="{{ route('tenant.update', $tenant->id) }}" method="post" method="POST">
             @csrf
+            @method('put')
             <div class="grid grid-cols-2 gap-2">
-                <!-- Nama Universitas -->
                 <div class="mb-4 col-span-2">
-                    <label for="nama" class="block text-sm font-medium text-gray-600">Nama Universitas</label>
-                    <input type="text" id="universitas_name" name="universitas_name"
-                        class="mt-1 p-2 w-full border rounded-md">
+                    <label for="nama" class="block text-sm font-medium text-gray-600">Nama Tenant</label>
+                    <input type="text" id="nama" name="nama" class="mt-1 p-2 w-full border rounded-md"
+                        value="{{ old('nama', $tenant->tenant) }}">
                 </div>
 
-                <!-- Tombol Kirim -->
                 <div class="">
                     <button type="submit"
                         class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
-                        Tambah
+                        Perbarui
                     </button>
                 </div>
             </div>

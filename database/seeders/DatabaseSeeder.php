@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UniversitasSeeder::class,
             UserSeeder::class,
-            TenantSeeder::class,
-            MenuSeeder::class,
+            // TenantSeeder::class,
+            // MenuSeeder::class,
             UlasanSeeder::class,
         ]);
     }
