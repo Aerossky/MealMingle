@@ -19,6 +19,14 @@
             <div class="max-w-md mx-auto my-auto">
                 <h3 class="text-xl font-bold mb-1">Halo Mingy</h3>
                 <p class="text-2xl mb-4">Selamat Datang</p>
+                {{-- Alert Start --}}
+                @if (session('status'))
+                    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role="alert">
+                        <span class="font-medium">Maaf:(</span> {{ session('message') }}
+                    </div>
+                @endif
+                {{-- Alert End --}}
                 <form action="{{ route('signIn.validate') }}" method="POST">
                     @csrf
                     <input type="email" id="email" name="email" placeholder="Email"
@@ -30,7 +38,8 @@
                         class="md:bg-merahMM md:hover:bg-red-700 md:text-white md:px-4 md:py-2 md:rounded cursor-pointer md:w-full">Sign
                         In</button>
                 </form>
-                <p class="md:mt-4">Belum punya akun? <a href="/signup" class="md:text-merahMM font-bold">Signup yuk</a>
+                <p class="md:mt-4">Belum punya akun? <a href="/signup" class="md:text-merahMM font-bold">Signup
+                        yuk</a>
                 </p>
             </div>
         </div>
@@ -54,7 +63,7 @@
                 <form action="" method="POST">
                     @csrf
                     <input type="email" id="email" name="email" placeholder="Email"
-                        class="w-full px-4 py-2 border rounded mb-4" required>
+                        class="w-full px-4 py-2 border rounded mb-4" value="{{ old('email') }}" required>
                     <input type="password" id="password" name="password" placeholder="Password"
                         class="w-full px-4 py-2 border rounded mb-4" required>
 
@@ -62,7 +71,8 @@
                         class="bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded cursor-pointer w-full">Sign
                         In</button>
                 </form>
-                <p class="mt-4">Belum punya akun? <a href="" class="text-merahMM">daftar yuk</a></p>
+                <p class="mt-4">Belum punya akun? <a href="/signup" class="text-merahMM font-bold">Signup yuk</a>
+                </p>
             </div>
         </div>
     </div>

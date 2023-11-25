@@ -21,8 +21,22 @@ use App\Http\Controllers\UniversitasController;
 Route::get('/', function () {
     return view('member.home');
 });
-// USER
 
+// AUTH
+Route::get('/signin', [AuthController::class, 'signIn'])->name('signIn');
+Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.validate');
+
+Route::get('/signup', [AuthController::class, 'signUp'])->name('signup');
+Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
+
+Route::post('/logout', [AuthController::class, 'logout']);
+
+// USER
+// Route::middleware('auth')->group(
+//     function () {
+
+//     }
+// );
 Route::get('/ulasan-pengguna', function () {
     return view('member.review');
 });
@@ -33,12 +47,6 @@ Route::get('/admin', function () {
     return view('admin.home');
 });
 
-// AUTH
-Route::get('/signin', [AuthController::class, 'signIn'])->name('signIn');
-Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.validate');
-
-Route::get('/signup', [AuthController::class, 'signUp'])->name('signup');
-Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
 
 // TENANT ROUTE
 Route::resource('tenant', TenantController::class);
