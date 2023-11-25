@@ -35,32 +35,36 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    {{-- Loop Data --}}
-                    @foreach ($universitas as $data)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $loop->iteration }}
-                            </th>
-
-                            <td class="px-6 py-4">
-                                {{ $data->universitas }}
-                            </td>
-                            <td class="px-6 py-4 flex gap-2">
-                                <a href="{{ route('universitas.edit', $data->id) }}"
-                                    class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                                <form action="{{ route('universitas.destroy', $data->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                                </form>
-
-                            </td>
+                    @if ($universitas->isEmpty())
+                        <tr>
+                            <td colspan="3" class="px-6 py-4 text-center">Tidak ada universitas yang tersedia.</td>
                         </tr>
-                    @endforeach
+                    @else
+                        {{-- Loop Data --}}
+                        @foreach ($universitas as $data)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $loop->iteration }}
+                                </td>
 
+                                <td class="px-6 py-4">
+                                    {{ $data->universitas }}
+                                </td>
+                                <td class="px-6 py-4 flex gap-2">
+                                    <a href="{{ route('universitas.edit', $data->id) }}"
+                                        class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
+                                    <form action="{{ route('universitas.destroy', $data->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                    </form>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

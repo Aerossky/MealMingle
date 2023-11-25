@@ -86,6 +86,10 @@ class UlasanWebsiteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //delete
+        $ulasan = Ulasan::find($id);
+        $ulasan->delete();
+
+        return redirect()->route('ulasan.index')->with('status', 'Data berhasil dihapus!');
     }
 }

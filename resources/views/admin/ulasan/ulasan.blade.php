@@ -32,29 +32,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($ulasan as $data)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $loop->iteration }}
-                            </td>
-                            <td class="px-6 py-4">{{ $data->name }}</td>
-                            <td class="px-6 py-4">{{ $data->email }}</td>
-                            <td class="px-6 py-4">{{ $data->deskripsi }}</td>
-                            <td class="px-6 py-4">
-
-                                <form action="{{ route('ulasan.destroy', $data->id) }}" method="POST"
-                                    style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus Tenant ini?')">Delete<span
-                                            class="sr-only"></button>
-                                </form>
-                            </td>
+                    @if ($ulasan->isEmpty())
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 text-center">Tidak ada ulasan yang tersedia.</td>
                         </tr>
-                    @endforeach
+                    @else
+                        @foreach ($ulasan as $data)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="px-6 py-4">{{ $data->name }}</td>
+                                <td class="px-6 py-4">{{ $data->email }}</td>
+                                <td class="px-6 py-4">{{ $data->deskripsi }}</td>
+                                <td class="px-6 py-4">
 
+                                    <form action="{{ route('ulasan.destroy', $data->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus Ulasan ini?')">Delete<span
+                                                class="sr-only"></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
 
                 </tbody>
             </table>

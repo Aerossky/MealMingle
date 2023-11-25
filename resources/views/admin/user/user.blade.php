@@ -40,44 +40,50 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-                {{-- DEV --}}
-                @foreach ($user as $data)
+                @if ($user->isEmpty())
                     <tr>
-                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            {{ $loop->iteration }}
-                        </td>
-                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            {{ $data->name }}
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> {{ $data->email }}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-center">
-                            @if ($data->status == 'aktif')
-                                <span
-                                    class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Aktif</span>
-                            @elseif ($data->status == 'tidakaktif')
-                                <span
-                                    class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Tidak
-                                    Aktif</span>
-                            @endif
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $data->universitas->universitas }}
-                        </td>
-                        <td class="px-6 py-4 flex gap-2">
-                            <a href="{{ route('user.show', $data->id) }}"
-                                class="text-yellow-600 hover:text-yellow-900">Detail</a>
-
-                            <a href="{{ route('user.edit', $data->id) }}"
-                                class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                            <form action="{{ route('user.destroy', $data->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
-                            </form>
-                        </td>
+                        <td colspan="6" class="px-6 py-4 text-center">Tidak ada user yang tersedia.</td>
                     </tr>
-                @endforeach
+                @else
+                    {{-- DEV --}}
+                    @foreach ($user as $data)
+                        <tr>
+                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                {{ $loop->iteration }}
+                            </td>
+                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                {{ $data->name }}
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> {{ $data->email }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-center">
+                                @if ($data->status == 'aktif')
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Aktif</span>
+                                @elseif ($data->status == 'tidakaktif')
+                                    <span
+                                        class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Tidak
+                                        Aktif</span>
+                                @endif
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {{ $data->universitas->universitas }}
+                            </td>
+                            <td class="px-6 py-4 flex gap-2">
+                                <a href="{{ route('user.show', $data->id) }}"
+                                    class="text-yellow-600 hover:text-yellow-900">Detail</a>
 
+                                <a href="{{ route('user.edit', $data->id) }}"
+                                    class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
+                                <form action="{{ route('user.destroy', $data->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
 
             </tbody>
         </table>
