@@ -22,7 +22,7 @@ class RiwayatPesanan extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function tenant(){
-        return $this->belongsTo(Tenant::class);
+    public function riwayat_pesanan_item(){
+        return $this->hasMany(RiwayatPesananItem::class);
     }
 }
