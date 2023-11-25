@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TenantSeeder::class,
             MenuSeeder::class,
+            UlasanSeeder::class,
         ]);
     }
 }
