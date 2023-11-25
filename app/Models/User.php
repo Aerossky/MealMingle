@@ -24,9 +24,9 @@ class User extends Authenticatable
         'password',
         'jenis_kelamin',
         'alamat',
+        'status',
         'universitas_id',
         'role_id',
-        'status',
     ];
 
     /**
@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function tenant()
     {
-        return $this->hasMany(Tenant::class);
+        return $this->hasOne(Tenant::class);
     }
 
     public function ulasan_tenant()
@@ -76,6 +76,6 @@ class User extends Authenticatable
 
     public function keranjang()
     {
-        return $this->hasMany(Keranjang::class);
+        return $this->hasOne(Keranjang::class);
     }
 }

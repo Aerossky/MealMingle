@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Menu extends Model
 {
@@ -15,15 +16,27 @@ class Menu extends Model
       'nama_makanan',
       'deskripsi',
       'harga_produk',
+      'hari',
       'foto_produk',
       'tenant_id',
+      'kategori_id',
     ];
 
     public function tenant(){
         return $this->belongsTo(Tenant::class);
     }
 
-    public function keranjang(){
-        return $this->hasMany(Keranjang::class);
+    public function kategori(){
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function keranjang_item(): BelongsToMany
+    {
+        return $this->belongsToMany(KeranjangItem::class);
+    }
+
+    public function riwayat_pesanan_item(): BelongsToMany
+    {
+        return $this->belongsToMany(RiwayatPesananItem::class);
     }
 }
