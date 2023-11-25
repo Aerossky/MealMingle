@@ -21,6 +21,11 @@ use App\Http\Controllers\UniversitasController;
 Route::get('/', function () {
     return view('member.home');
 });
+// USER
+
+Route::get('/ulasan-pengguna', function () {
+    return view('member.review');
+});
 
 
 // ADMIN
@@ -86,8 +91,4 @@ Route::get('/menu', function () {
 
 Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
-});
-
-Route::get('/reviewweb', function () {
-    return view('member.review');
 });

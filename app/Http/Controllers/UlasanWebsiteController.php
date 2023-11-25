@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UlasanWebsiteController extends Controller
 {
@@ -12,7 +13,7 @@ class UlasanWebsiteController extends Controller
      */
     public function index()
     {
-        //
+
         $ulasan = Ulasan::all();
         return view('admin.ulasan.ulasan', compact('ulasan'));
     }
@@ -30,8 +31,31 @@ class UlasanWebsiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        //validator
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:ulasan',
+            'deskripsi' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->with('error', 'Anda sudah pernah mengirimkan ulasan!');
+        }
+
+
+        // create
+        Ulasan::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        return redirect()->back()->with('berhasil', 'Ulasan berhasil ditambahkan!');
     }
+
 
     /**
      * Display the specified resource.
@@ -62,10 +86,6 @@ class UlasanWebsiteController extends Controller
      */
     public function destroy(string $id)
     {
-        //delete
-        $ulasan = Ulasan::find($id);
-        $ulasan->delete();
-
-        return redirect()->route('ulasan.index')->with('status', 'Data berhasil dihapus!');
+        //
     }
 }

@@ -14,6 +14,6 @@ class Ulasan extends Model
     protected $fillable = [
         'name',
         'email',
-        'ulasan',
+        'deskripsi',
     ];
 }
