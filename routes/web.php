@@ -31,12 +31,11 @@ Route::middleware('guest')->group(
 
 Route::get('/signup', [AuthController::class, 'signUp'])->name('signup');
 Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
-
 Route::post('/logout', [AuthController::class, 'logout']);
 
 
-// USER
-Route::middleware('auth', 'only_admin')->group(
+// ADMIN
+Route::middleware(['auth', 'only_admin'])->group(
     function () {
 
         Route::get('/ulasan-pengguna', function () {
@@ -46,8 +45,6 @@ Route::middleware('auth', 'only_admin')->group(
 
         // ADMIN(MAIN)
         Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
-
-
 
 
         // TENANT ROUTE
@@ -67,11 +64,25 @@ Route::middleware('auth', 'only_admin')->group(
 
         // Ulasan Website
         Route::resource('ulasan', UlasanWebsiteController::class);
-
-        // TENANT(MAIN)
-        Route::get('/tenant-dashboard', [DashboardController::class, 'tenantDashboard'])->name('tenant.dashboard');
     }
 );
+
+// TENANT
+Route::middleware(['auth', 'only_tenant'])->group(function () {
+    // Rute yang hanya dapat diakses oleh tenant
+    Route::get('/tenant-dashboard', [DashboardController::class, 'tenantDashboard'])->name('tenant.dashboard');
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ROUTER HANYA UNTUK TES HALAMAN

@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
 
         // Custom middleware
         'only_admin' => \App\Http\Middleware\OnlyAdmin::class,
+        'only_tenant' => \App\Http\Middleware\OnlyTenant::class,
     ];
 }

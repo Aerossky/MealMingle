@@ -64,7 +64,7 @@
                 <form action="" method="POST">
                     @csrf
                     <input type="email" id="email" name="email" placeholder="Email"
-                        class="md:w-full md:px-4 md:py-2 ebr md:rounded md:mb-4" value="{{ old('email') }}" required>
+                        class="w-full px-4 py-2 border rounded mb-4" value="{{ old('email') }}" required>
 
                     <input type="password" id="password" name="password" placeholder="Password"
                         class="w-full px-4 py-2 border rounded mb-4" required>

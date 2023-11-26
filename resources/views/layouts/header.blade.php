@@ -328,6 +328,7 @@
         </a>
         <div class="flex space-x-3 items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
             {{-- Cart Button --}}
+
             <div class="pr-6 md:mr-6 relative">
                 <button class="block" onclick=openCart() id="cartButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
@@ -345,16 +346,27 @@
 
 
             {{-- (DEV)  --}}
-            {{-- Belum Login --}}
-            <button type="button"
-                class="px-4 py-2 text-sm text-center text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <a href="/signin">Get started</a>
-            </button>
-
-            {{-- sudah login --}}
-            {{-- <div class="hidden md:block">
-                <p><span class="font-bold">Halo,</span> Pengguna</p>
-            </div> --}}
+            @if (Auth::check())
+                {{-- sudah login --}}
+                <div class="hidden md:block cursor-pointer">
+                    <p><span class="font-bold">Halo, {{ Auth::user()->name }}</span></p>
+                </div>
+                <div class=" justify-center items-center my-auto mx-auto hidden md:flex">
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="px-4 py-2 mt-2 text-sm text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800 mx-10">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            @else
+                {{-- Belum Login --}}
+                <button type="button"
+                    class="px-4 py-2 text-sm text-center text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800">
+                    <a href="/signin">Get started</a>
+                </button>
+            @endif
 
             <button data-collapse-toggle="navbar-sticky" type="button"
                 class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-black-500 rounded-lg md:hidden hover:bg-black-100 focus:outline-none focus:ring-2 focus:ring-black-200 dark:text-black-400 dark:hover:bg-black-700 dark:focus:ring-black-600"
@@ -389,9 +401,24 @@
                         class="block px-3 py-2 text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">FAQ</a>
                 </li>
 
-                <div class="text-center md:hidden">
-                    <p><span class="font-bold">Halo,</span> Pengguna</p>
-                </div>
+
+
+                @if (Auth::check())
+                    <li>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="block md:hidden text-left px-3 py-2 text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                style="width: 100%; height: 100%;">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                    <div class="text-center md:hidden">
+                        <p><span class="font-bold">Halo,</span> {{ Auth::user()->name }}</p>
+                    </div>
+                @endif
+
             </ul>
         </div>
     </div>
