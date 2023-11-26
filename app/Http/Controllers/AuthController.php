@@ -48,7 +48,8 @@ class   AuthController extends Controller
     {
         return redirect('/signin')
             ->with('status', 'Gagal')
-            ->with('message', 'Maaf username dan password salah');
+            ->with('message', 'Maaf username dan password salah')
+            ->withInput();
     }
 
     protected function inactiveAccountResponse()
@@ -64,15 +65,12 @@ class   AuthController extends Controller
         if ($role == "1") {
             // admin
             return redirect()->intended('/admin-dashboard');
-            // dd('admin');
         } elseif ($role == "2") {
             // tenant
-            // return redirect()->intended('member');
-            dd('tenant');
+            return redirect()->intended('/tenant-dashboard');
         } elseif ($role == "3") {
-            // customer
-            // return redirect()->intended('member');
-            // dd('customer');
+            // member
+            return redirect()->intended('/');
         }
     }
 
@@ -87,7 +85,7 @@ class   AuthController extends Controller
         // flush session
         $request->session()->flush();
 
-        return redirect('signIn');
+        return redirect('/signin');
     }
 
     // sign up

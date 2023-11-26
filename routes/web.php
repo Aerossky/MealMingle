@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
@@ -18,55 +19,59 @@ use App\Http\Controllers\UniversitasController;
 |
 */
 
-Route::get('/', function () {
-    return view('member.home');
-});
+Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.dashboard');
 
 // AUTH
-Route::get('/signin', [AuthController::class, 'signIn'])->name('signIn');
-Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.validate');
+Route::middleware('guest')->group(
+    function () {
+        Route::get('/signin', [AuthController::class, 'signIn'])->name('signIn');
+        Route::post('/signin', [AuthController::class, 'validateSigIn'])->name('signIn.validate');
+    }
+);
 
 Route::get('/signup', [AuthController::class, 'signUp'])->name('signup');
 Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
 
 Route::post('/logout', [AuthController::class, 'logout']);
 
+
 // USER
-// Route::middleware('auth')->group(
-//     function () {
+Route::middleware('auth', 'only_admin')->group(
+    function () {
 
-//     }
-// );
-Route::get('/ulasan-pengguna', function () {
-    return view('member.review');
-});
+        Route::get('/ulasan-pengguna', function () {
+            return view('member.review');
+        });
 
 
-// ADMIN
-Route::get('/admin', function () {
-    return view('admin.home');
-});
+        // ADMIN(MAIN)
+        Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
 
 
-// TENANT ROUTE
-Route::resource('tenant', TenantController::class);
-
-// UNIVERSITAS ROUTE
-Route::resource('universitas', UniversitasController::class);
-Route::get('universitas/data/terhapus', [UniversitasController::class, 'deletedData'])->name('universitas.deletedData');
-Route::get('universitas/data/restore/{id}', [UniversitasController::class, 'restore'])->name('universitas.restore');
-Route::get('universitas/data/force-delete/{id}', [UniversitasController::class, 'forceDelete'])->name('universitas.forceDelete');
-
-// USER ROUTE
-Route::resource('user', UserController::class);
-Route::get('user/data/terhapus', [UserController::class, 'deletedData'])->name('user.deletedData');
-Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
-Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
-
-// Ulasan Website
-Route::resource('ulasan', UlasanWebsiteController::class);
 
 
+        // TENANT ROUTE
+        Route::resource('tenant', TenantController::class);
+
+        // UNIVERSITAS ROUTE
+        Route::resource('universitas', UniversitasController::class);
+        Route::get('universitas/data/terhapus', [UniversitasController::class, 'deletedData'])->name('universitas.deletedData');
+        Route::get('universitas/data/restore/{id}', [UniversitasController::class, 'restore'])->name('universitas.restore');
+        Route::get('universitas/data/force-delete/{id}', [UniversitasController::class, 'forceDelete'])->name('universitas.forceDelete');
+
+        // USER ROUTE
+        Route::resource('user', UserController::class);
+        Route::get('user/data/terhapus', [UserController::class, 'deletedData'])->name('user.deletedData');
+        Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
+        Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
+
+        // Ulasan Website
+        Route::resource('ulasan', UlasanWebsiteController::class);
+
+        // TENANT(MAIN)
+        Route::get('/tenant-dashboard', [DashboardController::class, 'tenantDashboard'])->name('tenant.dashboard');
+    }
+);
 
 
 // ROUTER HANYA UNTUK TES HALAMAN

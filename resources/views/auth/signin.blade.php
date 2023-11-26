@@ -23,14 +23,15 @@
                 @if (session('status'))
                     <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                         role="alert">
-                        <span class="font-medium">Maaf:(</span> {{ session('message') }}
+                        <span class="font-medium"> {{ session('message') }}</span>
                     </div>
                 @endif
                 {{-- Alert End --}}
                 <form action="{{ route('signIn.validate') }}" method="POST">
                     @csrf
                     <input type="email" id="email" name="email" placeholder="Email"
-                        class="md:w-full md:px-4 md:py-2 ebr md:rounded md:mb-4" required>
+                        class="md:w-full md:px-4 md:py-2 ebr md:rounded md:mb-4" value="{{ old('email') }}" required>
+
                     <input type="password" id="password" name="password" placeholder="Password"
                         class="md:w-full md:px-4 md:py-2 md:border md:rounded md:mb-4" required>
 
@@ -63,7 +64,8 @@
                 <form action="" method="POST">
                     @csrf
                     <input type="email" id="email" name="email" placeholder="Email"
-                        class="w-full px-4 py-2 border rounded mb-4" value="{{ old('email') }}" required>
+                        class="md:w-full md:px-4 md:py-2 ebr md:rounded md:mb-4" value="{{ old('email') }}" required>
+
                     <input type="password" id="password" name="password" placeholder="Password"
                         class="w-full px-4 py-2 border rounded mb-4" required>
 
