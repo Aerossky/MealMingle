@@ -85,7 +85,7 @@ class   AuthController extends Controller
         // flush session
         $request->session()->flush();
 
-        return redirect('/signin');
+        return redirect('/');
     }
 
     // sign up
