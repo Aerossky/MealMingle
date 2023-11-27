@@ -147,7 +147,7 @@ class UserController extends Controller
         // Melakukan Soft Delete
         $user->delete();
 
-        return redirect()->route('user.index')->with('status', 'Data user berhasil dihapus!');
+        return redirect()->route('user.index');
     }
 
     // SOFT DELETE
