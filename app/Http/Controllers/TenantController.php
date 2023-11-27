@@ -45,7 +45,6 @@ class TenantController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
