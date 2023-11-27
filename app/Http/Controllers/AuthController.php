@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
-class AuthController extends Controller
+class   AuthController extends Controller
 {
     //sign in
     public function signIn()
@@ -46,16 +46,15 @@ class AuthController extends Controller
     }
     protected function loginFailedResponse()
     {
-        dd('salah');
-        return redirect('signIn')
+        return redirect('/signin')
             ->with('status', 'Gagal')
-            ->with('message', 'Maaf username dan password salah');
+            ->with('message', 'Maaf username dan password salah')
+            ->withInput();
     }
 
     protected function inactiveAccountResponse()
     {
-        dd('tidak aktif');
-        return redirect('signIn')
+        return redirect('/signin')
             ->with('status', 'Gagal')
             ->with('message', 'Akun anda belum aktif, silahkan hubungi admin');
     }
@@ -65,16 +64,13 @@ class AuthController extends Controller
     {
         if ($role == "1") {
             // admin
-            // return redirect()->intended('dashboard');
-            dd('admin');
+            return redirect()->intended('/admin-dashboard');
         } elseif ($role == "2") {
             // tenant
-            // return redirect()->intended('member');
-            dd('tenant');
+            return redirect()->intended('/tenant-dashboard');
         } elseif ($role == "3") {
-            // customer
-            // return redirect()->intended('member');
-            dd('customer');
+            // member
+            return redirect()->intended('/');
         }
     }
 
@@ -89,7 +85,7 @@ class AuthController extends Controller
         // flush session
         $request->session()->flush();
 
-        return redirect('signIn');
+        return redirect('/');
     }
 
     // sign up
@@ -97,11 +93,12 @@ class AuthController extends Controller
     {
         // ambil data universitas
         $universitas = Universitas::all();
-        return view('auth.signup',['options'=> $universitas]);
+        return view('auth.signup', ['options' => $universitas]);
     }
 
     // sign up a user
-    public function storeData(Request $request){
+    public function storeData(Request $request)
+    {
         // Validasi data input pengguna
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -112,7 +109,7 @@ class AuthController extends Controller
         ]);
         $validatedData = $validator->validated();
         $validatedData['role_id'] = 3;
-        $validatedData['universitas_id']=$request->universitas;
+        $validatedData['universitas_id'] = $request->universitas;
         User::create($validatedData);
 
         //ke halaman login

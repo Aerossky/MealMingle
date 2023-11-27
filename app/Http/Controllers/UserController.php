@@ -167,7 +167,8 @@ class UserController extends Controller
     }
 
     // Delete restore data
-    public function forceDelete($id){
+    public function forceDelete($id)
+    {
         User::onlyTrashed()->where('id', $id)->forceDelete();
 
         // redirect
