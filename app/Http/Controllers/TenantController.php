@@ -51,6 +51,7 @@ class TenantController extends Controller
             'deskripsi' => 'required',
             'user_id' => 'required',
             'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'universitas_id' => 'required|array',
         ]);
 
         if ($validator->fails()) {
@@ -69,7 +70,9 @@ class TenantController extends Controller
 
         $validatedData = $validator->validated();
         $validatedData['foto_tenant'] = $newName;
-        Tenant::create($validatedData);
+
+        $tenant = Tenant::create($validatedData);
+        $tenant->universitas()->attach($request->input('universitas_id'));
 
         return redirect()->route('tenant.index')->with('status', 'Data berhasil ditambahkan!');
     }
