@@ -39,7 +39,7 @@ class MenuKategoriSeeder extends Seeder
             ],
         ];
 
-        //insert data
+        // insert data
         // foreach ($data as $item) {
         //     MenuKategori::create([
         //         'menu_id' => $item['menu_id'],
