@@ -36,7 +36,7 @@
 
                 <div class="mb-4 col-span-2">
                     <label for="user_id" class="block text-sm font-medium text-gray-600">Pemilik</label>
-                    <select id="user_id" name="user_id" class="mt-1 p-2 w-full border rounded-md">
+                    <select selected="{{ $tenant->user_id }}" id="user_id" name="user_id" class="mt-1 p-2 w-full border rounded-md">
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
