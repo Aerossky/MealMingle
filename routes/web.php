@@ -88,6 +88,21 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
     Route::get('/tenant-dashboard', [DashboardController::class, 'tenantDashboard'])->name('tenant.dashboard');
 });
 
+// Menu Route
+Route::resource('menu', MenuController::class);
+Route::get('menu', [MenuController::class, 'show'])->name('menu.show');
+Route::get('menu/showmenu', [MenuController::class,'show'])->name('menu.showNormal');
+Route::get('filteredMenu', [MenuController::class,'showFiltered'])->name('menu.showFiltered');
+Route::get('menu/add-menu/{id}', [MenuController::class, 'create'])->name('menu.add-menu');
+Route::post('menu/store-menu/{id}', [MenuController::class, 'store'])->name('menu.store-menu');
+Route::get('menu/edit-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'edit'])->name('menu.edit-menu');
+Route::post('menu/update-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'update'])->name('menu.update-menu');
+Route::delete('menu/delete-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'destroy'])->name('menu.delete-menu');
+// Menu SoftDelete
+Route::get('tenant/{tenantId}/menu/data/terhapus', [MenuController::class, 'deletedData'])->name('menu.deletedData');
+Route::get('tenant/{tenantId}/menu/data/restore/{id}', [MenuController::class, 'restore'])->name('menu.restore');
+Route::get('tenant/{tenantId}/menu/data/terhapus/{id}', [MenuController::class, 'forceDelete'])->name('menu.forceDelete');
+
 // ROUTER HANYA UNTUK TES HALAMAN
 // ADMIN
 Route::get('/admin-dashboard', function () {

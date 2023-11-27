@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
 use App\Models\Menu;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -75,7 +76,44 @@ class MenuController extends Controller
     public function show()
     {
         $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')->get();
-        return view('member.listmenu', ['allmenu' => $showMenu]);
+        $filterdata = Kategori::all();
+        return view('member.listmenu', ['allmenu' => $showMenu, 'allfilter' => $filterdata]);
+    }
+
+    public function showFiltered(Request $request)
+    {
+        // Ambil nilai filter dari input (ID kategori)
+    $filterId = $request->input('filter');
+    $filterSearch = $request->input('search');
+
+    // Ambil semua data kategori untuk dropdown filter
+    $filterdata = Kategori::all();
+
+    // Ambil menu terkait dengan kategori yang dipilih
+    $filteredMenu = collect();
+    
+    if ($filterId) {
+        // Ambil data dari tabel pivot berdasarkan ID kategori
+        $pivotData = DB::table('menu_kategori')
+            ->where('kategori_id', $filterId)
+            ->select('menu_id')
+            ->get();
+
+        // Ambil menu berdasarkan id dari hasil tabel pivot
+        $filteredMenu = Menu::whereIn('id', $pivotData->pluck('menu_id'))
+            ->select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')
+            ->get();
+    } else {
+        // Jika tidak ada filter dipilih, ambil semua menu
+        $filteredMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')->get();
+    }
+    if($filterSearch){
+        $query = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id');
+        $query->where('nama_makanan', 'like', '%' . $filterSearch . '%');
+        $filteredMenu = $query->get();
+    }
+
+    return view('member.listmenu', ['allmenu' => $filteredMenu, 'allfilter' => $filterdata]);
     }
 
     /**

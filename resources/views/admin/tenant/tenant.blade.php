@@ -28,9 +28,9 @@
                         <th scope="col" class="px-6 py-3">
                             Pemilik
                         </th>
-                        {{-- <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3">
                             Universitas
-                        </th> --}}
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Deskripsi
                         </th>
@@ -57,14 +57,14 @@
                                 </th>
                                 <td class="px-6 py-4">{{ $tenant->nama_tenant }}</td>
                                 <td class="px-6 py-4">{{ $tenant->user->name }}</td>
-                                {{-- <td class="px-6 py-4">
+                                <td class="px-6 py-4">
                                 @foreach ($tenant->universitas as $uni)
                                     {{ $uni->universitas_name }}
                                 @endforeach
-                                </td> --}}
+                                </td>
                                 <td class="px-6 py-4">{{ $tenant->deskripsi }}</td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ asset('img/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant" srcset="" height="80px"
+                                    <img src="{{ asset('storage/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant" srcset="" height="80px"
                                         width="80px">
                                 </td>
                                 <td class="px-6 py-4">

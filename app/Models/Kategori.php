@@ -19,6 +19,6 @@ class Kategori extends Model
 
     public function menu(): BelongsToMany
     {
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class, 'menu_kategori', 'kategori_id', 'menu_id');
     }
 }

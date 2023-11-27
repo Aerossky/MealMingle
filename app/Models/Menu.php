@@ -28,7 +28,7 @@ class Menu extends Model
 
     public function kategori(): BelongsToMany
     {
-        return $this->belongsToMany(Kategori::class);
+        return $this->belongsToMany(Kategori::class, 'menu_kategori', 'menu_id', 'kategori_id');
     }
 
     public function keranjang_item(): BelongsToMany
