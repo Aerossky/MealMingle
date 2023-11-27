@@ -22,7 +22,7 @@
             <div class="mt-3">
                 <div class="flex gap-2">
                     <div class="flex col-span-11 w-full">
-                        <form class="w-full" method="GET" action="{{ route('menu.showFiltered') }}">
+                        <form class="w-full" method="GET" action="{{ route('menu.show-Filtered') }}">
                             <label for="default-search"
                                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white ">Search</label>
                             <div class="relative">
@@ -53,7 +53,7 @@
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700">
                             <ul class="text-sm text-black dark:text-gray-200"
                                 aria-labelledby="dropdownDefaultButton">
-                                <form action="{{ route('menu.showFiltered') }}" method="GET" class="">
+                                <form action="{{ route('menu.show-Filtered') }}" method="GET" class="">
                                     @foreach ($allfilter as $item)
                                     <li>
                                         <button type="submit" name="filter" value="{{ $item->id }}"

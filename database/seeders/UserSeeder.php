@@ -96,6 +96,7 @@ class UserSeeder extends Seeder
                 'password' => $item['password'],
                 'jenis_kelamin' => $item['jenis_kelamin'],
                 'alamat' => $item['alamat'],
+                'status' => $item['status'],
                 'universitas_id' => $item['universitas_id'],
                 'role_id' => $item['role_id'],
             ]);
