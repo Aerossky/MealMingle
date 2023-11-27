@@ -92,7 +92,7 @@ class MenuController extends Controller
     // Ambil menu terkait dengan kategori yang dipilih
     $filteredMenu = collect();
     
-    if ($filterId) {
+    if ($filterId != "all") {
         // Ambil data dari tabel pivot berdasarkan ID kategori
         $pivotData = DB::table('menu_kategori')
             ->where('kategori_id', $filterId)

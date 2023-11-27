@@ -60,6 +60,10 @@
                                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">{{ $item->nama_kategori }}</a>
                                     </li>
                                     @endforeach
+                                    <li>
+                                        <button type="submit" name="filter" value="all"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">All</a>
+                                    </li>
                                 </form>
                             </ul>
                         </div>
