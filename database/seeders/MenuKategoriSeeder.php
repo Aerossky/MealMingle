@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class MenuKategoriSeeder extends Seeder
 {
@@ -40,11 +41,11 @@ class MenuKategoriSeeder extends Seeder
         ];
 
         // insert data
-        // foreach ($data as $item) {
-        //     MenuKategori::create([
-        //         'menu_id' => $item['menu_id'],
-        //         'keranjang_item_id' => $item['keranjang_item_id'],
-        //     ]);
-        // }
+        foreach ($data as $item) {
+            DB::table('menu_kategori')->insert([
+                'menu_id' => $item['menu_id'],
+                'kategori_id' => $item['kategori_id'],
+            ]);
+        }
     }
 }

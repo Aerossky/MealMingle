@@ -22,7 +22,7 @@
             <div class="mt-3">
                 <div class="flex gap-2">
                     <div class="flex col-span-11 w-full">
-                        <form class="w-full">
+                        <form class="w-full" method="GET" action="{{ route('menu.showFiltered') }}">
                             <label for="default-search"
                                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white ">Search</label>
                             <div class="relative">
@@ -33,9 +33,9 @@
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
-                                <input type="search" id="default-search"
+                                <input type="search" id="default-search" name="search"
                                     class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-                                    placeholder="Search Mockups, Logos..." required>
+                                    placeholder="Cari Makanan..." required>
                                 <button type="submit"
                                     class="text-white absolute end-2.5 bottom-2.5 bg-merahMM hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ">Search</button>
                             </div>
@@ -53,23 +53,13 @@
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700">
                             <ul class="text-sm text-black dark:text-gray-200"
                                 aria-labelledby="dropdownDefaultButton">
-                                <form action="" method="GET" class="">
-                                    {{-- @foreach ($collection as $item) --}}
+                                <form action="{{ route('menu.showFiltered') }}" method="GET" class="">
+                                    @foreach ($allfilter as $item)
                                     <li>
-                                        <button type="submit" value="makanan_berat"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">Nasi</a>
+                                        <button type="submit" name="filter" value="{{ $item->id }}"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">{{ $item->nama_kategori }}</a>
                                     </li>
-                                    <li>
-                                        <button type="submit" value="makanan_berat"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">Makanan Ringan</a>
-                                    </li>
-                                    <li>
-                                        <button type="submit" value="makanan_berat"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">Makanan Mahal</a>
-                                    </li>
-                                    {{-- @endforeach --}}
-
-
+                                    @endforeach
                                 </form>
                             </ul>
                         </div>
