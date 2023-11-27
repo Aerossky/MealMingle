@@ -4,9 +4,15 @@
 @section('content')
 
     <div class="flex items-center justify-between">
-        <h1 class="font-bold text-2xl py-5">Tenant Detail</h1>
+        <h1 class="font-bold text-2xl py-5">Menu Detail / <span class="text-merah hover:text-red-800"><a
+                    href="{{ route('tenant.index') }}">Kembali</a></span>
+        </h1>
         <div class="">
-            <a href="/admin-menu-menu-add"
+            <a href="{{ route('menu.deletedData', $tenantId) }}"
+                class="focus:outline-none text-white bg-blue-500 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Data
+                Terhapus</a>
+
+            <a href="{{ route('menu.add-menu', $tenantId) }}"
                 class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Tambah
                 Menu</a>
         </div>
@@ -34,39 +40,57 @@
                             Foto
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Aksi
                         </th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            1
-                        </th>
-
-                        <td class="px-6 py-4">
-                            Nasi Goreng
-                        </td>
-                        <td class="px-6 py-4">
-                            Nasi goreng dengan rempah
-                        </td>
-                        <td class="px-6 py-4">
-                            10.000
-                        </td>
-                        <td class="px-6 py-4">
-                            <img src="{{ asset('img/logo.png') }}" alt="foto tenant" srcset="" height="80px"
-                                width="80px">
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                            <a href="#" class="text-red-600 hover:text-red-900">Delete<span class="sr-only"></a>
-                        </td>
-                    </tr>
-
+                    @if ($showMenu->count() === 0)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td colspan="6" class="py-4 text-center text-gray-500 dark:text-gray-400">
+                                No Data Avaible!
+                            </td>
+                        </tr>
+                    @else
+                        @foreach ($showMenu as $menu)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $loop->iteration }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $menu->nama_makanan }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $menu->deskripsi }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $menu->harga_produk }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <img src="{{ asset('img/logo.png') }}" alt="foto tenant" srcset="" height="80px"
+                                        width="80px">
+                                </td>
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('menu.edit-menu', [$menu->id, $menu->tenant_id]) }}"
+                                        class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
+                                    <form action="{{ route('menu.delete-menu', [$menu->id, $menu->tenant_id]) }}"
+                                        method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="ml-2 text-red-500 hover:text-red-700"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus Menu ini?')">Delete</button>
+                                    </form>
+                                    {{-- <a href="#" class="text-red-600 hover:text-red-900">Delete<span
+                                            class="sr-only"></a> --}}
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
-
     </div>
 
 @endsection

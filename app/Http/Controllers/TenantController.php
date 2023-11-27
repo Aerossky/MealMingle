@@ -80,15 +80,18 @@ class TenantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $tenant = Tenant::findOrFail($id);
         $tenantId = $id;
 
-        $menus = Menu::select('id', 'foto_produk', 'nama_makanan', 'deskripsi', 'harga_produk', 'tenant_id')
+        // Filter showMenu based on tenant_id
+        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')
             ->orderBy('id', 'asc')
-            ->where('tenant_id', $id);
-        return view('admin.tenant.tenant-detail', ['tenant' => $tenant, 'menus' => $menus, 'tenantId' => $tenantId]);
+            ->where('tenant_id', $id)
+            ->get();
+
+        return view('admin.tenant.tenant-detail', ['tenant' => $tenant, 'showMenu' => $showMenu, 'tenantId' => $tenantId]);
     }
 
     /**
