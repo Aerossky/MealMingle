@@ -34,6 +34,8 @@ Route::get('/signup', [AuthController::class, 'signUp'])->name('signup');
 Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.storeData');
 Route::post('/logout', [AuthController::class, 'logout']);
 
+// Show Menu Biasa
+Route::get('/menus', [MenuController::class, 'show'])->name('menu.show');
 
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
@@ -50,6 +52,18 @@ Route::middleware(['auth', 'only_admin'])->group(
 
         // TENANT ROUTE
         Route::resource('tenant', TenantController::class);
+
+        // Menu Route
+        Route::resource('menu', MenuController::class);
+        Route::get('menu/add-menu/{id}', [MenuController::class, 'create'])->name('menu.add-menu');
+        Route::post('menu/store-menu/{id}', [MenuController::class, 'store'])->name('menu.store-menu');
+        Route::get('menu/edit-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'edit'])->name('menu.edit-menu');
+        Route::post('menu/update-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'update'])->name('menu.update-menu');
+        Route::delete('menu/delete-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'destroy'])->name('menu.delete-menu');
+        // Menu SoftDelete
+        Route::get('tenant/{tenantId}/menu/data/terhapus', [MenuController::class, 'deletedData'])->name('menu.deletedData');
+        Route::get('tenant/{tenantId}/menu/data/restore/{id}', [MenuController::class, 'restore'])->name('menu.restore');
+        Route::get('tenant/{tenantId}/menu/data/terhapus/{id}', [MenuController::class, 'forceDelete'])->name('menu.forceDelete');
 
         // UNIVERSITAS ROUTE
         Route::resource('universitas', UniversitasController::class);
@@ -74,20 +88,6 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
     Route::get('/tenant-dashboard', [DashboardController::class, 'tenantDashboard'])->name('tenant.dashboard');
 });
 
-
-// Menu Route
-Route::resource('menu', MenuController::class);
-Route::get('menu', [MenuController::class, 'show'])->name('menu.show');
-Route::get('menu/add-menu/{id}', [MenuController::class, 'create'])->name('menu.add-menu');
-Route::post('menu/store-menu/{id}', [MenuController::class, 'store'])->name('menu.store-menu');
-Route::get('menu/edit-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'edit'])->name('menu.edit-menu');
-Route::post('menu/update-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'update'])->name('menu.update-menu');
-Route::delete('menu/delete-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'destroy'])->name('menu.delete-menu');
-// Menu SoftDelete
-Route::get('tenant/{tenantId}/menu/data/terhapus', [MenuController::class, 'deletedData'])->name('menu.deletedData');
-Route::get('tenant/{tenantId}/menu/data/restore/{id}', [MenuController::class, 'restore'])->name('menu.restore');
-Route::get('tenant/{tenantId}/menu/data/terhapus/{id}', [MenuController::class, 'forceDelete'])->name('menu.forceDelete');
-
 // ROUTER HANYA UNTUK TES HALAMAN
 // ADMIN
 Route::get('/admin-dashboard', function () {
@@ -109,9 +109,9 @@ Route::get('/admin-menu-menu-add', function () {
 // Route::get('/tenant', function () {
 //     return view('member.tenant.tenant');
 // });
-Route::get('/menu', function () {
-    return view('member.listmenu');
-});
+// Route::get('/menu', function () {
+//     return view('member.listmenu');
+// });
 
 Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
