@@ -34,9 +34,9 @@
                 </div>
 
                 <!-- Universitas -->
-                <div class="mb-4 col-span-1">
+                <div class="mb-4 col-span-2">
                     <label for="universitas_id" class="block text-sm font-medium text-gray-600">Universitas</label>
-                    <select id="universitas_id" name="universitas_id" class="mt-1 p-2 w-full border rounded-md">
+                    <select id="universitas_id" name="universitas_id[]" multiple class="mt-1 p-2 w-full border rounded-md">
                         <!-- Pilihan Universitas -->
                         @foreach ($universitas as $uni)
                             <option value="{{ $uni->id }}">{{ $uni->universitas_name }}</option>

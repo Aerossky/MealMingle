@@ -78,6 +78,8 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
 // Menu Route
 Route::resource('menu', MenuController::class);
 Route::get('menu', [MenuController::class, 'show'])->name('menu.show');
+Route::get('menu/showmenu', [MenuController::class,'show'])->name('menu.showNormal');
+Route::get('filteredMenu', [MenuController::class,'showFiltered'])->name('menu.showFiltered');
 Route::get('menu/add-menu/{id}', [MenuController::class, 'create'])->name('menu.add-menu');
 Route::post('menu/store-menu/{id}', [MenuController::class, 'store'])->name('menu.store-menu');
 Route::get('menu/edit-menu/{menuId}/tenant/{tenantId}', [MenuController::class, 'edit'])->name('menu.edit-menu');
@@ -109,9 +111,9 @@ Route::get('/admin-menu-menu-add', function () {
 // Route::get('/tenant', function () {
 //     return view('member.tenant.tenant');
 // });
-Route::get('/menu', function () {
-    return view('member.listmenu');
-});
+// Route::get('/menu', function () {
+//     return view('member.listmenu');
+// });
 
 Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
