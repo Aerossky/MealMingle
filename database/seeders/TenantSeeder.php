@@ -17,14 +17,14 @@ class TenantSeeder extends Seeder
             [
                 'nama_tenant' => "PAPA JOE'S",
                 'deskripsi' => "restorant papa joe",
-                'user_id' => "3",
                 'foto_tenant' => "PAPA JOE",
+                'user_id' => 3,
             ],
             [
                 'nama_tenant' => "PAPA JOV",
                 'deskripsi' => "restorant papa jov",
-                'user_id' => "4",
                 'foto_tenant' => "PAPA JOV",
+                'user_id' => 4,
             ],
         ];
 
@@ -33,8 +33,8 @@ class TenantSeeder extends Seeder
             Tenant::create([
                 'nama_tenant' => $item['nama_tenant'],
                 'deskripsi' => $item['deskripsi'],
-                'user_id' => $item['user_id'],
                 'foto_tenant' => $item['foto_tenant'],
+                'user_id' => $item['user_id'],
             ]);
         }
     }

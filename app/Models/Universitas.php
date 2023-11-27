@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Universitas extends Model
 {
@@ -14,16 +13,14 @@ class Universitas extends Model
     protected $table = 'universitas';
 
     protected $fillable = [
-        'universitas',
+        'universitas_name',
     ];
 
-    public function user()
-    {
+    public function user(){
         return $this->hasMany(User::class);
     }
 
-    public function tenant(): BelongsToMany
-    {
+    public function tenant(){
         return $this->belongsToMany(Tenant::class);
     }
 }

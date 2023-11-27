@@ -22,8 +22,8 @@ class UserSeeder extends Seeder
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
                 'status' => 'aktif',
-                'universitas_id' => '1',
-                'role_id' => '1',
+                'universitas_id' => 1,
+                'role_id' => 1,
             ],
             [
                 'name' => "Reynaldo",
@@ -32,8 +32,8 @@ class UserSeeder extends Seeder
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
                 'status' => 'tidakaktif',
-                'universitas_id' => '2',
-                'role_id' => '3',
+                'universitas_id' => 2,
+                'role_id' => 3,
             ],
             [
                 'name' => "Joseph",
@@ -42,8 +42,8 @@ class UserSeeder extends Seeder
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
                 'status' => 'aktif',
-                'universitas_id' => '3',
-                'role_id' => '2',
+                'universitas_id' => 3,
+                'role_id' => 2,
             ],
             [
                 'name' => "Jovan",
@@ -52,8 +52,8 @@ class UserSeeder extends Seeder
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
                 'status' => 'aktif',
-                'universitas_id' => '3',
-                'role_id' => '2',
+                'universitas_id' => 3,
+                'role_id' => 2,
             ],
             [
                 'name' => "William",
@@ -62,8 +62,8 @@ class UserSeeder extends Seeder
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
                 'status' => 'aktif',
-                'universitas_id' => '3',
-                'role_id' => '2',
+                'universitas_id' => 3,
+                'role_id' => 2,
             ],
             [
                 'name' => "Ilham",
@@ -72,9 +72,19 @@ class UserSeeder extends Seeder
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
                 'status' => 'aktif',
-                'universitas_id' => '3',
-                'role_id' => '2',
-            ]
+                'universitas_id' => 3,
+                'role_id' => 2,
+            ],
+            [
+                'name' => "Joss",
+                'email' => "customer1@gmail.com",
+                'password' => Hash::make('anjay123'), // password
+                'jenis_kelamin' => 'male',
+                'alamat' => 'North West',
+                'status' => 'tidakaktif',
+                'universitas_id' => 1,
+                'role_id' => 2,
+            ],
 
         ];
 

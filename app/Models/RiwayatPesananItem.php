@@ -15,7 +15,6 @@ class RiwayatPesananItem extends Model
     protected $fillable = [
       'jumlah',
       'harga_item',
-      'menu_id',
       'riwayat_pesanan_id',
     ];
 

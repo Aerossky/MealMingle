@@ -34,7 +34,7 @@ class UniversitasController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string|max:255',
+            'universitas_name' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -46,7 +46,7 @@ class UniversitasController extends Controller
 
         // create
         Universitas::create([
-            'universitas' => $request->nama
+            'universitas_name' => $request->universitas_name
         ]);
 
         return redirect()->route('universitas.index')->with('status', 'Universitas berhasil ditambahkan!');
@@ -76,7 +76,7 @@ class UniversitasController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string|max:255',
+            'universitas_name' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -88,7 +88,7 @@ class UniversitasController extends Controller
 
         // update
         Universitas::where('id', $id)->update([
-            'universitas' => $request->nama,
+            'universitas_name' => $request->universitas_name,
             // tambahkan kolom lain yang ingin diupdate
         ]);
 

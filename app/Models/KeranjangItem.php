@@ -16,7 +16,6 @@ class KeranjangItem extends Model
       'jumlah',
       'harga_item',
       'note_item',
-      'menu_id',
       'keranjang_id',
     ];
 

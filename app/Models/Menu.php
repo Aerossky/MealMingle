@@ -19,15 +19,15 @@ class Menu extends Model
       'hari',
       'foto_produk',
       'tenant_id',
-      'kategori_id',
     ];
 
     public function tenant(){
         return $this->belongsTo(Tenant::class);
     }
 
-    public function kategori(){
-        return $this->belongsTo(Kategori::class);
+    public function kategori(): BelongsToMany
+    {
+        return $this->belongsToMany(Kategori::class);
     }
 
     public function keranjang_item(): BelongsToMany

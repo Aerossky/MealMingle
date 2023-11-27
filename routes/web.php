@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
@@ -82,7 +83,9 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
 
 
 
-
+// Menu Route
+Route::resource('menu', MenuController::class);
+Route::get('menu/showmenu', [MenuController::class,'show'])->name('menu.show');
 
 
 // ROUTER HANYA UNTUK TES HALAMAN

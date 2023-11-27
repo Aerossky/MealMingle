@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
             $table->string('foto_produk');
             $table->foreignId('tenant_id')->constrained('tenants')->onDelete('cascade');
-            $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
             $table->timestamps();
         });
     }

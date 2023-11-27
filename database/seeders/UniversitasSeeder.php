@@ -15,20 +15,20 @@ class UniversitasSeeder extends Seeder
     {
         $data = [
             [
-                'universitas' => "Universitas Ciputra Surabaya",
+                'universitas_name' => "Universitas Ciputra Surabaya",
             ],
             [
-                'universitas' => "Universitas Surabaya",
+                'universitas_name' => "Universitas Surabaya",
             ],
             [
-                'universitas' => "Universitas Kristen Petra",
+                'universitas_name' => "Universitas Kristen Petra",
             ]
         ];
 
         //insert data
         foreach ($data as $item) {
             Universitas::create([
-                'universitas' => $item['universitas'],
+                'universitas_name' => $item['universitas_name'],
             ]);
         }
     }

@@ -17,6 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //show data user
         $user = User::select('id', 'name', 'email', 'status', 'universitas_id')->with('universitas')->get();
         return view('admin.user.user', compact('user'));
     }
