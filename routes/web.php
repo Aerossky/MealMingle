@@ -85,7 +85,8 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
 
 // Menu Route
 Route::resource('menu', MenuController::class);
-Route::get('menu/showmenu', [MenuController::class,'show'])->name('menu.show');
+Route::get('menu/showmenu', [MenuController::class,'show'])->name('menu.showNormal');
+Route::get('filteredMenu', [MenuController::class,'showFiltered'])->name('menu.showFiltered');
 
 
 // ROUTER HANYA UNTUK TES HALAMAN
@@ -112,9 +113,9 @@ Route::get('/admin-menu-menu-add', function () {
 // Route::get('/tenant', function () {
 //     return view('member.tenant.tenant');
 // });
-Route::get('/menu', function () {
-    return view('member.listmenu');
-});
+// Route::get('/menu', function () {
+//     return view('member.listmenu');
+// });
 
 Route::get('/tenant-detail', function () {
     return view('member.tenant.detail');
