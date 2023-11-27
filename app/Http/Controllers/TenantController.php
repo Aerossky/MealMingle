@@ -17,7 +17,7 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $tenants = Tenant::select('id', 'nama_tenant', 'deskripsi', 'foto_tenant', 'user_id', 'universitas_id')
+        $tenants = Tenant::select('id', 'nama_tenant', 'deskripsi', 'foto_tenant', 'user_id')
             ->orderBy('id', 'asc')
             ->get();
 

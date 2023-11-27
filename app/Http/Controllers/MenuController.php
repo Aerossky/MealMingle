@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -67,14 +68,12 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        $menu = Menu::findOrFail($id);
-
-        return view('admin.menu.menu-detail', [
-            'menu' => $menu,
-            'tenantId' => $id,
-        ]);
+        // $filterdata = Kategori::all();
+        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')->get();;
+        // dd($showMenu);
+        return view('member.listmenu', ['allmenu' => $showMenu]);
     }
 
     /**

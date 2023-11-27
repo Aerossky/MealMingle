@@ -87,8 +87,8 @@
 
                     <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-1 lg:gap-x-8">
                         {{-- Loop Tenant --}}
-                        {{-- @foreach ($tenants as $item) --}}
-                        @for ($i = 1; $i <= 8; $i++)
+                        @foreach ($allmenu as $item)
+                        {{-- @for ($i = 1; $i <= 8; $i++) --}}
                             <div class="group relative">
                                 <div
                                     class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
@@ -99,26 +99,26 @@
                                 <h2 class="mt-4 text-lg text-black font-semibold">
                                     <a href="#">
                                         <span class="absolute inset-0"></span>
-                                        {{-- {{ $item->nama_tenant }} --}}
-                                        Nasi Goreng Babi
+                                        {{ $item->nama_makanan }}
+                                        {{-- Nasi Goreng Babi --}}
                                     </a>
                                 </h2>
-                                <h2 class="mt-1 text-sm opacity-5 text-gray-700">
+                                <h2 class="mt-1 text-sm opacity-50 text-gray-700">
                                     <a href="#">
-                                        {{-- {{ $item->nama_tenant }} --}}
-                                        Papa Joe
+                                        {{ $item->deskripsi }}
+                                        {{-- Papa Joe --}}
                                     </a>
                                 </h2>
-                                <h2 class="mt-1 text-md opacity-5 text-gray-700">
+                                <h2 class="mt-1 text-md opacity-50 text-gray-700">
                                     <a href="#">
-                                        {{-- {{ $item->nama_tenant }} --}}
-                                        Rp. 20000
+                                        {{ $item->harga_produk }}
+                                        {{-- Rp. 20000 --}}
                                     </a>
                                 </h2>
                             </div>
-                        @endfor
+                        {{-- @endfor --}}
 
-                        {{-- @endforeach --}}
+                        @endforeach
                     </div>
 
                 </div>
