@@ -50,8 +50,8 @@ class TenantController extends Controller
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
-            'universitas_id' => 'required',
             'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'universitas_id' => 'required|array',
         ]);
 
         if ($validator->fails()) {
@@ -70,7 +70,9 @@ class TenantController extends Controller
 
         $validatedData = $validator->validated();
         $validatedData['foto_tenant'] = $newName;
-        Tenant::create($validatedData);
+
+        $tenant = Tenant::create($validatedData);
+        $tenant->universitas()->attach($request->input('universitas_id'));
 
         return redirect()->route('tenant.index')->with('status', 'Data berhasil ditambahkan!');
     }
@@ -94,8 +96,16 @@ class TenantController extends Controller
      */
     public function edit(string $id)
     {
+        $users = User::select('id', 'name')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $universitas = Universitas::select('id', 'universitas_name')
+            ->orderBy('id', 'asc')
+            ->get();
+
         $tenant = Tenant::findOrFail($id);
-        return view('admin.tenant.tenant-edit', ['tenant' => $tenant]);
+        return view('admin.tenant.tenant-edit', ['tenant' => $tenant, 'users' => $users, 'universitas' => $universitas]);
     }
 
     /**
@@ -107,8 +117,8 @@ class TenantController extends Controller
             'nama_tenant' => 'required',
             'deskripsi' => 'required',
             'user_id' => 'required',
-            'universitas_id' => 'required',
-            'foto_tenant' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'foto_tenant' => 'image|mimes:jpg,png,jpeg|max:2048',
+            'universitas_id' => 'required|array',
         ]);
 
         if ($validator->fails()) {
@@ -136,9 +146,10 @@ class TenantController extends Controller
             'nama_tenant' => $request->nama_tenant,
             'deskripsi' => $request->deskripsi,
             'user_id' => $request->user_id,
-            'universitas_id' => $request->universitas_id,
             'foto_tenant' => $newName ?: $tenant->foto_tenant,
         ]);
+
+        $tenant->universitas()->sync($request->input('universitas_id'));
 
         return redirect()->route('tenant.index')->with('status', 'Tenant berhasil diperbarui!');
     }

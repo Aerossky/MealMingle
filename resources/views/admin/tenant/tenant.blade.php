@@ -64,7 +64,7 @@
                                 </td> --}}
                                 <td class="px-6 py-4">{{ $tenant->deskripsi }}</td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ asset('img/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant" srcset="" height="80px"
+                                    <img src="{{ asset('storage/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant" srcset="" height="80px"
                                         width="80px">
                                 </td>
                                 <td class="px-6 py-4">
