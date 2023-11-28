@@ -2,7 +2,7 @@
 @section('title', 'Menu')
 
 @section('content')
-<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <div>
 
         <section class="bg-merahMM dark:bg-gray-900 ">
@@ -41,24 +41,26 @@
                             </div>
                         </form>
                     </div>
-                    <div class="flex col-span-1">
-                        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                            class="text-white bg-merahMM hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center "
-                            type="button">Filter
-                            <span class="iconify" data-icon="gridicons:dropdown" data-inline="false" style="width: 24px; height:24px;"></span>
-                        </button>
+                    <div class="flex col-span-1 justify-center items-center">
+                        <div class="">
+                            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                class="text-white bg-merahMM hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center "
+                                type="button">Filter
+                                <span class="iconify" data-icon="gridicons:dropdown" data-inline="false"
+                                    style="width: 24px; height:24px;"></span>
+                            </button>
+                        </div>
 
                         <!-- Dropdown menu -->
                         <div id="dropdown"
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700">
-                            <ul class="text-sm text-black dark:text-gray-200"
-                                aria-labelledby="dropdownDefaultButton">
+                            <ul class="text-sm text-black dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                                 <form action="{{ route('menu.show-Filtered') }}" method="GET" class="">
                                     @foreach ($allfilter as $item)
-                                    <li>
-                                        <button type="submit" name="filter" value="{{ $item->id }}"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">{{ $item->nama_kategori }}</a>
-                                    </li>
+                                        <li>
+                                            <button type="submit" name="filter" value="{{ $item->id }}"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">{{ $item->nama_kategori }}</a>
+                                        </li>
                                     @endforeach
                                     <li>
                                         <button type="submit" name="filter" value="all"
@@ -82,7 +84,7 @@
                     <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-1 lg:gap-x-8">
                         {{-- Loop Tenant --}}
                         @foreach ($allmenu as $item)
-                        {{-- @for ($i = 1; $i <= 8; $i++) --}}
+                            {{-- @for ($i = 1; $i <= 8; $i++) --}}
                             <div class="group relative">
                                 <div
                                     class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
@@ -110,8 +112,7 @@
                                     </a>
                                 </h2>
                             </div>
-                        {{-- @endfor --}}
-
+                            {{-- @endfor --}}
                         @endforeach
                     </div>
 
