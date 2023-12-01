@@ -102,9 +102,9 @@ class   AuthController extends Controller
         // Validasi data input pengguna
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users',
+            // 'email' => 'required|unique:users',
+            'phone_number' => 'required|unique:users',
             'password' => 'required|min:8|max:50',
-            'jenis_kelamin' => 'required',
             'alamat' => 'required',
         ]);
         $validatedData = $validator->validated();
