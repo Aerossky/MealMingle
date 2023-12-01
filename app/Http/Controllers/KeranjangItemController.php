@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KeranjangItem;
+use App\Models\Menu;
+use App\Models\Keranjang;
 use Illuminate\Http\Request;
+use App\Models\KeranjangItem;
+use Illuminate\Support\Facades\Validator;
 
 class KeranjangItemController extends Controller
 {
@@ -12,7 +15,11 @@ class KeranjangItemController extends Controller
      */
     public function index()
     {
-        //
+        $keranjang_items = KeranjangItem::select('id', 'jumlah', 'harga_item', 'note_item', 'keranjang_id')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.keranjang.keranjang-detail', ['keranjang_items' => $keranjang_items]);
     }
 
     /**
@@ -20,7 +27,15 @@ class KeranjangItemController extends Controller
      */
     public function create()
     {
-        //
+        $keranjangs = Keranjang::select('id', 'transaction_status')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $menus = Menu::select('id', 'nama_makanan')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.keranjang.keranjang-add', ['keranjangs' => $keranjangs, 'menus' => $menus]);
     }
 
     /**
