@@ -21,6 +21,15 @@ class KeranjangController extends Controller
         return view('admin.user.user-detail', ['keranjangs' => $keranjangs]);
     }
 
+    public function indexuser()
+    {
+        $keranjangs = Keranjang::select('id', 'total_harga', 'note_pesanan', 'user_id')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('member.keranjang', ['keranjangs' => $keranjangs]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -61,6 +70,14 @@ class KeranjangController extends Controller
      * Display the specified resource.
      */
     public function show($id)
+    {
+        $keranjang = Keranjang::findOrFail($id);
+        $userId = $id;
+
+        return view('admin.keranjang.keranjang-detail', ['keranjang' => $keranjang, 'userId' => $userId]);
+    }
+
+    public function showuser($id)
     {
         $keranjang = Keranjang::findOrFail($id);
         $userId = $id;
