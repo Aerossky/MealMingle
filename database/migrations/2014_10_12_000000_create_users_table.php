@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            // number
+            $table->string('phone_number')->unique();
             $table->string('password');
-            $table->string('jenis_kelamin');
-            $table->string('alamat');
+            // $table->string('email')->unique();
+            // $table->string('jenis_kelamin');
+            // $table->string('alamat');
             $table->enum('status', ['aktif', 'tidakaktif'])->default('tidakaktif');
             $table->foreignId('universitas_id')->constrained('universitas')->onDelete('cascade');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
