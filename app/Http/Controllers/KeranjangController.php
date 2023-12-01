@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
+use App\Models\KeranjangItem;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class KeranjangController extends Controller
@@ -23,11 +25,13 @@ class KeranjangController extends Controller
 
     public function indexuser()
     {
-        $keranjangs = Keranjang::select('id', 'total_harga', 'note_pesanan', 'user_id')
-            ->orderBy('id', 'asc')
-            ->get();
+        $userId = Auth::id();
+        $keranjangs = Keranjang::where('user_id', $userId)->firstOrFail();
 
-        return view('member.keranjang', ['keranjangs' => $keranjangs]);
+        // dd($userId);
+        // dd($keranjangs);
+
+        return view('member.keranjang', ['keranjangs' => $keranjangs, 'userId' => $userId]);
     }
 
     /**

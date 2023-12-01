@@ -241,8 +241,7 @@
                 </div>
                 <div class="flex flex-col sm:flex-row sm:justify-end space-y-2 sm:space-y-0 sm:space-x-4">
                     <button type="button"
-                        class="w-full sm:w-auto px-6 py-2 border border-1 border-black rounded-md dark:border-violet-400 hover:bg-kuningMM"
-                        onclick="hideCart()">Kembali</button>
+                        class="w-full sm:w-auto px-6 py-2 border border-1 border-black rounded-md dark:border-violet-400 hover:bg-kuningMM">Kembali</button>
                     <button type="button"
                         class="w-full sm:w-auto px-6 py-2 border border-1 border-black rounded-md dark:bg-violet-400 dark:text-gray-900 dark:border-violet-400 hover:bg-kuningMM">Pesan
                         Sekarang</button>
