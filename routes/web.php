@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\RiwayatPesananController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
@@ -24,6 +25,9 @@ use App\Models\RiwayatPesanan;
 */
 
 Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.dashboard');
+
+Route::resource('riwayat_pesanan', RiwayatPesananController::class);
+
 
 // AUTH
 Route::middleware('guest')->group(
