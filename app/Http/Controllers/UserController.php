@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         //show data user
-        $user = User::select('id', 'name', 'email', 'status', 'universitas_id')->with('universitas')->get();
+        $user = User::select('id', 'name', 'phone_number', 'status', 'universitas_id')->with('universitas')->get();
         return view('admin.user.user', compact('user'));
     }
 
@@ -39,10 +39,8 @@ class UserController extends Controller
         // Validasi data input pengguna
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users',
+            'phone_number' => 'required|unique:users',
             'password' => 'required|min:10|max:50',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'required',
             'universitas_id' => 'required|numeric'
         ]);
         $validatedData = $validator->validated();
@@ -86,10 +84,8 @@ class UserController extends Controller
         if ($request->email !== $user->email) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
-                'email' => 'required|email|unique:users,email,' . $id,
+                'phone_number' => 'required|numeric|unique:users,phone_number,' . $id,
                 'password' => 'nullable|min:10|max:50',
-                'jenis_kelamin' => 'required',
-                'alamat' => 'required',
                 'status' => 'required',
                 'universitas_id' => 'required|numeric',
                 'role_id' => 'required|numeric',
@@ -102,10 +98,8 @@ class UserController extends Controller
             // Jika tidak ada perubahan email, validasi tanpa aturan unique untuk email
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
-                'email' => 'required|email',
+                'phone_number' => 'required|numeric',
                 'password' => 'nullable|min:10|max:50',
-                'jenis_kelamin' => 'required',
-                'alamat' => 'required',
                 'status' => 'required',
                 'universitas_id' => 'required|numeric',
                 'role_id' => 'required|numeric',
@@ -122,10 +116,8 @@ class UserController extends Controller
         // Menentukan kolom yang akan diperbarui
         $user->update([
             'name' => $request->name,
-            'email' => $request->email,
+            'phone_number' => $request->phone_number,
             'password' => $password,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
             'status' => $request->status,
             'universitas_id' => $request->universitas_id,
             'role_id' => $request->role_id,
@@ -143,7 +135,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-
         // Melakukan Soft Delete
         $user->delete();
 

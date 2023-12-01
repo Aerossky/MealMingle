@@ -105,7 +105,6 @@ class   AuthController extends Controller
             // 'email' => 'required|unique:users',
             'phone_number' => 'required|unique:users',
             'password' => 'required|min:8|max:50',
-            'alamat' => 'required',
         ]);
         $validatedData = $validator->validated();
         $validatedData['role_id'] = 3;

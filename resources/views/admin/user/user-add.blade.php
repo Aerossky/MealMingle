@@ -33,10 +33,11 @@
                     <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md" required>
                 </div>
 
-                <!-- Email -->
+                <!-- Phone number -->
                 <div class="mb-4 col-span-2">
-                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                    <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md" required>
+                    <label for="phone_number" class="block text-sm font-medium text-gray-600">Nomor Telepon</label>
+                    <input type="number" id="phone_number" name="phone_number" class="mt-1 p-2 w-full border rounded-md"
+                        required>
                 </div>
 
                 <!-- password -->
@@ -46,21 +47,6 @@
                         required>
                 </div>
 
-                <!-- Jenis Kelamin -->
-                <div class="mb-4 col-span-2">
-                    <label for="jenis_kelamin" class="block text-sm font-medium text-gray-600">Jenis Kelamin</label>
-                    <select id="jenis_kelamin" name="jenis_kelamin" class="mt-1 p-2 w-full border rounded-md">
-                        <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                        <option value="laki-laki">Laki-laki</option>
-                        <option value="perempuan">Perempuan</option>
-                    </select>
-                </div>
-
-                <!-- Alamat -->
-                <div class="mb-4 col-span-2">
-                    <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat</label>
-                    <input type="text" id="alamat" name="alamat" class="mt-1 p-2 w-full border rounded-md">
-                </div>
 
                 <!-- Nama Universitas -->
                 <div class="mb-4 col-span-2">
@@ -68,7 +54,7 @@
                     <select id="universitas_id" name="universitas_id" class="mt-1 p-2 w-full border rounded-md">
                         <option value="" disabled selected>Pilih Universitas</option>
                         @foreach ($universitas as $data)
-                            <option value="{{ $data->id }}">{{ $data->universitas }}</option>
+                            <option value="{{ $data->id }}">{{ $data->universitas_name }}</option>
                         @endforeach
                     </select>
                 </div>
