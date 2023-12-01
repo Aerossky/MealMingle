@@ -17,16 +17,19 @@
                             <li class="flex flex-col py-6 sm:flex-row sm:justify-between">
                                 <div class="flex w-full space-x-2 sm:space-x-4">
                                     <img class="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500"
-                                        src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80"
-                                        alt="Gambar Makanan">
+                                        src="{{ asset('storage/menu/' . $keranjang_item->menu->foto_produk) }}"
+                                        alt="Gambar Makanan {{ $loop->iteration }}">
                                     <div class="flex flex-col justify-between w-full pb-4">
                                         <div class="flex justify-between w-full pb-2 space-x-2">
                                             <div class="space-y-1">
-                                                <h3 class="text-lg font-semibold leadi sm:pr-8">Nama Makanan</h3>
-                                                <p class="text-sm dark:text-gray-400">Nama Tenant</p>
+                                                <h3 class="text-lg font-semibold leadi sm:pr-8">
+                                                    {{ $keranjang_item->menu->nama_makanan }}</h3>
+                                                <p class="text-sm dark:text-gray-400">
+                                                    {{ $keranjang_item->menu->tenant->nama_tenant }}</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="text-lg font-semibold">Rp {{ $keranjang_item->harga_item }}</p>
+                                                <p class="text-lg font-semibold">Rp
+                                                    {{ $keranjang_item->menu->harga_produk }}</p>
                                             </div>
                                         </div>
                                         <div class="flex text-sm divide-x">
@@ -73,15 +76,19 @@
                 </ul>
                 <div class="text-right">
                     <p class="dark:text-gray-400">Total:
-                        <span class="font-semibold">Rp 5,000</span>
+                        <span class="font-semibold">Rp {{ $keranjangs->total_harga }}</span>
                     </p>
                 </div>
                 <div class="flex flex-col sm:flex-row sm:justify-end space-y-2 sm:space-y-0 sm:space-x-4">
-                    <button type="button"
-                        class="w-full sm:w-auto px-6 py-2 border border-1 border-black rounded-md dark:border-violet-400 hover:bg-kuningMM">Kembali</button>
-                    <button type="button"
-                        class="w-full sm:w-auto px-6 py-2 border border-1 border-black rounded-md dark:bg-violet-400 dark:text-gray-900 dark:border-violet-400 hover:bg-kuningMM">Pesan
-                        Sekarang</button>
+                    <a href="menus/showmenu">
+                        <button type="button"
+                            class="w-full sm:w-auto px-6 py-2 border border-1 border-black rounded-md dark:border-violet-400 hover:bg-kuningMM">Kembali</button>
+                    </a>
+                    <a href="/pembayaran">
+                        <button type="button"
+                            class="w-full sm:w-auto px-6 py-2 border border-1 border-black rounded-md dark:bg-violet-400 dark:text-gray-900 dark:border-violet-400 hover:bg-kuningMM">Pesan
+                            Sekarang</button>
+                    </a>
                 </div>
             </div>
         </div>
