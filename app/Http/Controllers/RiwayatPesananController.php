@@ -64,9 +64,9 @@ class RiwayatPesananController extends Controller
     public function show($id)
     {
         $riwayat_pesanan = RiwayatPesanan::findOrFail($id);
-        $tenantId = $id;
+        $userId = $id;
 
-        return view('admin.tenant.tenant-detail', ['riwayat_pesanan' => $riwayat_pesanan, 'tenantId' => $tenantId]);
+        return view('admin.riwayatpesanan.riwayatpesanan-detail', ['riwayat_pesanan' => $riwayat_pesanan, 'userId' => $userId]);
     }
 
     /**
@@ -79,7 +79,7 @@ class RiwayatPesananController extends Controller
             ->get();
 
         $riwayat_pesanan = RiwayatPesanan::findOrFail($id);
-        return view('admin.tenant.tenant-edit', ['riwayat_pesanan' => $riwayat_pesanan, 'users' => $users]);
+        return view('admin.riwayatpesanan.riwayatpesanan-edit', ['riwayat_pesanan' => $riwayat_pesanan, 'users' => $users]);
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KeranjangController extends Controller
 {
@@ -12,7 +14,11 @@ class KeranjangController extends Controller
      */
     public function index()
     {
-        //
+        $keranjangs = Keranjang::select('id', 'total_harga', 'note_pesanan', 'user_id')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.user.user-detail', ['keranjangs' => $keranjangs]);
     }
 
     /**
@@ -20,7 +26,11 @@ class KeranjangController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::select('id', 'name')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.keranjang.keranjang-add', ['users' => $users]);
     }
 
     /**
@@ -28,38 +38,86 @@ class KeranjangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'total_harga' => 'required',
+            'note_pesanan' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $validatedData = $validator->validated();
+        Keranjang::create($validatedData);
+
+        return redirect()->route('admin.user.index')->with('status', 'Data berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Keranjang $keranjang)
+    public function show($id)
     {
-        //
+        $keranjang = Keranjang::findOrFail($id);
+        $userId = $id;
+
+        return view('admin.keranjang.keranjang-detail', ['keranjang' => $keranjang, 'userId' => $userId]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Keranjang $keranjang)
+    public function edit(string $id)
     {
-        //
+        $users = User::select('id', 'name')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $keranjang = Keranjang::findOrFail($id);
+        return view('admin.keranjang.keranjang-edit', ['keranjang' => $keranjang, 'users' => $users]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Keranjang $keranjang)
+    public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'total_harga' => 'required',
+            'note_pesanan' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $keranjang = Keranjang::findOrFail($id);
+
+        $keranjang->update([
+            'total_harga' => $request->total_harga,
+            'note_pesanan' => $request->note_pesanan,
+            'user_id' => $request->user_id,
+        ]);
+
+        return redirect()->route('user.index')->with('status', 'Keranjang berhasil diperbarui!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Keranjang $keranjang)
+    public function destroy(string $id)
     {
-        //
+        $keranjang = Keranjang::findOrFail($id);
+        $keranjang->delete();
+
+        return redirect()->route('user.index')->with('status', 'Keranjang berhasil dihapus!');
     }
 }
