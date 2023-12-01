@@ -36,7 +36,7 @@ class RiwayatPesananItemController extends Controller
             ->orderBy('id', 'asc')
             ->get();
 
-        return view('admin.riwayatpesanan.riwayatpesanan-detail', ['riwayat_pesanans' => $riwayat_pesanans, 'menus' => $menus]);
+        return view('admin.riwayatpesanan.riwayatpesanan-add', ['riwayat_pesanans' => $riwayat_pesanans, 'menus' => $menus]);
     }
 
     /**

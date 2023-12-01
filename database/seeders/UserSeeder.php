@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('anjay123'), // password
                 'jenis_kelamin' => 'male',
                 'alamat' => 'North West',
-                'status' => 'tidakaktif',
+                'status' => 'aktif',
                 'universitas_id' => 2,
                 'role_id' => 3,
             ],

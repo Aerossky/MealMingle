@@ -8,6 +8,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\UniversitasController;
+use App\Http\Controllers\KeranjangController;
+use App\Models\Keranjang;
+use App\Models\RiwayatPesanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,9 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('menus/showmenu', [MenuController::class, 'show'])->name('menu.show-Normal');
 Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu.show-Filtered');
 
+// Keranjang Route
+Route::resource('keranjang', KeranjangController::class);
+Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
 
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
@@ -53,8 +59,14 @@ Route::middleware(['auth', 'only_admin'])->group(
         Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
 
 
-        // TENANT ROUTE
+        // Tenant Route
         Route::resource('tenant', TenantController::class);
+
+        // Keranjang Route
+        // Route::resource('keranjang', KeranjangController::class);
+
+        // Riwayat Pesanan Route
+        Route::resource('riwayatpesanan', RiwayatPesananController::class);
 
         // Menu Route
         Route::resource('menu', MenuController::class);
@@ -95,14 +107,6 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
 // ADMIN
 Route::get('/admin-dashboard', function () {
     return view('admin.dashboard');
-});
-
-Route::get('/admin-tenant-add', function () {
-    return view('admin.tenant.tenant-add');
-});
-
-Route::get('/admin-tenant-detail', function () {
-    return view('admin.tenant.tenant-detail');
 });
 
 Route::get('/admin-menu-menu-add', function () {
