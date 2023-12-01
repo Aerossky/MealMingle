@@ -50,6 +50,11 @@ Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu
 Route::resource('keranjang', KeranjangController::class);
 Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
 
+// Midtrans Route
+Route::get('/pembayaran', function () {
+    return view('member.pembayaran');
+});
+
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
     function () {

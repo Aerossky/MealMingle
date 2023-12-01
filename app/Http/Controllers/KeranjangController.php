@@ -43,6 +43,17 @@ class KeranjangController extends Controller
         return view('member.keranjang', ['keranjangs' => $keranjangs, 'keranjang_items' => $keranjang_items, 'userId' => $userId]);
     }
 
+    public function getGrossAmount()
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $grossAmount = $keranjangs->keranjang_item->sum(function ($item) {
+            return $item->menu->harga_produk;
+        });
+
+        return $grossAmount;
+    }
+
     /**
      * Show the form for creating a new resource.
      */
