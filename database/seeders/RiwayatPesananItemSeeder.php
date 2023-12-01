@@ -16,33 +16,33 @@ class RiwayatPesananItemSeeder extends Seeder
         $data = [
             [
                 'jumlah' => 2,
-                'harga_item' => 20000,
                 'riwayat_pesanan_id' => 1,
+                'menu_id' => 1,
             ],
             [
                 'jumlah' => 3,
-                'harga_item' => 10000,
                 'riwayat_pesanan_id' => 1,
+                'menu_id' => 2,
             ],
             [
                 'jumlah' => 3,
-                'harga_item' => 10000,
                 'riwayat_pesanan_id' => 1,
+                'menu_id' => 2,
             ],
             [
                 'jumlah' => 2,
-                'harga_item' => 25000,
                 'riwayat_pesanan_id' => 2,
+                'menu_id' => 5,
             ],
             [
                 'jumlah' => 1,
-                'harga_item' => 50000,
                 'riwayat_pesanan_id' => 2,
+                'menu_id' => 4,
             ],
             [
                 'jumlah' => 4,
-                'harga_item' => 12500,
                 'riwayat_pesanan_id' => 2,
+                'menu_id' => 3,
             ],
         ];
 
@@ -50,8 +50,8 @@ class RiwayatPesananItemSeeder extends Seeder
         foreach ($data as $item) {
             RiwayatPesananItem::create([
                 'jumlah' => $item['jumlah'],
-                'harga_item' => $item['harga_item'],
                 'riwayat_pesanan_id' => $item['riwayat_pesanan_id'],
+                'menu_id' => $item['menu_id'],
             ]);
         }
     }

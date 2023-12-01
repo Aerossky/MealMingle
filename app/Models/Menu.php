@@ -31,13 +31,11 @@ class Menu extends Model
         return $this->belongsToMany(Kategori::class, 'menu_kategori', 'menu_id', 'kategori_id');
     }
 
-    public function keranjang_item(): BelongsToMany
-    {
-        return $this->belongsToMany(KeranjangItem::class);
+    public function keranjang_item(){
+        return $this->hasMany(KeranjangItem::class);
     }
 
-    public function riwayat_pesanan_item(): BelongsToMany
-    {
-        return $this->belongsToMany(RiwayatPesananItem::class);
+    public function riwayat_pesanan_item(){
+        return $this->hasMany(RiwayatPesananItem::class);
     }
 }

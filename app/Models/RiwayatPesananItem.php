@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class RiwayatPesananItem extends Model
 {
@@ -14,16 +13,15 @@ class RiwayatPesananItem extends Model
 
     protected $fillable = [
       'jumlah',
-      'harga_item',
       'riwayat_pesanan_id',
+      'menu_id',
     ];
 
     public function riwayat_pesanan(){
         return $this->belongsTo(RiwayatPesanan::class);
     }
 
-    public function menu(): BelongsToMany
-    {
-        return $this->belongsToMany(Menu::class);
+    public function menu(){
+        return $this->belongsTo(Menu::class);
     }
 }

@@ -15,7 +15,7 @@ class RiwayatPesananItemController extends Controller
      */
     public function index()
     {
-        $riwayat_pesanan_items = RiwayatPesananItem::select('id', 'jumlah', 'harga_item', 'riwayat_pesanan_id')
+        $riwayat_pesanan_items = RiwayatPesananItem::select('id', 'jumlah', 'riwayat_pesanan_id', 'menu_id')
             ->orderBy('id', 'asc')
             ->get();
 
@@ -46,9 +46,8 @@ class RiwayatPesananItemController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'jumlah' => 'required',
-            'harga_item' => 'required',
             'riwayat_pesanan_id' => 'required',
-            'menu_id' => 'required|array',
+            'menu_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -59,9 +58,7 @@ class RiwayatPesananItemController extends Controller
         }
 
         $validatedData = $validator->validated();
-
-        $riwayat_pesanan_item = RiwayatPesananItem::create($validatedData);
-        $riwayat_pesanan_item->menu()->attach($request->input('menu_id'));
+        RiwayatPesananItem::create($validatedData);
 
         return redirect()->route('riwayatpesanan.index')->with('status', 'Data berhasil ditambahkan!');
     }
@@ -102,9 +99,8 @@ class RiwayatPesananItemController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'jumlah' => 'required',
-            'harga_item' => 'required',
             'riwayat_pesanan_id' => 'required',
-            'menu_id' => 'required|array',
+            'menu_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -118,11 +114,9 @@ class RiwayatPesananItemController extends Controller
 
         $riwayat_pesanan_item->update([
             'jumlah' => $request->jumlah,
-            'harga_item' => $request->harga_item,
             'riwayat_pesanan_id' => $request->riwayat_pesanan_id,
+            'menu_id' => $request->menu_id,
         ]);
-
-        $riwayat_pesanan_item->menu()->sync($request->input('menu_id'));
 
         return redirect()->route('riwayatpesanan.index')->with('status', 'Riwayat pesanan item berhasil diperbarui!');
     }
