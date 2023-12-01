@@ -381,7 +381,7 @@
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
             <ul
-                class="flex flex-col p-4 mt-4 font-medium border  rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-black-800 md:dark:bg-black-900 dark:border-black-700">
+                class="flex bg-white md:bg-transparent flex-col p-4 mt-4 font-medium border  rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-black-800 md:dark:bg-black-900 dark:border-black-700">
                 <li>
                     <a href="/"
                         class="block px-3 py-2 text-white bg-merahMM rounded md:bg-transparent md:text-black font-extrabold  md:p-0 md:dark:text-slate-500"

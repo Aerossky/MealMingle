@@ -44,7 +44,7 @@
                     <div class="flex col-span-1 justify-center items-center">
                         <div class="">
                             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                class="text-white bg-merahMM hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center "
+                                class="text-white bg-merahMM hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center "
                                 type="button">Filter
                                 <span class="iconify" data-icon="gridicons:dropdown" data-inline="false"
                                     style="width: 24px; height:24px;"></span>
@@ -77,9 +77,12 @@
             {{-- Makanan Card --}}
             <div class="bg-white font-Montserrat md:px-14">
                 <div class="sm:px-6 lg:max-w-7xl lg:px-8">
+                    @if (count($allmenu) > 0)
                     <div class="md:flex md:items-center md:justify-between mt-5">
                         <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Makanan</h2>
                     </div>
+                    @endif
+                    
 
                     <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-1 lg:gap-x-8">
                         {{-- Loop Tenant --}}
@@ -107,7 +110,7 @@
                                 </h2>
                                 <h2 class="mt-1 text-md opacity-50 text-gray-700">
                                     <a href="#">
-                                        {{ $item->harga_produk }}
+                                        Rp. {{ $item->harga_produk }},00
                                         {{-- Rp. 20000 --}}
                                     </a>
                                 </h2>
@@ -115,6 +118,11 @@
                             {{-- @endfor --}}
                         @endforeach
                     </div>
+                    @if (count($allmenu) == 0)
+                        <div class="flex text-center justify-center">
+                            <h1 class="text-xl">Maaf Makanan Tidak Ditemukan</h1>
+                        </div>
+                    @endif
 
                 </div>
             </div>
