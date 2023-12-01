@@ -16,10 +16,11 @@ class RiwayatPesananController extends Controller
     {
         $riwayat_pesanans = RiwayatPesanan::select('id', 'total_harga', 'payment_type', 'transaction_status', 'user_id')
             ->orderBy('id', 'asc')
-            ->get();
+            ->paginate(1); // Paginate before getting the results
 
-        return view('admin.user.user-detail', ['riwayat_pesanans' => $riwayat_pesanans]);
+        return view('member.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
     }
+
 
     /**
      * Show the form for creating a new resource.
