@@ -48,7 +48,7 @@
                             <label for="phone_number"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
                                 Telepon</label>
-                            <input type="phone_number" id="phone_number" name="phone_number"
+                            <input type="number" id="phone_number" name="phone_number"
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Nomor Telepon" required>
                         </div>
