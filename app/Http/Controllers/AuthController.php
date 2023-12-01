@@ -22,7 +22,7 @@ class   AuthController extends Controller
     {
         // dd($request->all());
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'phone_number' => ['required', 'numeric'],
             'password' => ['required'],
         ]);
 
@@ -102,10 +102,9 @@ class   AuthController extends Controller
         // Validasi data input pengguna
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users',
+            // 'email' => 'required|unique:users',
+            'phone_number' => 'required|unique:users',
             'password' => 'required|min:8|max:50',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'required',
         ]);
         $validatedData = $validator->validated();
         $validatedData['role_id'] = 3;

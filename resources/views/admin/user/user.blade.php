@@ -27,7 +27,8 @@
                     <th scope="col"
                         class="py-3 pl-4 pr-3 text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6">
                         Nama</th>
-                    <th scope="col" class="px-3 py-3 text-xs font-medium uppercase tracking-wide text-gray-500">Email
+                    <th scope="col" class="px-3 py-3 text-xs font-medium uppercase tracking-wide text-gray-500">Phone
+                        Number
                     </th>
                     <th scope="col" class="px-3 py-3 text-xs font-medium uppercase tracking-wide text-gray-500">
                         Status</th>
@@ -54,7 +55,7 @@
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                 {{ $data->name }}
                             </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> {{ $data->email }}</td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> {{ $data->phone_number }}</td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-center">
                                 @if ($data->status == 'aktif')
                                     <span

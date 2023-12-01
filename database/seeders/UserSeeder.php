@@ -17,70 +17,56 @@ class UserSeeder extends Seeder
         $data = [
             [
                 'name' => "Risky",
-                'email' => "admin@gmail.com",
-                'password' => Hash::make('anjay123'), // password
-                'jenis_kelamin' => 'male',
-                'alamat' => 'North West',
+                'phone_number' => "08111",
+                'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
                 'universitas_id' => 1,
                 'role_id' => 1,
             ],
             [
                 'name' => "Reynaldo",
-                'email' => "customer@gmail.com",
-                'password' => Hash::make('anjay123'), // password
-                'jenis_kelamin' => 'male',
-                'alamat' => 'North West',
+                'phone_number' => "08112",
+                'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
                 'universitas_id' => 2,
                 'role_id' => 3,
             ],
             [
                 'name' => "Joseph",
-                'email' => "tenant1@gmail.com",
-                'password' => Hash::make('anjay123'), // password
-                'jenis_kelamin' => 'male',
-                'alamat' => 'North West',
+                'phone_number' => "08113",
+                'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
                 'universitas_id' => 3,
                 'role_id' => 2,
             ],
             [
                 'name' => "Jovan",
-                'email' => "tenant2@gmail.com",
-                'password' => Hash::make('anjay123'), // password
-                'jenis_kelamin' => 'male',
-                'alamat' => 'North West',
+                'phone_number' => "08114",
+                'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
                 'universitas_id' => 3,
                 'role_id' => 2,
             ],
             [
                 'name' => "William",
-                'email' => "tenant3@gmail.com",
-                'password' => Hash::make('anjay123'), // password
-                'jenis_kelamin' => 'male',
-                'alamat' => 'North West',
+                'phone_number' => "08115",
+                'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
                 'universitas_id' => 3,
                 'role_id' => 2,
             ],
             [
                 'name' => "Ilham",
-                'email' => "tenant4@gmail.com",
-                'password' => Hash::make('anjay123'), // password
-                'jenis_kelamin' => 'male',
-                'alamat' => 'North West',
+                'phone_number' => "08116",
+                'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
                 'universitas_id' => 3,
                 'role_id' => 2,
             ],
             [
                 'name' => "Joss",
-                'email' => "customer1@gmail.com",
-                'password' => Hash::make('anjay123'), // password
-                'jenis_kelamin' => 'male',
-                'alamat' => 'North West',
+                'phone_number' => "08117",
+                'password' => Hash::make('anjay123'),
                 'status' => 'tidakaktif',
                 'universitas_id' => 1,
                 'role_id' => 2,
@@ -92,10 +78,10 @@ class UserSeeder extends Seeder
         foreach ($data as $item) {
             User::create([
                 'name' => $item['name'],
-                'email' => $item['email'],
+                'phone_number' => $item['phone_number'],
                 'password' => $item['password'],
-                'jenis_kelamin' => $item['jenis_kelamin'],
-                'alamat' => $item['alamat'],
+                // 'jenis_kelamin' => $item['jenis_kelamin'],
+                // 'alamat' => $item['alamat'],
                 'status' => $item['status'],
                 'universitas_id' => $item['universitas_id'],
                 'role_id' => $item['role_id'],

@@ -37,57 +37,40 @@
                         <div class="mb-6">
 
                             <label for="name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                Lengkap</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                             <input type="text" id="name" name="name"
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Nama Lengkap" required>
+                                placeholder="Nama" required>
                         </div>
 
-                        <div class="mb-6">
-                            <label for="jenis_kelamin"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
-                            <select id="jenis_kelamin" name="jenis_kelamin"
-                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="male">Pria</option>
-                                <option value="female">Wanita</option>
-                            </select>
-                        </div>
 
                         <div class="mb-6">
-
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="email" id="email" name="email"
+                            <label for="phone_number"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
+                                Telepon</label>
+                            <input type="phone_number" id="phone_number" name="phone_number"
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Email" required>
+                                placeholder="Nomor Telepon" required>
                         </div>
 
-                        <div class="mb-6">
-                            <label for="alamat"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                            <input type="text" id="alamat" name="alamat"
-                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Address" required>
-                        </div>
 
                         <div class="mb-6">
                             <label for="password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                                password</label>
-                            <input type="password" id="password" name="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Password"
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
                         </div>
-
+                        {{-- @dd($options) --}}
                         <div class="mb-6">
                             <label for="universitas"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">University</label>
                             <select id="universitas" name="universitas"
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
                                 @foreach ($options as $value)
                                     <option value="{{ $value->id }}">
-                                        {{ $value->universitas }}</option>
+                                        {{ $value->universitas_name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -6,6 +6,7 @@
         <h1 class="font-bold text-2xl py-5">Detail User</h1>
     </div>
     <div class="p-4 bg-white border shadow-md min-h-40 rounded-lg overflow-x-auto max-w-lg">
+        {{-- @dd($user) --}}
         <form>
             <div class="grid grid-cols-2 gap-2 ">
                 <!-- Nama -->
@@ -17,31 +18,17 @@
 
                 <!-- Email -->
                 <div class="mb-4 col-span-2">
-                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                    <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md"
-                        value="{{ $user->email }}" readonly>
-                </div>
-
-                <!-- Password (Jangan tampilkan dalam detail) -->
-
-                <!-- Jenis Kelamin -->
-                <div class="mb-4 col-span-2">
-                    <label for="jenis_kelamin" class="block text-sm font-medium text-gray-600">Jenis Kelamin</label>
-                    <input type="text" id="jenis_kelamin" name="jenis_kelamin" class="mt-1 p-2 w-full border rounded-md"
-                        value="{{ $user->jenis_kelamin }}" readonly>
-                </div>
-
-                <!-- Alamat -->
-                <div class="mb-4 col-span-2">
-                    <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat</label>
-                    <textarea id="alamat" name="alamat" class="mt-1 p-2 w-full border rounded-md resize-none" rows="4" readonly>{{ $user->alamat }}</textarea>
+                    <label for="phone_number" class="block text-sm font-medium text-gray-600">Nomor Telepon</label>
+                    <input type="number" id="phone_number" name="phone_number" class="mt-1 p-2 w-full border rounded-md"
+                        value="{{ $user->phone_number }}" readonly>
                 </div>
 
                 <!-- Universitas -->
                 <div class="mb-4 col-span-2">
                     <label for="universitas_id" class="block text-sm font-medium text-gray-600">Universitas</label>
                     <input type="text" id="universitas_id" name="universitas_id"
-                        class="mt-1 p-2 w-full border rounded-md" value="{{ $user->universitas->universitas }}" readonly>
+                        class="mt-1 p-2 w-full border rounded-md" value="{{ $user->universitas->universitas_name }}"
+                        readonly>
                 </div>
                 <!-- Universitas -->
                 <div class="mb-4 col-span-2">

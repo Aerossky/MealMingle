@@ -37,9 +37,9 @@
 
                 <!-- Email -->
                 <div class="mb-4 col-span-2">
-                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                    <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md"
-                        value="{{ old('email', $user->email) }}" required>
+                    <label for="phone_number" class="block text-sm font-medium text-gray-600">Nomor Telepon</label>
+                    <input type="number" id="phone_number" name="phone_number" class="mt-1 p-2 w-full border rounded-md"
+                        value="{{ old('phone_number', $user->phone_number) }}" required>
                 </div>
 
                 <!-- password -->
@@ -47,36 +47,6 @@
                     <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
                     <input type="password" id="password" name="password" class="mt-1 p-2 w-full border rounded-md"
                         placeholder="******">
-                </div>
-
-                <!-- Jenis Kelamin -->
-                <div class="mb-4 col-span-2">
-                    <label for="jenis_kelamin" class="block text-sm font-medium text-gray-600">Jenis Kelamin</label>
-                    <select id="jenis_kelamin" name="jenis_kelamin" class="mt-1 p-2 w-full border rounded-md">
-                        <option value="" disabled {{ old('jenis_kelamin', $user->jenis_kelamin) ? '' : 'selected' }}>
-                            @if (!$user->jenis_kelamin)
-                                selected
-                            @endif
-                            @if ($user->jenis_kelamin == 'male')
-                                Laki - Laki
-                            @elseif ($user->jenis_kelamin == 'female')
-                                Perempuan
-                            @endif
-                        </option>
-                        <option value="male" {{ old('jenis_kelamin', $user->jenis_kelamin) == 'male' ? 'selected' : '' }}>
-                            Laki-laki
-                        </option>
-                        <option value="female"
-                            {{ old('jenis_kelamin', $user->jenis_kelamin) == 'female' ? 'selected' : '' }}>
-                            Perempuan
-                        </option>
-                    </select>
-                </div>
-
-                <!-- Alamat -->
-                <div class="mb-4 col-span-2">
-                    <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat</label>
-                    <textarea id="alamat" name="alamat" class="mt-1 p-2 w-full border rounded-md resize-none" rows="4">{{ $user->alamat }}</textarea>
                 </div>
 
                 {{-- status --}}
@@ -99,15 +69,15 @@
                     <select id="universitas_id" name="universitas_id" class="mt-1 p-2 w-full border rounded-md">
                         @if (old('universitas') !== null)
                             <option value="{{ old('universitas') }}" selected>
-                                {{ $user->universitas->universitas }}
+                                {{ $user->universitas->universitas_name }}
                             </option>
                         @else
                             <option value="{{ $user->universitas_id }}" selected>
-                                {{ $user->universitas->universitas }}
+                                {{ $user->universitas->universitas_name }}
                             </option>
                         @endif
                         @foreach ($universitas as $data)
-                            <option value="{{ $data->id }}">{{ $data->universitas }}</option>
+                            <option value="{{ $data->id }}">{{ $data->universitas_name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -117,7 +87,7 @@
                     <label for="role_id" class="block text-sm font-medium text-gray-600">Role</label>
                     <select id="role_id" name="role_id" class="mt-1 p-2 w-full border rounded-md">
                         @if (old('role_id') !== null)
-                            <option value="{{ old('role') }}" selected>
+                            <option value="{{ old('role_id') }}" selected>
                                 {{ $user->role->role }}
                             </option>
                         @else
