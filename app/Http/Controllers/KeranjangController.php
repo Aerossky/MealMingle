@@ -26,12 +26,21 @@ class KeranjangController extends Controller
     public function indexuser()
     {
         $userId = Auth::id();
-        $keranjangs = Keranjang::where('user_id', $userId)->firstOrFail();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $keranjang_items = $keranjangs->keranjang_item;
+
+        $totalHarga = $keranjangs->keranjang_item->sum(function ($item) {
+            return $item->menu->harga_produk;
+        });
+
+        $keranjangs->total_harga = $totalHarga;
+        $keranjangs->save();
 
         // dd($userId);
         // dd($keranjangs);
+        // dd($keranjang_items);
 
-        return view('member.keranjang', ['keranjangs' => $keranjangs, 'userId' => $userId]);
+        return view('member.keranjang', ['keranjangs' => $keranjangs, 'keranjang_items' => $keranjang_items, 'userId' => $userId]);
     }
 
     /**

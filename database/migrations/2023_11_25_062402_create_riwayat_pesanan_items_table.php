@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('riwayat_pesanan_items', function (Blueprint $table) {
             $table->id();
             $table->integer('jumlah');
-            $table->integer('harga_item');
             $table->foreignId('riwayat_pesanan_id')->constrained('riwayat_pesanans')->onDelete('cascade');
+            $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade');
             $table->timestamps();
         });
     }

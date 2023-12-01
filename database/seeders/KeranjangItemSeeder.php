@@ -16,39 +16,39 @@ class KeranjangItemSeeder extends Seeder
         $data = [
             [
                 'jumlah' => 2,
-                'harga_item' => 20000,
                 'note_item' => 'mantap',
                 'keranjang_id' => 1,
+                'menu_id' => 1,
             ],
             [
                 'jumlah' => 3,
-                'harga_item' => 10000,
                 'note_item' => 'mantap',
                 'keranjang_id' => 1,
+                'menu_id' => 1,
             ],
             [
                 'jumlah' => 3,
-                'harga_item' => 10000,
                 'note_item' => 'mantap',
                 'keranjang_id' => 1,
+                'menu_id' => 3,
             ],
             [
                 'jumlah' => 2,
-                'harga_item' => 25000,
                 'note_item' => 'enak',
                 'keranjang_id' => 2,
+                'menu_id' => 2,
             ],
             [
                 'jumlah' => 1,
-                'harga_item' => 50000,
                 'note_item' => 'enak',
                 'keranjang_id' => 2,
+                'menu_id' => 5,
             ],
             [
                 'jumlah' => 4,
-                'harga_item' => 12500,
                 'note_item' => 'enak',
                 'keranjang_id' => 2,
+                'menu_id' => 4,
             ],
         ];
 
@@ -56,9 +56,9 @@ class KeranjangItemSeeder extends Seeder
         foreach ($data as $item) {
             KeranjangItem::create([
                 'jumlah' => $item['jumlah'],
-                'harga_item' => $item['harga_item'],
                 'note_item' => $item['note_item'],
                 'keranjang_id' => $item['keranjang_id'],
+                'menu_id' => $item['menu_id'],
             ]);
         }
     }

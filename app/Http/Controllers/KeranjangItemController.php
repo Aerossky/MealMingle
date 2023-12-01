@@ -15,7 +15,7 @@ class KeranjangItemController extends Controller
      */
     public function index()
     {
-        $keranjang_items = KeranjangItem::select('id', 'jumlah', 'harga_item', 'note_item', 'keranjang_id')
+        $keranjang_items = KeranjangItem::select('id', 'jumlah', 'note_item', 'keranjang_id', 'menu_id')
             ->orderBy('id', 'asc')
             ->get();
 
@@ -45,10 +45,9 @@ class KeranjangItemController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'jumlah' => 'required',
-            'harga_item' => 'required',
             'note_item' => 'required',
             'keranjang_id' => 'required',
-            'menu_id' => 'required|array',
+            'menu_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -59,9 +58,7 @@ class KeranjangItemController extends Controller
         }
 
         $validatedData = $validator->validated();
-
-        $keranjang_item = KeranjangItem::create($validatedData);
-        $keranjang_item->menu()->attach($request->input('menu_id'));
+        KeranjangItem::create($validatedData);
 
         return redirect()->route('keranjang.index')->with('status', 'Data berhasil ditambahkan!');
     }
@@ -102,10 +99,9 @@ class KeranjangItemController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'jumlah' => 'required',
-            'harga_item' => 'required',
             'note_item' => 'required',
             'keranjang_id' => 'required',
-            'menu_id' => 'required|array',
+            'menu_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -119,12 +115,10 @@ class KeranjangItemController extends Controller
 
         $keranjang_item->update([
             'jumlah' => $request->jumlah,
-            'harga_item' => $request->harga_item,
             'note_item' => $request->note_item,
             'keranjang_id' => $request->keranjang_id,
+            'menu_id' => $request->menu_id,
         ]);
-
-        $keranjang_item->menu()->sync($request->input('menu_id'));
 
         return redirect()->route('keranjang.index')->with('status', 'Keranjang item berhasil diperbarui!');
     }

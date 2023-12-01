@@ -1,7 +1,4 @@
 <nav class="bg-kuningMM fixed top-0 z-20 w-full  dark:bg-gray-900 start-0 dark:border-gray-600 ">
-    <script>
-        // Your scripts go here
-    </script>
 
     {{-- OPEN CART --}}
     <script>
@@ -29,53 +26,10 @@
             }, 20);
         }
     </script>
-    {{-- Increment Button --}}
-    <script>
-        function decrement(e) {
-            const btn = e.target.parentNode.parentElement.querySelector(
-                'button[data-action="decrement"]'
-            );
-            const target = btn.nextElementSibling;
-            let value = Number(target.value);
-
-            if (value > 0) {
-                value--;
-                target.value = value;
-            }
-
-        }
-
-        function increment(e) {
-            const btn = e.target.parentNode.parentElement.querySelector(
-                'button[data-action="decrement"]'
-            );
-            const target = btn.nextElementSibling;
-            let value = Number(target.value);
-            value++;
-            target.value = value;
-        }
-
-        const decrementButtons = document.querySelectorAll(
-            `button[data-action="decrement"]`
-        );
-
-        const incrementButtons = document.querySelectorAll(
-            `button[data-action="increment"]`
-        );
-
-        decrementButtons.forEach(btn => {
-            btn.addEventListener("click", decrement);
-        });
-
-        incrementButtons.forEach(btn => {
-            btn.addEventListener("click", increment);
-        });
-    </script>
-
 
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 md:px-7 mx-auto ">
-        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="{{ asset('img/logo.png') }}" class="h-14 lg:h-16" alt="Flowbite Logo">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{{ asset('img/logo.png') }}" class="h-14 lg:h-16" alt="MealMingle Logo">
         </a>
         <div class="flex space-x-3 items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
             {{-- Cart Button --}}

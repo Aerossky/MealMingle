@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class KeranjangItem extends Model
 {
@@ -14,17 +13,16 @@ class KeranjangItem extends Model
 
     protected $fillable = [
       'jumlah',
-      'harga_item',
       'note_item',
       'keranjang_id',
+      'menu_id',
     ];
 
     public function keranjang(){
         return $this->belongsTo(Keranjang::class);
     }
 
-    public function menu(): BelongsToMany
-    {
-        return $this->belongsToMany(Menu::class);
+    public function menu(){
+        return $this->belongsTo(Menu::class);
     }
 }
