@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Config;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
 use App\Models\KeranjangItem;
+use App\Models\RiwayatPesanan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,6 +45,7 @@ class KeranjangController extends Controller
         return view('member.keranjang', ['keranjangs' => $keranjangs, 'keranjang_items' => $keranjang_items, 'userId' => $userId]);
     }
 
+
     public function getGrossAmount()
     {
         $userId = Auth::id();
@@ -52,6 +55,49 @@ class KeranjangController extends Controller
         });
 
         return $grossAmount;
+    }
+
+    // CHECKOUT
+    public function checkout(Request $request)
+    {
+        // dd($request->all());
+
+        // inisialisasi pesanan
+        $userId = Auth::id();
+        $phone = Auth::user()->phone_number;
+        $totalHarga = $request->total_harga;
+
+        $riwayat_pesanan = RiwayatPesanan::create([
+            'user_id' => $userId,
+            'total_harga' => $totalHarga,
+            // 'note_pesanan' => $request->note_pesanan,
+            // jovan tolong koreksi
+            'transaction_status' => 'Unpaid',
+            'payment_type' => 'Jovan Bank',
+        ]);
+
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = config('midtrans.is_production');
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => rand(),
+                'gross_amount' => $riwayat_pesanan->total_harga,
+            ],
+            'customer_details' => [
+                'user_id' => $userId,
+                'phone' => $phone,
+            ],
+        ];
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        return view('member.pembayaran', compact('snapToken', 'riwayat_pesanan'));
     }
 
     /**

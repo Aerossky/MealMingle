@@ -2,10 +2,19 @@
 @section('title', 'Keranjang')
 
 @section('content')
+
     <div class="bg-white">
         <div class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Keranjang Mu</h1>
-            <form class="mt-12 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
+            <form action="{{ route('keranjang.checkout') }}" method="POST"
+                class="mt-12 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
+                @csrf
+
+                {{-- input hidden --}}
+                <input type="hidden" name="total_harga" value="{{ $keranjangs->total_harga }}">
+                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+
+
                 <section aria-labelledby="cart-heading" class="lg:col-span-7">
                     <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
                     @if ($keranjang_items->count() === 0)
@@ -41,8 +50,8 @@
                                             </div>
 
                                             <div class="mt-4 sm:mt-0 sm:pr-9">
-                                                <label for="quantity-0" class="sr-only">Quantity, Basic Tee</label>
-                                                <select id="quantity-0" name="quantity-0"
+                                                <label for="quantity" class="sr-only">Quantity, Basic Tee</label>
+                                                {{-- <select id="quantity" name="quantity"
                                                     class="max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -52,7 +61,7 @@
                                                     <option value="6">6</option>
                                                     <option value="7">7</option>
                                                     <option value="8">8</option>
-                                                </select>
+                                                </select> --}}
 
                                                 <div class="absolute top-0 right-0">
                                                     <button type="button"
@@ -140,12 +149,10 @@
 
                     <div class="mt-6">
                         <div class="">
-                            <a href="/pembayaran">
-                                <button type="submit"
-                                    class="w-full bg-merahMM border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
-                                    Checkout
-                                </button>
-                            </a>
+                            <button type="submit" id="pay-button"
+                                class="w-full bg-merahMM border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
+                                Checkout
+                            </button>
                         </div>
                         <div class="mt-8">
                             <a href="menus/showmenu"
