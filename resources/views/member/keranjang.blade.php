@@ -149,7 +149,7 @@
 
                     <div class="mt-6">
                         <div class="">
-                            <button type="submit" id="pay-button"
+                            <button type="submit"
                                 class="w-full bg-merahMM border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
                                 Checkout
                             </button>

@@ -1,12 +1,26 @@
 <html>
 
+
+<style>
+    body {
+        /* Ganti path dengan path yang sesuai ke file SVG di folder public */
+        background-image: url('{{ asset('svg/bg-pembayaran.svg') }}');
+        /* Atur properti lain sesuai kebutuhan, seperti ukuran, posisi, dan pengulangan background */
+        backgrou
+    }
+
+    nd-size: cover;
+    /* Contoh pengaturan lain */
+    /* background-repeat: no-repeat;
+           background-position: center center; */
+</style>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Pastikan untuk mengganti 'YOUR_CLIENT_KEY' dengan kunci klien (client key) yang valid dari akun Midtrans Anda -->
-    <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js"
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ config('midtrans.client_key') }}"></script>
     <!-- Ganti dengan src="https://app.midtrans.com/snap/snap.js" untuk lingkungan Produksi -->
-
     <script type="text/javascript">
         // Fungsi untuk memulai pembayaran saat tombol 'Pay!' ditekan
         function payWithSnap() {
@@ -17,6 +31,8 @@
                 onSuccess: function(result) {
                     // Tindakan ketika pembayaran berhasil
                     alert("Pembayaran sukses!");
+                    // redirect ke halaman
+                    window.location.href = "/";
                     console.log(result);
                 },
                 onPending: function(result) {
@@ -35,12 +51,16 @@
                 }
             });
         }
+        // Panggil payWithSnap() otomatis saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            payWithSnap();
+        });
     </script>
+
 </head>
 
 <body>
 
-    <button onclick="payWithSnap()">Pay!</button>
 
 </body>
 

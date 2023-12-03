@@ -60,7 +60,6 @@ class KeranjangController extends Controller
     // CHECKOUT
     public function checkout(Request $request)
     {
-        // dd($request->all());
 
         // inisialisasi pesanan
         $userId = Auth::id();
@@ -75,7 +74,6 @@ class KeranjangController extends Controller
             'transaction_status' => 'Unpaid',
             'payment_type' => 'Jovan Bank',
         ]);
-
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -87,10 +85,11 @@ class KeranjangController extends Controller
 
         $params = [
             'transaction_details' => [
-                'order_id' => rand(),
+                'order_id' => $riwayat_pesanan->id,
                 'gross_amount' => $riwayat_pesanan->total_harga,
             ],
             'customer_details' => [
+                'first_name' => Auth::user()->name,
                 'user_id' => $userId,
                 'phone' => $phone,
             ],
@@ -98,6 +97,20 @@ class KeranjangController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         return view('member.pembayaran', compact('snapToken', 'riwayat_pesanan'));
+    }
+
+    public function callback(Request $request)
+    {
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+
+        // Memeriksa apakah hashed yang dikirim dari midtrans sama dengan yang kita buat
+        if ($hashed == $request->signature_key) {
+            if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
+                $order = RiwayatPesanan::find($request->order_id);
+                $order->update(['transaction_status' => 'Paid']);
+            }
+        }
     }
 
     /**
