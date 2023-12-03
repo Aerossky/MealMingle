@@ -41,29 +41,31 @@ class MenuController extends Controller
             'nama_makanan' => 'required',
             'deskripsi' => 'required',
             'harga_produk' => 'required',
-            // 'foto_produk' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'foto_produk' => 'required',
+            // 'foto_produk' => 'required|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
-        // if ($validator->fails()) {
-        //     return redirect()
-        //         ->back()
-        //         ->withInput()
-        //         ->withErrors($validator);
-        // }
+        if ($validator->fails()) {
+            dd("error", $request->foto_produk);
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
 
-        $newName = '';
+        $foto = '';
         if ($request->file('foto_produk')) {
             $extension = $request->file('foto_produk')->getClientOriginalExtension();
-            $newName = 'produk-' . now()->timestamp . '.' . $extension;
-            $request->file('foto_produk')->storeAs('produk', $newName);
+            $foto = $request->nama_makanan . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto_produk')->storeAs('public/menu/', $foto);
         } else {
-            $newName = "belum ada foto";
+            $foto = "belum ada foto";
         }
 
         $validatedData = $validator->validated();
-        $validatedData['foto_produk'] = $newName;
+        $validatedData['foto_produk'] = $foto;
         $validatedData['tenant_id'] = $id;
+
         Menu::create($validatedData);
 
         // return view('tenant.show', ['tenantId' => $id]);
@@ -80,6 +82,13 @@ class MenuController extends Controller
         return view('member.listmenu', ['allmenu' => $showMenu, 'allfilter' => $filterdata]);
     }
 
+    public function showDetail()
+    {
+        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')->get();
+        $filterdata = Kategori::all();
+        return view('member.listmenu-detail', ['allmenu' => $showMenu, 'allfilter' => $filterdata]);
+    }
+
     public function showFiltered(Request $request)
     {
         // Ambil nilai filter dari input (ID kategori)
@@ -91,7 +100,7 @@ class MenuController extends Controller
 
     // Ambil menu terkait dengan kategori yang dipilih
     $filteredMenu = collect();
-    
+
     if ($filterId != "all") {
         // Ambil data dari tabel pivot berdasarkan ID kategori
         $pivotData = DB::table('menu_kategori')
@@ -119,7 +128,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($tenantId, $menuId)
+    public function edit($menuId, $tenantId)
     {
         $menu = Menu::findOrFail($menuId);
         return view('admin.menu.menu-edit', ['menu' => $menu, 'tenantId' => $tenantId, 'menuId' => $menuId]);
@@ -138,34 +147,33 @@ class MenuController extends Controller
             'foto_produk' => 'required',
         ]);
 
-        // if ($validator->fails()) {
-        //     return redirect()
-        //         ->back()
-        //         ->withInput()
-        //         ->withErrors($validator);
-        // }
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
 
         if ($request->file('foto_produk')) {
             $extension = $request->file('foto_produk')->getClientOriginalExtension();
-            $newName = 'produk-' . now()->timestamp . '.' . $extension;
-            $request->file('foto_produk')->storeAs('produk', $newName);
+            $foto = $request->nama_makanan . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto_produk')->storeAs('public/menu/', $foto);
         } else {
-            // $newName = null;
-            $newName = "belum ada foto";
+            $foto = "belum ada foto";
         }
 
         $menu = Menu::findOrFail($id);
 
-        // if ($menu->foto_produk && $newName) {
-        //     Storage::disk('public')->delete('produk/' . $menu->foto_produk);
-        // }
+        if ($menu->foto_produk && $foto) {
+            Storage::disk('public')->delete('menu/' . $menu->foto_produk);
+        }
 
         $menu->update([
             'nama_makanan' => $request->nama_makanan,
             'deskripsi' => $request->deskripsi,
             'harga_produk' => $request->harga_produk,
-            // 'foto_produk' => $newName ?: $menu->foto_produk,
-            'foto_produk' => $newName,
+            'foto_produk' => $foto ?: $menu->foto_produk,
+            'foto_produk' => $foto,
         ]);
 
         return redirect()->route('tenant.show', $tenantId);

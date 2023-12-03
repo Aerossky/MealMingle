@@ -35,9 +35,9 @@
                 </div>
 
                 <!-- Foto -->
-                <div class="mb-4 col-span-2" hidden>
-                    <label for="foto_produk" class="block text-sm font-medium text-gray-600">foto produk</label>
-                    <input type="text" id="foto_produk" name="foto_produk" class="mt-1 p-2 w-full border rounded-md" value="totngentot">
+                <div class="mb-4 col-span-2">
+                    <label for="foto_produk" class="block text-sm font-medium text-gray-600">Foto Produk</label>
+                    <input type="file" id="foto_produk" name="foto_produk" class="mt-1">
                 </div>
 
                 <!-- Tombol Kirim -->
