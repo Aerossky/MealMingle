@@ -88,7 +88,7 @@
                         {{-- Loop Tenant --}}
                         @foreach ($allmenu as $item)
                             {{-- @for ($i = 1; $i <= 8; $i++) --}}
-                            <div class="group relative">
+                            <div class="group relative mb-5">
                                 <div
                                     class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
                                     <img src="{{ asset('storage/menu/' . $item->foto_produk) }}" alt="foto produk"
