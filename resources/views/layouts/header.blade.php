@@ -32,9 +32,10 @@
             <img src="{{ asset('img/logo.png') }}" class="h-14 lg:h-16" alt="MealMingle Logo">
         </a>
         <div class="flex space-x-3 items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
-            {{-- Cart Button --}}
 
+            {{-- Cart Button --}}
             <div class="pr-6 md:mr-6 relative">
+                @auth
                 <a href="{{ route('keranjang.indexuser') }}">
                     <button class="block" id="cartButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
@@ -46,11 +47,11 @@
                         </svg>
                         <!-- Notifikasi -->
                         <span
-                            class="absolute top-[-10px] right-3 mt-1 mr-1 h-5 w-5 bg-red-800 rounded-full flex items-center justify-center text-white text-xs">3+</span>
+                            class="absolute top-[-10px] right-3 mt-1 mr-1 h-5 w-5 bg-red-800 rounded-full flex items-center justify-center text-white text-xs">{{ Session::get('itemCount', 0) }}</span>
                     </button>
                 </a>
+                @endauth
             </div>
-
 
             {{-- (DEV)  --}}
             @if (Auth::check())
