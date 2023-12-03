@@ -33,8 +33,7 @@
         </a>
         <div class="flex space-x-3 items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
             {{-- Cart Button --}}
-
-            <div class="pr-6 md:mr-6 relative">
+            <div class="pr-6 md:mr-0 relative">
                 <a href="{{ route('keranjang.indexuser') }}">
                     <button class="block" id="cartButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
@@ -62,7 +61,7 @@
                     <form action="/logout" method="POST">
                         @csrf
                         <button type="submit"
-                            class="px-4 py-2 mt-2 text-sm text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800 mx-10">
+                            class="px-4 py-2 mt-2 text-sm text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800 ml-5">
                             Logout
                         </button>
                     </form>

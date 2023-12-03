@@ -49,7 +49,8 @@
                     </div>
                     <div class=" flex justify-center md:justify-start ">
                         <button type="button"
-                            class="mt-[30px] text-white bg-merahMM hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Pesan</button>
+                            class="mt-[30px] text-white bg-merahMM hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Mulai
+                            Perjalanan</button>
                     </div>
                 </div>
 
@@ -72,21 +73,21 @@
                             class="stat-item flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r ">
                             <div class="pengguna">
                                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Pengguna</dt>
-                                <dd class="order-1 text-5xl font-extrabold text-merahMM">10</dd>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">{{ $user }}</dd>
                             </div>
                         </div>
                         <div
                             class="stat-item flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r ">
                             <div class="tenant">
                                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500 ">Tenant</dt>
-                                <dd class="order-1 text-5xl font-extrabold text-merahMM">5</dd>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">{{ $tenant }}</dd>
                             </div>
                         </div>
                         <div
                             class="stat-item flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
                             <div class="universitas">
                                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Universitas</dt>
-                                <dd class="order-1 text-5xl font-extrabold text-merahMM">10+</dd>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">1</dd>
                             </div>
                         </div>
                     </dl>
@@ -137,13 +138,14 @@
                         Favorit di
                         Sekitar Kampus
                         Anda.</h1>
-                    <p class="mt-5 md:text-base w-full text-justify">Eksplorasi kuliner terbaik di sekitar kampus dengan
+                    <p class="mt-5 md:text-base xl:w-2/3 text-justify">Eksplorasi kuliner terbaik di sekitar kampus
+                        dengan
                         kami.
                         Rasakan cita rasa unik dan nikmati pengalaman makanan yang tak terlupakan.
                         Mulailah petualangan kuliner Anda sekarang</p>
                     <div class="flex justify-center md:justify-start">
                         <button type="button"
-                            class="mt-[30px] text-black bg-kuningMM hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Pesan</button>
+                            class="mt-[30px] text-black bg-kuningMM hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Eksplor</button>
                     </div>
                 </div>
             </div>
@@ -175,7 +177,7 @@
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
                         alt="profile picture">
                     <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-black dark:divide-black">
-                        <cite class="pe-3 font-medium text-black dark:text-white">Jovan Mancing Mania</cite>
+                        <cite class="pe-3 font-medium text-black dark:text-white">Risky</cite>
                         <cite class="ps-3 text-sm text-black dark:text-black">Mahasiswa di Universitas Ciputra</cite>
                     </div>
                 </figcaption>
