@@ -13,6 +13,9 @@
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/js/splide.min.js"></script>
+
+    <!-- typed js -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
 
 <body class="flex flex-col min-h-screen font-sahabatLariku ">
@@ -22,23 +25,24 @@
     {{-- hero section --}}
     <section class="flex flex-col justify-center mt-20 md:mt-[85px] bg-kuningMM pb-[250px] md:pb-20" id="hero">
         {{-- ukuran Kiri kanan --}}
-        <div class="px-4 md:mx-24">
+        <div class="">
             {{-- pembungkus --}}
-            <div class="flex items-center flex-col md:flex-row">
+            <div class="flex items-center justify-around flex-col md:p-10 md:flex-row">
                 {{-- Left Section --}}
-                <div class="md:w-2/3 order-2 md:order-1 hero__text">
-                    <h1 class="font-bold text-center text-2xl md:text-left md:text-4xl">Teman Makan Mahasiswa<br>
+                <div class="order-2 md:order-1 hero__text w-">
+                    <h1 class="font-bold text-center text-2xl md:text-left xl:text-5xl w-full">Teman Makan <span
+                            id="teks"></span><br>
                         Selama Perjalanan <span class="text-merahMM">Kuliah</span>.
                     </h1>
                     {{-- mobile --}}
                     <div class="tagline">
-                        <p class="mt-4 md:mt-[50px] md:hidden">
+                        <p class="mt-4 md:mt-[50px] text-center md:hidden">
                             Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami.Fokus pada
                             kuliah
                             Anda, biarkan kami mengurus masalah kuliner Anda.
                         </p>
                         {{-- Desktop --}}
-                        <p class="mt-4 md:mt-[50px] hidden md:block">
+                        <p class="mt-4 md:mt-[10px] md:text-md xl:text-lg xl:mt-[50px] hidden md:block">
                             Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami. <br>
                             Fokus pada kuliah Anda, biarkan kami mengurus masalah kuliner Anda.
                         </p>
@@ -360,6 +364,14 @@
     {{-- footer --}}
     @include('layouts.footer')
 
+    <script>
+        var typed = new Typed('#teks', {
+            strings: ['Mahasiswa', 'Dosen', 'Staff'],
+            typeSpeed: 100,
+            backSpeed: 90,
+            loop: true,
+        });
+    </script>
 </body>
 
 </html>
