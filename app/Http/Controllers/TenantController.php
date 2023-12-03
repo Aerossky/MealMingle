@@ -64,7 +64,7 @@ class TenantController extends Controller
         if ($request->file('foto_tenant')) {
             $extension = $request->file('foto_tenant')->getClientOriginalExtension();
             $newName = $request->nama_tenant . '-' . now()->timestamp . '.' . $extension;
-            $request->file('foto_tenant')->storeAs('tenant', $newName);
+            $request->file('foto_tenant')->storeAs('public/tenant/', $newName);
         }
 
         $validatedData = $validator->validated();
