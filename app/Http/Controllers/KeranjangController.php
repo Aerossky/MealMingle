@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\KeranjangItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class KeranjangController extends Controller
 {
@@ -52,6 +53,15 @@ class KeranjangController extends Controller
         });
 
         return $grossAmount;
+    }
+
+    public function keranjangItem()
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $keranjang_items = $keranjangs->keranjang_item;
+        $itemCount = $keranjang_items->count();
+        Session::put('itemCount', $itemCount);
     }
 
     /**
