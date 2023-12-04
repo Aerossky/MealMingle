@@ -44,10 +44,16 @@
                     // Tindakan ketika pembayaran gagal
                     alert("Pembayaran gagal!");
                     console.log(result);
+                    // redirect ke halaman
+                    window.location.href = "/";
+                    console.log(result);
                 },
                 onClose: function() {
                     // Tindakan ketika popup ditutup tanpa menyelesaikan pembayaran
                     alert('Anda menutup popup tanpa menyelesaikan pembayaran');
+                    // redirect ke halaman
+                    window.location.href = "/";
+                    console.log(result);
                 }
             });
         }
