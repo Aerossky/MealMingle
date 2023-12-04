@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Http\Controllers\KeranjangController;
 
 
 class   AuthController extends Controller
@@ -40,6 +41,7 @@ class   AuthController extends Controller
             return $this->inactiveAccountResponse();
         }
 
+
         // keranjang notification
 
         $userCart = $user->keranjang;
@@ -57,6 +59,7 @@ class   AuthController extends Controller
 
         // CARA HAPUS (Gunakan saat nanti saat fitur checkout sudah dibuat)
         // $request->session()->forget('jumlah_item_keranjang');
+
 
         $request->session()->regenerate();
 
