@@ -28,55 +28,48 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
                         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                         aliquip ex ea commodo
-                        consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo
-                        consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo
                         consequat.
                     </p>
                 </div>
 
-
-                {{-- add to cart --}}
-                <div
-                    class="flex flex-col w-full justify-items-start my-auto md:mt-3 md:border md:rounded-xl md:p-4 md:col-span-4">
-                    <div class="invisible md:visible justify-start my-auto mb-4">
-                        <label for="addToCart" class="font-bold">Atur Jumlah dan Catatan</label>
-                    </div>
-
-                    <!-- Quantity Section -->
-                    <div class="flex items-center mb-4">
-                        <label for="quantity" class="mr-2 font-bold">Jumlah:</label>
-                        <input type="number" id="quantity" name="quantity" min="1" value="1"
-                            class="w-16 p-2 border border-gray-300 rounded">
-                    </div>
-
-                    <!-- Notes Section -->
-                    <div class="mb-4">
-                        <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">Catatan:</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="Ex. Sambal Dipisah"
-                            class="w-full p-2 border border-gray-300 rounded"></textarea>
-                    </div>
-
-                    <!-- Subtotal Section -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Subtotal:</label>
-                        <div class="flex items-center">
-                            <span class="text-gray-800">Rp.&nbsp</span>
-                            <span class="text-xl font-bold">20000</span>
-                            <span class="text-xl font-bold">,00</span>
-                        </div>
-                    </div>
-
-                    <!-- Add to Cart Button -->
-                    <button class="bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded-lg">
-                        Add to Cart
-                    </button>
-                </div>
             </div>
 
+            {{-- add to cart --}}
+            <div
+                class="flex flex-col w-full md:w-1/3 justify-items-start my-auto md:mt-3 md:border md:rounded-xl md:p-4 md:col-span-4">
+                <div class="invisible md:visible justify-start my-auto mb-4">
+                    <label for="addToCart" class="font-bold">Atur Jumlah dan Catatan</label>
+                </div>
+
+                <!-- Quantity Section -->
+                <div class="flex items-center mb-4">
+                    <label for="quantity" class="mr-2 font-bold">Jumlah:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1"
+                        class="w-16 p-2 border border-gray-300 rounded">
+                </div>
+
+                <!-- Notes Section -->
+                <div class="mb-4">
+                    <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">Catatan:</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Ex. Sambal Dipisah"
+                        class="w-full p-2 border border-gray-300 rounded"></textarea>
+                </div>
+
+                <!-- Subtotal Section -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Subtotal:</label>
+                    <div class="flex items-center">
+                        <span class="text-gray-800">Rp.&nbsp</span>
+                        <span class="text-xl font-bold">20000</span>
+                        <span class="text-xl font-bold">,00</span>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <button class="bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded-lg">
+                    Add to Cart
+                </button>
+            </div>
 
         </div>
 
