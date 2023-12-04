@@ -49,7 +49,7 @@
                     </div>
                     <div class=" flex justify-center md:justify-start ">
                         <button type="button"
-                            class="mt-[30px] text-white bg-merahMM hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Mulai
+                            class="mt-[30px] text-white bg-merahMM hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 duration-700">Mulai
                             Perjalanan</button>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                         Mulailah petualangan kuliner Anda sekarang</p>
                     <div class="flex justify-center md:justify-start">
                         <button type="button"
-                            class="mt-[30px] text-black bg-kuningMM hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Eksplor</button>
+                            class="mt-[30px] text-black bg-kuningMM hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-bold rounded-lg text-sm px-8 py-2.5 me-2 mb-2 duration-700">Eksplor</button>
                     </div>
                 </div>
             </div>

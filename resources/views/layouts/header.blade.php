@@ -70,7 +70,7 @@
             @else
                 {{-- Belum Login --}}
                 <button type="button"
-                    class="px-4 py-2 text-sm text-center text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800">
+                    class="px-4 py-2 text-sm text-center text-white font-medium bg-merahMM rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-500 duration-500">
                     <a href="/signin">Get started</a>
                 </button>
             @endif
