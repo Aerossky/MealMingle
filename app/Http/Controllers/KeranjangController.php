@@ -58,6 +58,18 @@ class KeranjangController extends Controller
         return $grossAmount;
     }
 
+    public function getTotalHarga()
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+
+        $totalHarga = $keranjangs->keranjang_item->sum(function ($item) {
+            return $item->menu->harga_produk * $item->jumlah;
+        });
+
+        return $totalHarga;
+    }
+
     // CHECKOUT
     // public function checkout(Request $request)
     // {
