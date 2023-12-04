@@ -12,17 +12,20 @@ class RiwayatPesanan extends Model
     protected $table = 'riwayat_pesanans';
 
     protected $fillable = [
-      'total_harga',
-      'payment_type',
-      'transaction_status',
-      'user_id',
+        'total_harga',
+        'payment_type',
+        'transaction_status',
+        'user_id',
+        'order_id'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function riwayat_pesanan_item(){
+    public function riwayat_pesanan_item()
+    {
         return $this->hasMany(RiwayatPesananItem::class);
     }
 }

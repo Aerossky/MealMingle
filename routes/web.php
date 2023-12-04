@@ -26,6 +26,9 @@ use App\Models\RiwayatPesanan;
 
 Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.dashboard');
 
+Route::get('/detailriwayatpesanan',function () {
+    return view('member.detailriwayatpesanan');
+});
 // AUTH
 Route::middleware('guest')->group(
     function () {
@@ -46,6 +49,7 @@ Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu
 // Keranjang Route
 Route::resource('keranjang', KeranjangController::class);
 Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
+Route::post('/keranjang-checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
 
 // Keranjang Item Route
 Route::resource('keranjangitem', KeranjangItemController::class);
@@ -129,4 +133,3 @@ Route::get('/tenant-detail', function () {
 // Route::get('/menu', function () {
 //     return view('member.listmenu');
 // });
-
