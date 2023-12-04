@@ -25,6 +25,9 @@ use App\Models\RiwayatPesanan;
 
 Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.dashboard');
 
+Route::get('/detailriwayatpesanan',function () {
+    return view('member.detailriwayatpesanan');
+});
 // AUTH
 Route::middleware('guest')->group(
     function () {
