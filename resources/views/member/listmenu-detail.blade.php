@@ -3,8 +3,7 @@
 
 @section('content')
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-
-    <section class="mx-auto my-auto px-5 py-5 dark:bg-gray-900 w-auto h-auto md:mt-5">
+    <section class="mx-auto my-auto px-5 dark:bg-gray-900 w-auto h-auto">
 
         <div class="flex flex-col md:flex-row max-w-lg md:max-w-full md:gap-4 md:p-2">
 
@@ -25,9 +24,25 @@
                 <!-- Product Description -->
                 <div class="text-gray-700 mx-auto my-auto">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
                         aliquip ex ea commodo
+
+                        consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                        incididunt
+                        ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo
+                        consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                        incididunt
+                        ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo
+\
                         consequat.
                     </p>
                 </div>
@@ -63,6 +78,19 @@
                         <span class="text-xl font-bold">20000</span>
                         <span class="text-xl font-bold">,00</span>
                     </div>
+
+
+                    <!-- Add to Cart Button -->
+                    <button class="bg-merahMM hover:bg-red-800 text-white px-4 py-2 rounded-lg duration-300">
+                        Add to Cart
+                    </button>
+                    <div class="my-2"></div>
+                    <a href="{{ url()->previous() }}"
+                        class="text-center bg-transparent border border-merahMM text-merahMM hover:bg-merahMM hover:text-white px-4 py-2 rounded-lg transition-colors duration-300">
+                        Kembali
+                    </a>
+
+
                 </div>
 
                 <!-- Add to Cart Button -->

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -20,7 +22,12 @@ class DashboardController extends Controller
 
     public function memberDashboard()
     {
+        // count user by role member
+        $user = User::where('role_id', '3')->count();
+        // count tenant
+        $tenant = Tenant::count();
+
         // Logika khusus untuk halaman dashboard member
-        return view('member.home');
+        return view('member.home', compact('user', 'tenant'));
     }
 }

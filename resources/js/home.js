@@ -66,3 +66,12 @@ sr.reveal('#testimoni', {
 // faq
 sr.reveal('#faq');
 sr.reveal('.faqtitle');
+
+
+// Typed js
+var typed = new Typed('#teks', {
+    strings: ['Mahasiswa', 'Dosen', 'Staff'],
+    typeSpeed: 100,
+    backSpeed: 90,
+    loop: true,
+});

@@ -75,18 +75,9 @@
                             </select>
                         </div>
 
-                        {{-- tanggal tidak ada di db kalau mau ditambah --}}
-                        {{-- <div class="mb-6 md:col-span-full">
-                            <label for="dateofbirth"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Of
-                                Birth</label>
-                            <input type="date" name="birth" id="birth"
-                                class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        </div> --}}
-
                         <div class="mb-6 col-span-2 md:w-full flex justify-center items-center flex-col gap-2 md:gap-0">
                             <button type="submit"
-                                class="w-full md:w-1/2 text-sm font-medium text-white bg-merahMM hover:bg-red-700 px-4 py-2 rounded text-center">Submit</button>
+                                class="w-full md:w-1/2 text-sm font-medium text-white bg-merahMM hover:bg-red-800 px-4 py-2 rounded text-center duration-700">Submit</button>
                             {{-- Redirect --}}
                             <p class="md:mt-4">Sudah punya akun? <a href="/signin"
                                     class="md:text-merahMM font-bold">login yuk</a>
@@ -106,7 +97,6 @@
         <div class="w-full flex justify-center">
             <img src="{{ asset('img/logo.png') }}" alt="" class="max-w-full bottom-0 fixed mb-4">
         </div>
-
     </div>
 
 </body>
