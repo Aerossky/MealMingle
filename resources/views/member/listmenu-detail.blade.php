@@ -3,18 +3,18 @@
 
 @section('content')
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <section class="mx-auto my-auto px-5 dark:bg-gray-900 w-auto h-auto py-5">
+    <section class="mx-auto my-auto px-5 dark:bg-gray-900 w-auto h-auto py-5 ">
 
         <div class="flex flex-col xl:flex-row max-w-lg md:max-w-full md:gap-4 md:p-2">
 
             <!-- Product Image -->
-            <div class="flex w-full h-auto bg-gray-200 rounded-2xl md:mx-auto md:col-span-4 max-w-5xl">
+            <div class="flex  h-auto bg-gray-200 rounded-2xl md:col-span-4  xl:w-1/3">
                 <img src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Produk"
                     class="mx-auto my-auto w-full h-96 object-cover rounded hover:scale-110 transition duration-500 cursor-pointer ">
             </div>
 
             <!-- Product Details -->
-            <div class="flex flex-col max-w-2xl mx-auto my-auto py-2 md:mx-auto md:col-span-4">
+            <div class="flex flex-col max-w-2xl py-2 md:col-span-4 xl:w-1/3">
                 <!-- Product Name -->
                 <h2 class="text-2xl font-extrabold text-gray-900 mt-4">{{ $menu->nama_makanan }}</h2>
 
@@ -22,7 +22,7 @@
                 <h2 class="text-lg font-normal italic text-gray-400 mb-4">{{ $menu->tenant->nama_tenant }}</h2>
 
                 <!-- Product Description -->
-                <div class="text-gray-700 mx-auto my-auto">
+                <div class="text-gray-700 ">
                     <p>
                         {{ $menu->deskripsi }}
                     </p>
