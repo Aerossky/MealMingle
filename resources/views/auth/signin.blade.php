@@ -64,7 +64,7 @@
                 <p class="text-2xl mb-4">Selamat Datang</p>
                 <form action="" method="POST">
                     @csrf
-                    <input type="email" id="email" name="email" placeholder="Email"
+                    <input type="number" id="phone_number" name="phone_number" placeholder="Phone"
                         class="w-full px-4 py-2 border rounded mb-4" value="{{ old('email') }}" required>
 
                     <input type="password" id="password" name="password" placeholder="Password"

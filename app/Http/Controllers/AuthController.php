@@ -40,6 +40,24 @@ class   AuthController extends Controller
             return $this->inactiveAccountResponse();
         }
 
+        // keranjang notification
+
+        $userCart = $user->keranjang;
+
+        if ($userCart !== null) {
+            $cartItemsCount = $userCart->keranjang_item()->count();
+        } else {
+            // Keranjang tidak ditemukan untuk pengguna ini
+            // Atau lakukan sesuatu jika keranjang tidak ada
+            $cartItemsCount = 0; // Misalnya, set jumlah item ke 0
+        }
+
+        // Menyimpan jumlah item dalam keranjang ke dalam session jika ada
+        $request->session()->put('jumlah_item_keranjang', $cartItemsCount);
+
+        // CARA HAPUS (Gunakan saat nanti saat fitur checkout sudah dibuat)
+        // $request->session()->forget('jumlah_item_keranjang');
+
         $request->session()->regenerate();
 
         return $this->redirectBasedOnRole($user->role_id);

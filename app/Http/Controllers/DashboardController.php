@@ -22,10 +22,11 @@ class DashboardController extends Controller
 
     public function memberDashboard()
     {
-        // get user count by role
+        // count user by role member
         $user = User::where('role_id', '3')->count();
         // count tenant
         $tenant = Tenant::count();
+
         // Logika khusus untuk halaman dashboard member
         return view('member.home', compact('user', 'tenant'));
     }
