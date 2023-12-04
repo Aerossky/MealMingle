@@ -42,7 +42,7 @@
                             Anda, biarkan kami mengurus masalah kuliner Anda.
                         </p>
                         {{-- Desktop --}}
-                        <p class="mt-4 md:mt-[10px] md:text-md md:max-w-xl xl:text-lg xl:mt-[50px] hidden md:block">
+                        <p class="mt-4 md:mt-[10px] md:text-md md:max-w-2xl xl:text-lg xl:mt-[50px] hidden md:block">
                             Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami.
                             Fokus pada kuliah Anda, biarkan kami mengurus masalah kuliner Anda.
                         </p>
