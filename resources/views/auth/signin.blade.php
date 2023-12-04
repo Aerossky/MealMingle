@@ -37,7 +37,7 @@
                         class="md:w-full md:px-4 md:py-2 md:border md:rounded md:mb-4" required>
 
                     <button type="submit"
-                        class="md:bg-merahMM md:hover:bg-red-700 md:text-white md:px-4 md:py-2 md:rounded cursor-pointer md:w-full">Sign
+                        class="md:bg-merahMM md:hover:bg-red-800 md:text-white md:px-4 md:py-2 md:rounded cursor-pointer md:w-full duration-500">Sign
                         In</button>
                 </form>
                 <p class="md:mt-4">Belum punya akun? <a href="/signup" class="md:text-merahMM font-bold">Signup
