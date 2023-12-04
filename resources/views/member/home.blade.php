@@ -109,7 +109,7 @@
                         <h1 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-kuningMM sm:text-4xl">
                             Solusi
                             Catering Mahasiswa</h1>
-                        <h3 class="mt-4 text-base text-white lg:mx-auto text-justify">Temukan makanan
+                        <h3 class="mt-4 text-base text-white lg:mx-auto text-center">Temukan makanan
                             praktis
                             dan enak tanpa repot mencari. Kami membebaskanmu dari kekhawatiran mencari makanan yang
                             sesuai dengan anda,
@@ -138,7 +138,8 @@
                         Favorit di
                         Sekitar Kampus
                         Anda.</h1>
-                    <p class="mt-5 md:text-base xl:w-2/3 text-justify">Eksplorasi kuliner terbaik di sekitar kampus
+                    <p class="mt-5 md:text-base xl:w-2/3 text-justify leading-8">Eksplorasi kuliner terbaik di sekitar
+                        kampus
                         dengan
                         kami.
                         Rasakan cita rasa unik dan nikmati pengalaman makanan yang tak terlupakan.
