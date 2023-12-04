@@ -68,6 +68,7 @@ class KeranjangController extends Controller
         });
 
         return $totalHarga;
+    }
 
     // CHECKOUT
     // public function checkout(Request $request)

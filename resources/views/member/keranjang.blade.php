@@ -60,7 +60,7 @@
                                                     <option value="6">6</option>
                                                     <option value="7">7</option>
                                                     <option value="8">8</option>
-                                                </select> --}}
+                                                </select>
 
                                                 <div class="absolute top-0 right-0">
                                                     <button type="button"
