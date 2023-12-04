@@ -10,6 +10,7 @@ use App\Models\KeranjangItem;
 use App\Models\RiwayatPesanan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class KeranjangController extends Controller
 {
@@ -176,9 +177,14 @@ class KeranjangController extends Controller
         }
     }
 
-
-
-
+    public function keranjangItem()
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $keranjang_items = $keranjangs->keranjang_item;
+        $itemCount = $keranjang_items->count();
+        Session::put('itemCount', $itemCount);
+    }
 
     /**
      * Show the form for creating a new resource.

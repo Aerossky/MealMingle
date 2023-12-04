@@ -78,38 +78,37 @@
             <div class="bg-white font-Montserrat md:px-14">
                 <div class="sm:px-6 lg:max-w-7xl lg:px-8">
                     @if (count($allmenu) > 0)
-                    <div class="md:flex md:items-center md:justify-between mt-5">
-                        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Makanan</h2>
-                    </div>
+                        <div class="md:flex md:items-center md:justify-between mt-5">
+                            <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Makanan</h2>
+                        </div>
                     @endif
-                    
+
 
                     <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-1 lg:gap-x-8">
                         {{-- Loop Tenant --}}
                         @foreach ($allmenu as $item)
                             {{-- @for ($i = 1; $i <= 8; $i++) --}}
-                            <div class="group relative">
+                            <div class="group relative mb-5">
                                 <div
                                     class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
-                                    <img src="{{ asset('img/page/signin/logineg.jpeg') }}"
-                                        alt="Hand stitched, orange leather long wallet."
+                                    <img src="{{ asset('storage/menu/' . $item->foto_produk) }}" alt="foto produk"
                                         class="w-full h-full object-center object-cover">
                                 </div>
                                 <h2 class="mt-4 text-lg text-black font-semibold">
-                                    <a href="#">
+                                    <a href="{{ route('menu.show-detail') }}">
                                         <span class="absolute inset-0"></span>
                                         {{ $item->nama_makanan }}
                                         {{-- Nasi Goreng Babi --}}
                                     </a>
                                 </h2>
                                 <h2 class="mt-1 text-sm opacity-50 text-gray-700">
-                                    <a href="#">
+                                    <a href="{{ route('menu.show-detail') }}">
                                         {{ $item->deskripsi }}
                                         {{-- Papa Joe --}}
                                     </a>
                                 </h2>
                                 <h2 class="mt-1 text-md opacity-50 text-gray-700">
-                                    <a href="#">
+                                    <a href="{{ route('menu.show-detail') }}">
                                         Rp. {{ $item->harga_produk }},00
                                         {{-- Rp. 20000 --}}
                                     </a>

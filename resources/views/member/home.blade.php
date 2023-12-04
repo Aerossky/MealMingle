@@ -13,6 +13,9 @@
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/js/splide.min.js"></script>
+
+    <!-- typed js -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
 
 <body class="flex flex-col min-h-screen font-sahabatLariku ">
@@ -22,30 +25,32 @@
     {{-- hero section --}}
     <section class="flex flex-col justify-center mt-20 md:mt-[85px] bg-kuningMM pb-[250px] md:pb-20" id="hero">
         {{-- ukuran Kiri kanan --}}
-        <div class="px-4 md:mx-24">
+        <div class="">
             {{-- pembungkus --}}
-            <div class="flex items-center flex-col md:flex-row">
+            <div class="flex items-center justify-around flex-col md:p-10 md:flex-row">
                 {{-- Left Section --}}
-                <div class="md:w-2/3 order-2 md:order-1 hero__text">
-                    <h1 class="font-bold text-center text-2xl md:text-left md:text-4xl">Teman Makan Mahasiswa<br>
+                <div class="order-2 md:order-1 hero__text w-">
+                    <h1 class="font-bold text-center text-2xl md:text-left xl:text-5xl w-full">Teman Makan <span
+                            id="teks"></span><br>
                         Selama Perjalanan <span class="text-merahMM">Kuliah</span>.
                     </h1>
                     {{-- mobile --}}
                     <div class="tagline">
-                        <p class="mt-4 md:mt-[50px] md:hidden">
+                        <p class="mt-4 md:mt-[50px] text-center md:hidden">
                             Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami.Fokus pada
                             kuliah
                             Anda, biarkan kami mengurus masalah kuliner Anda.
                         </p>
                         {{-- Desktop --}}
-                        <p class="mt-4 md:mt-[50px] hidden md:block">
-                            Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami. <br>
+                        <p class="mt-4 md:mt-[10px] md:text-md md:max-w-2xl xl:text-lg xl:mt-[50px] hidden md:block">
+                            Temukan makanan lezat dengan mudah melalui platform catering eksklusif kami.
                             Fokus pada kuliah Anda, biarkan kami mengurus masalah kuliner Anda.
                         </p>
                     </div>
                     <div class=" flex justify-center md:justify-start ">
                         <button type="button"
-                            class="mt-[30px] text-white bg-merahMM hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Pesan</button>
+                            class="mt-[30px] text-white bg-merahMM hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 duration-700">Mulai
+                            Perjalanan</button>
                     </div>
                 </div>
 
@@ -68,21 +73,21 @@
                             class="stat-item flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r ">
                             <div class="pengguna">
                                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Pengguna</dt>
-                                <dd class="order-1 text-5xl font-extrabold text-merahMM">10</dd>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">{{ $user }}</dd>
                             </div>
                         </div>
                         <div
                             class="stat-item flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r ">
                             <div class="tenant">
                                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500 ">Tenant</dt>
-                                <dd class="order-1 text-5xl font-extrabold text-merahMM">5</dd>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">{{ $tenant }}</dd>
                             </div>
                         </div>
                         <div
                             class="stat-item flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
                             <div class="universitas">
                                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Universitas</dt>
-                                <dd class="order-1 text-5xl font-extrabold text-merahMM">10+</dd>
+                                <dd class="order-1 text-5xl font-extrabold text-merahMM">1</dd>
                             </div>
                         </div>
                     </dl>
@@ -100,12 +105,16 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center">
                     <h2 class="text-base text-kuningMM font-semibold tracking-wide uppercase">Apa Sih MealMingle</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-kuningMM sm:text-4xl">Solusi
-                        Catering Mahasiswa</p>
-                    <p class="mt-4 max-w-2xl text-xl text-white lg:mx-auto text-justify">Temukan makanan praktis dan
-                        enak tanpa
-                        repot mencari. Kami membebaskanmu dari kekhawatiran mencari makanan yang sesuai dengan anda,
-                        sehingga perkuliahanmu jadi lebih fokus dan tenang.</p>
+                    <div class="text-center w-full">
+                        <h1 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-kuningMM sm:text-4xl">
+                            Solusi
+                            Catering Mahasiswa</h1>
+                        <h3 class="mt-4 text-base text-white lg:mx-auto text-center">Temukan makanan
+                            praktis
+                            dan enak tanpa repot mencari. Kami membebaskanmu dari kekhawatiran mencari makanan yang
+                            sesuai dengan anda,
+                            sehingga perkuliahanmu jadi lebih fokus dan tenang.</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -116,30 +125,33 @@
         {{-- ukuran Kiri kanan --}}
         <div class="px-4 md:mx-24 ">
             {{-- pembungkus --}}
-            <div class="flex items-center flex-col md:flex-row">
+            <div class="flex items-center flex-col md:flex-row md:justify-between md:gap-10">
                 {{-- kiri --}}
-                <div class="w-full flex justify-center mx-auto md:w-1/2">
+                <div class="md:w-1/2 flex justify-center mx-auto">
                     <img src="{{ asset('img/page/home/eksplor-image.png') }}" alt="foto eksplor" srcset="">
                 </div>
 
                 {{-- kanan --}}
-                <div class="w-full md:w-1/2 ">
-                    <h1 class="font-bold text-[25px]">Eksplor Makanan <br>
-                        Favorit di Sekitar Kampus Anda.</h1>
-
-                    <p class="mt-5">Eksplorasi kuliner terbaik di sekitar kampus dengan kami.
+                <div class="md:w-2/3">
+                    <h1 class="font-bold text-3xl mt-5 text-center md:text-left md:text-lg xl:text-3xl xl:w-2/3">Eksplor
+                        Makanan
+                        Favorit di
+                        Sekitar Kampus
+                        Anda.</h1>
+                    <p class="mt-5 md:text-base xl:w-2/3 text-justify leading-8">Eksplorasi kuliner terbaik di sekitar
+                        kampus
+                        dengan
+                        kami.
                         Rasakan cita rasa unik dan nikmati pengalaman makanan yang tak terlupakan.
                         Mulailah petualangan kuliner Anda sekarang</p>
                     <div class="flex justify-center md:justify-start">
                         <button type="button"
-                            class="mt-[30px] text-black bg-kuningMM hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2">Pesan</button>
+                            class="mt-[30px] text-black bg-kuningMM hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-bold rounded-lg text-sm px-8 py-2.5 me-2 mb-2 duration-700">Eksplor</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    {{-- Footer --}}
-    {{-- @include('layouts.footer') --}}
 
     {{-- Testimoni section --}}
     <section class="flex flex-col justify-center mt-20 bg-kuningMM p-3" id="testimoni">
@@ -166,7 +178,7 @@
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
                         alt="profile picture">
                     <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-black dark:divide-black">
-                        <cite class="pe-3 font-medium text-black dark:text-white">Jovan Mancing Mania</cite>
+                        <cite class="pe-3 font-medium text-black dark:text-white">Risky</cite>
                         <cite class="ps-3 text-sm text-black dark:text-black">Mahasiswa di Universitas Ciputra</cite>
                     </div>
                 </figcaption>

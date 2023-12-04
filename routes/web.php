@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\RiwayatPesananController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
@@ -26,9 +25,9 @@ use App\Models\RiwayatPesanan;
 
 Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.dashboard');
 
-Route::resource('riwayat_pesanan', RiwayatPesananController::class);
-
-
+Route::get('/detailriwayatpesanan',function () {
+    return view('member.detailriwayatpesanan');
+});
 // AUTH
 Route::middleware('guest')->group(
     function () {
@@ -42,16 +41,14 @@ Route::post('/signup', [AuthController::class, 'storeData'])->name('signup.store
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // Show menu kepada customer dan belum login
-// Route::get('menus', [MenuController::class, 'show'])->name('menus.show');
 Route::get('menus/showmenu', [MenuController::class, 'show'])->name('menu.show-Normal');
+Route::get('menus/showmenu-detail', [MenuController::class, 'showDetail'])->name('menu.show-detail');
 Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu.show-Filtered');
 
 // Keranjang Route
 Route::resource('keranjang', KeranjangController::class);
 Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
 Route::post('/keranjang-checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
-
-
 
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
