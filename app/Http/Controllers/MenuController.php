@@ -82,11 +82,11 @@ class MenuController extends Controller
         return view('member.listmenu', ['allmenu' => $showMenu, 'allfilter' => $filterdata]);
     }
 
-    public function showDetail()
+    public function showDetail(string $id)
     {
-        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')->get();
+        $menu = Menu::findOrFail($id);
         $filterdata = Kategori::all();
-        return view('member.listmenu-detail', ['allmenu' => $showMenu, 'allfilter' => $filterdata]);
+        return view('member.listmenu-detail', ['menu' => $menu, 'allfilter' => $filterdata]);
     }
 
     public function showFiltered(Request $request)

@@ -9,6 +9,7 @@ use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\KeranjangItemController;
 use App\Models\Keranjang;
 use App\Models\RiwayatPesanan;
 
@@ -42,13 +43,18 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 // Show menu kepada customer dan belum login
 Route::get('menus/showmenu', [MenuController::class, 'show'])->name('menu.show-Normal');
-Route::get('menus/showmenu-detail', [MenuController::class, 'showDetail'])->name('menu.show-detail');
+Route::get('menus/showmenu-detail/{menu}', [MenuController::class, 'showDetail'])->name('menu.show-detail');
 Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu.show-Filtered');
 
 // Keranjang Route
 Route::resource('keranjang', KeranjangController::class);
 Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
 Route::post('/keranjang-checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
+
+// Keranjang Item Route
+Route::resource('keranjangitem', KeranjangItemController::class);
+Route::post('/keranjangitem/tambah/{id}', [KeranjangItemController::class, 'tambah'])->name('keranjangitem.tambah');
+Route::delete('/keranjang/hapus', [KeranjangItemController::class, 'hapus'])->name('keranjangitem.hapus');
 
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(

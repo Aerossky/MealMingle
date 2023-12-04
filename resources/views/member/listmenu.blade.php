@@ -95,22 +95,19 @@
                                         class="w-full h-full object-center object-cover">
                                 </div>
                                 <h2 class="mt-4 text-lg text-black font-semibold">
-                                    <a href="{{ route('menu.show-detail') }}">
+                                    <a href="{{ route('menu.show-detail', $item->id) }}">
                                         <span class="absolute inset-0"></span>
                                         {{ $item->nama_makanan }}
-                                        {{-- Nasi Goreng Babi --}}
                                     </a>
                                 </h2>
                                 <h2 class="mt-1 text-sm opacity-50 text-gray-700">
-                                    <a href="{{ route('menu.show-detail') }}">
+                                    <a href="{{ route('menu.show-detail', $item->id) }}">
                                         {{ $item->deskripsi }}
-                                        {{-- Papa Joe --}}
                                     </a>
                                 </h2>
                                 <h2 class="mt-1 text-md opacity-50 text-gray-700">
-                                    <a href="{{ route('menu.show-detail') }}">
-                                        Rp. {{ $item->harga_produk }},00
-                                        {{-- Rp. 20000 --}}
+                                    <a href="{{ route('menu.show-detail', $item->id) }}">
+                                        Rp {{ number_format($item->harga_produk, 0, ',', '.') }}
                                     </a>
                                 </h2>
                             </div>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('keranjang_items', function (Blueprint $table) {
             $table->id();
             $table->integer('jumlah');
-            $table->string('note_item');
+            $table->string('note_item')->nullable();
             $table->foreignId('keranjang_id')->constrained('keranjangs')->onDelete('cascade');
             $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade');
             $table->timestamps();
