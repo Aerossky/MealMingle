@@ -6,6 +6,8 @@ use App\Models\Menu;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
 use App\Models\KeranjangItem;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class KeranjangItemController extends Controller
@@ -26,6 +28,48 @@ class KeranjangItemController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+    {
+        $keranjangs = Keranjang::select('id', 'transaction_status')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $menus = Menu::select('id', 'nama_makanan')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('admin.keranjang.keranjang-add', ['keranjangs' => $keranjangs, 'menus' => $menus]);
+    }
+
+    public function tambah(Request $request, string $id)
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::all()->where('user_id', $userId)->firstOrFail();
+
+        $jumlah = $request->input('jumlah');
+        $note_item = $request->input('note_item');
+
+        KeranjangItem::create([
+            'jumlah' => $jumlah,
+            'note_item' => $note_item,
+            'keranjang_id' => $keranjangs->id,
+            'menu_id' => $id,
+        ]);
+
+        $this->keranjangItem();
+
+        return redirect()->route('keranjang.indexuser');
+    }
+
+    public function keranjangItem()
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $keranjang_items = $keranjangs->keranjang_item;
+        $itemCount = $keranjang_items->count();
+        Session::put('itemCount', $itemCount);
+    }
+
+    public function hapus()
     {
         $keranjangs = Keranjang::select('id', 'transaction_status')
             ->orderBy('id', 'asc')

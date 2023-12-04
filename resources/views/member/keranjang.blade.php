@@ -41,7 +41,6 @@
                                             </div>
 
                                             <div class="mt-4 sm:mt-0 sm:pr-9">
-                                                <label for="quantity-0" class="sr-only">Quantity, Basic Tee</label>
                                                 <select id="quantity-0" name="quantity-0"
                                                     class="max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     <option value="1">1</option>

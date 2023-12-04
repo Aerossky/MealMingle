@@ -33,32 +33,10 @@
         </a>
         <div class="flex space-x-3 items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
 
-
-            {{-- Cart Button --}}
-            <div class="pr-6 md:mr-6 relative">
-                @auth
-                <a href="{{ route('keranjang.indexuser') }}">
-                    <button class="block" id="cartButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-shopping-bag">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <path d="M16 10a4 4 0 0 1-8 0"></path>
-                        </svg>
-                        <!-- Notifikasi -->
-                        <span
-                            class="absolute top-[-10px] right-3 mt-1 mr-1 h-5 w-5 bg-red-800 rounded-full flex items-center justify-center text-white text-xs">{{ Session::get('itemCount', 0) }}</span>
-                    </button>
-                </a>
-                @endauth
-            </div>
-
-
             {{-- (DEV)  --}}
             @if (Auth::check())
                 {{-- Cart Button --}}
-                <div class="pr-6 md:mr-0 relative">
+                <div class="pr-6 md:mr-6 relative">
                     <a href="{{ route('keranjang.indexuser') }}">
                         <button class="block" id="cartButton">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
@@ -69,11 +47,8 @@
                                 <path d="M16 10a4 4 0 0 1-8 0"></path>
                             </svg>
                             <!-- Notifikasi -->
-                            {{-- cek kalau ada session bernama jumlah_item_keranjang --}}
-                            @if (session()->has('jumlah_item_keranjang'))
-                                <span
-                                    class="absolute top-[-10px] right-4 mt-2 mr-1 h-3 w-3 bg-red-800 rounded-full flex items-center justify-center text-white text-xs"></span>
-                            @endif
+                            <span
+                                class="absolute top-[-10px] right-3 mt-1 mr-1 h-5 w-5 bg-red-800 rounded-full flex items-center justify-center text-white text-xs">{{ Session::get('itemCount', 0) }}</span>
                         </button>
                     </a>
                 </div>
