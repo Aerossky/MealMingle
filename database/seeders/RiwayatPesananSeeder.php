@@ -18,18 +18,20 @@ class RiwayatPesananSeeder extends Seeder
                 'total_harga' => 100000,
                 'payment_type' => 'tranfer',
                 'transaction_status' => 'pending',
+                'order_id' => '1',
                 'user_id' => '2',
             ],
             [
                 'total_harga' => 150000,
                 'payment_type' => 'cash',
                 'transaction_status' => 'complete',
+                'order_id' => '2',
                 'user_id' => '7',
             ],
         ];
 
         //insert data
-        foreach ($data as $item){
+        foreach ($data as $item) {
             RiwayatPesanan::create([
                 'total_harga' => $item['total_harga'],
                 'payment_type' => $item['payment_type'],

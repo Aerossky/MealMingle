@@ -48,6 +48,7 @@ Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu
 // Keranjang Route
 Route::resource('keranjang', KeranjangController::class);
 Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
+Route::post('/keranjang-checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
 
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
@@ -126,4 +127,3 @@ Route::get('/tenant-detail', function () {
 // Route::get('/menu', function () {
 //     return view('member.listmenu');
 // });
-
