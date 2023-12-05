@@ -14,42 +14,42 @@ class KeranjangItemSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            [
-                'jumlah' => 2,
-                'note_item' => 'mantap',
-                'keranjang_id' => 1,
-                'menu_id' => 1,
-            ],
-            [
-                'jumlah' => 3,
-                'note_item' => 'mantap',
-                'keranjang_id' => 1,
-                'menu_id' => 1,
-            ],
-            [
-                'jumlah' => 3,
-                'note_item' => 'mantap',
-                'keranjang_id' => 1,
-                'menu_id' => 3,
-            ],
-            [
-                'jumlah' => 2,
-                'note_item' => 'enak',
-                'keranjang_id' => 2,
-                'menu_id' => 2,
-            ],
-            [
-                'jumlah' => 1,
-                'note_item' => 'enak',
-                'keranjang_id' => 2,
-                'menu_id' => 5,
-            ],
-            [
-                'jumlah' => 4,
-                'note_item' => 'enak',
-                'keranjang_id' => 2,
-                'menu_id' => 4,
-            ],
+            // [
+            //     'jumlah' => 2,
+            //     'note_item' => 'mantap',
+            //     'keranjang_id' => 1,
+            //     'menu_id' => 1,
+            // ],
+            // [
+            //     'jumlah' => 3,
+            //     'note_item' => 'mantap',
+            //     'keranjang_id' => 1,
+            //     'menu_id' => 1,
+            // ],
+            // [
+            //     'jumlah' => 3,
+            //     'note_item' => 'mantap',
+            //     'keranjang_id' => 1,
+            //     'menu_id' => 3,
+            // ],
+            // [
+            //     'jumlah' => 2,
+            //     'note_item' => 'enak',
+            //     'keranjang_id' => 2,
+            //     'menu_id' => 2,
+            // ],
+            // [
+            //     'jumlah' => 1,
+            //     'note_item' => 'enak',
+            //     'keranjang_id' => 2,
+            //     'menu_id' => 5,
+            // ],
+            // [
+            //     'jumlah' => 4,
+            //     'note_item' => 'enak',
+            //     'keranjang_id' => 2,
+            //     'menu_id' => 4,
+            // ],
         ];
 
         //insert data

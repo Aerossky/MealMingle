@@ -151,6 +151,13 @@ class KeranjangController extends Controller
             ]);
         }
 
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $keranjang_items = $keranjangs->keranjang_item;
+        foreach ($keranjang_items as $item) {
+            $item->delete();
+        }
+        $this->keranjangItem();
+
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         \Midtrans\Config::$isProduction = config('midtrans.is_production');
         \Midtrans\Config::$isSanitized = true;
