@@ -15,54 +15,29 @@ class MenuSeeder extends Seeder
     {
         $data = [
             [
-                'nama_makanan' => "Mkanan A",
-                'deskripsi' => "Siomay Ayam",
+                'nama_makanan' => "Nasi Katsu",
+                'deskripsi' => "Nasi Katsu adalah hidangan Jepang yang terdiri dari nasi yang disajikan dengan irisan daging yang digoreng dengan tepung roti. Biasanya disajikan dengan saus khusus.",
                 'harga_produk' => 25000,
                 'hari' => "Senin",
-                'foto_produk' => "siomay.png",
+                'foto_produk' => "nasi-katsu.jpg",
                 'tenant_id' => 1,
             ],
             [
-                'nama_makanan' => "Mkanan B",
-                'deskripsi' => "Ayam Bakar",
+                'nama_makanan' => "Nasi Goreng",
+                'deskripsi' => "Nasi Goreng adalah hidangan Indonesia yang terdiri dari nasi yang digoreng bersama bumbu, biasanya dengan tambahan daging, sayuran, dan telur.",
                 'harga_produk' => 20000,
                 'hari' => "Senin",
-                'foto_produk' => "ayambakar.png",
-                'tenant_id' => 2,
+                'foto_produk' => "nasigoreng.jpg",
+                'tenant_id' => 1,
             ],
             [
-                'nama_makanan' => "Mkanan C",
-                'deskripsi' => "4T",
+                'nama_makanan' => "Siomay",
+                'deskripsi' => "Siomay adalah hidangan Tionghoa yang terdiri dari irisan daging ikan atau ayam yang dibungkus dengan kulit pangsit, biasanya disajikan dengan saus kacang atau saus pedas.",
                 'harga_produk' => 12500,
                 'hari' => "Senin",
-                'foto_produk' => "4T.png",
-                'tenant_id' => 2,
-            ],
-            [
-                'nama_makanan' => "Mkanan D",
-                'deskripsi' => "Nasi kuning",
-                'harga_produk' => 10000,
-                'hari' => "Senin",
-                'foto_produk' => "nasku.png",
-                'tenant_id' => 2,
-            ],
-            [
-                'nama_makanan' => "Mkanan E",
-                'deskripsi' => "Nasi Campur",
-                'harga_produk' => 10000,
-                'hari' => "Senin",
-                'foto_produk' => "nasca.png",
+                'foto_produk' => "siomay.jpg",
                 'tenant_id' => 1,
             ],
-            [
-                'nama_makanan' => "Mkanan F",
-                'deskripsi' => "Gyudon Sambal Matah",
-                'harga_produk' => 50000,
-                'hari' => "Senin",
-                'foto_produk' => "gyudon.png",
-                'tenant_id' => 1,
-            ],
-
         ];
 
         //insert data

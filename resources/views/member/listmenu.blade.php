@@ -84,7 +84,7 @@
                     @endif
 
 
-                    <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-1 lg:gap-x-8">
+                    <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 md:gap-y-1 lg:gap-x-8">
                         {{-- Loop Tenant --}}
                         @foreach ($allmenu as $item)
                             {{-- @for ($i = 1; $i <= 8; $i++) --}}
@@ -102,7 +102,7 @@
                                 </h2>
                                 <h2 class="mt-1 text-sm opacity-50 text-gray-700">
                                     <a href="{{ route('menu.show-detail', $item->id) }}">
-                                        {{ $item->deskripsi }}
+                                        {{ $item->tenant->nama_tenant }}
                                     </a>
                                 </h2>
                                 <h2 class="mt-1 text-md opacity-50 text-gray-700">
