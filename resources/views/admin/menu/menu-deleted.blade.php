@@ -62,8 +62,8 @@
                                 {{ $menu->harga_produk }}
                             </td>
                             <td class="px-6 py-4">
-                                <img src="{{ asset('img/logo.png') }}" alt="foto tenant" srcset="" height="80px"
-                                    width="80px">
+                                <img src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="foto tenant"
+                                    srcset="" height="80px" width="80px">
                             </td>
                             <td class="px-6 py-4">
                                 <a href="{{ route('menu.restore', [$tenantId, $menu->id]) }}"
