@@ -20,6 +20,6 @@ class OnlyTenant
             return $next($request);
         }
 
-        return redirect('/tenant-dashboard');
+        return redirect('/');
     }
 }

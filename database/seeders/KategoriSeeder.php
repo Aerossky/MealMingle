@@ -20,6 +20,19 @@ class KategoriSeeder extends Seeder
             [
                 'nama_kategori' => 'Daging',
             ],
+            [
+                'nama_kategori' => 'Sayuran',
+            ],
+            [
+                'nama_kategori' => 'Seafood',
+            ],
+            [
+                'nama_kategori' => 'Mie & Mi Instan',
+            ],
+            [
+                'nama_kategori' => 'Snack',
+            ],
+
         ];
 
         foreach ($data as $item) {

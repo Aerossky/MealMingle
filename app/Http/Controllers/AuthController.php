@@ -41,6 +41,7 @@ class   AuthController extends Controller
             return $this->inactiveAccountResponse();
         }
 
+        // generate session
         $keranjangController = new KeranjangController();
         $keranjangController->keranjangItem();
 

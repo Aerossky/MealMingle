@@ -93,7 +93,9 @@
                                     class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
                                     <img src="{{ asset('storage/menu/' . $item->foto_produk) }}" alt="foto produk"
                                         class="w-full h-full object-center object-cover">
+
                                 </div>
+
                                 <h2 class="mt-4 text-lg text-black font-semibold">
                                     <a href="{{ route('menu.show-detail', $item->id) }}">
                                         <span class="absolute inset-0"></span>
