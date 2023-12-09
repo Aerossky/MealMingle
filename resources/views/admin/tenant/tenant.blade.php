@@ -12,6 +12,18 @@
         </div>
     </div>
 
+    {{-- Session --}}
+    @if (session()->has('success'))
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            role="alert">
+            <span class="font-medium">Success alert!</span> {{ session()->get('success') }}.
+        </div>
+    @elseif(session()->has('error'))
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium">Danger alert!</span> {{ session()->get('error') }}.
+        </div>
+    @endif
+
     {{-- Content --}}
     <div class="p-4 bg-white border shadow-md min-h-40 rounded-lg overflow-x-auto">
 
@@ -52,25 +64,25 @@
                     @else
                         @foreach ($tenants as $tenant)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $loop->iteration }}
                                 </th>
                                 <td class="px-6 py-4">{{ $tenant->nama_tenant }}</td>
                                 <td class="px-6 py-4">{{ $tenant->user->name }}</td>
                                 <td class="px-6 py-4">
-                                @foreach ($tenant->universitas as $uni)
-                                    {{ $uni->universitas_name }}
-                                @endforeach
+                                    @foreach ($tenant->universitas as $uni)
+                                        {{ $uni->universitas_name }}
+                                    @endforeach
                                 </td>
                                 <td class="px-6 py-4">{{ $tenant->deskripsi }}</td>
                                 <td class="px-6 py-4">
-                                    <img src="{{ asset('storage/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant" srcset="" height="80px"
-                                        width="80px">
+                                    <img src="{{ asset('storage/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant"
+                                        srcset="" height="80px" width="80px">
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('tenant.show', $tenant->id) }}"
-                                        class="text-yellow-600 hover:text-yellow-900">Detail<span
-                                        class="sr-only"></a>
+                                        class="text-yellow-600 hover:text-yellow-900">Detail<span class="sr-only"></a>
                                     <a href="{{ route('tenant.edit', $tenant->id) }}"
                                         class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
                                     <form action="{{ route('tenant.destroy', $tenant->id) }}" method="POST"
@@ -78,7 +90,8 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-600 hover:text-red-900"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus Tenant ini?')">Delete<span class="sr-only"></button>
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus Tenant ini?')">Delete<span
+                                                class="sr-only"></button>
                                     </form>
                                 </td>
                             </tr>

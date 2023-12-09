@@ -11,6 +11,17 @@
         </div>
     </div>
 
+    {{-- error validation request --}}
+    @if ($errors->any())
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {{-- Content --}}
     <div class="p-4 bg-white border shadow-md min-h-40 rounded-lg overflow-x-auto">
         <form action="{{ route('tenant.store') }}" method="POST" enctype="multipart/form-data">

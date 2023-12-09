@@ -25,7 +25,6 @@
     @endif
 
 
-
     {{-- Content --}}
     <div class="p-4 bg-white border shadow-md min-h-40 rounded-lg overflow-x-auto">
 
