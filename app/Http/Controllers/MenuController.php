@@ -135,7 +135,8 @@ class MenuController extends Controller
     public function edit($menuId, $tenantId)
     {
         $menu = Menu::findOrFail($menuId);
-        return view('admin.menu.menu-edit', ['menu' => $menu, 'tenantId' => $tenantId, 'menuId' => $menuId]);
+        $kategori = Kategori::all();
+        return view('admin.menu.menu-edit', ['menu' => $menu, 'tenantId' => $tenantId, 'menuId' => $menuId, 'kategori' => $kategori]);
     }
 
     /**
@@ -144,11 +145,10 @@ class MenuController extends Controller
     public function update(Request $request, $id, $tenantId)
     {
         $validator = Validator::make($request->all(), [
-            'nama_makanan' => 'required',
-            'deskripsi' => 'required',
-            'harga_produk' => 'required',
-            // 'foto_produk' => 'required|image|mimes:jpg,png,jpeg|max:2048',
-            'foto_produk' => 'required',
+            'nama_makanan' => '',
+            'deskripsi' => '',
+            'harga_produk' => '',
+            'foto_produk' => 'image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -161,7 +161,7 @@ class MenuController extends Controller
         if ($request->file('foto_produk')) {
             $extension = $request->file('foto_produk')->getClientOriginalExtension();
             $foto = $request->nama_makanan . '-' . now()->timestamp . '.' . $extension;
-            $request->file('foto_produk')->storeAs('public/menu/', $foto);
+            $request->file('foto_produk')->storeAs('menu/', $foto);
         } else {
             $foto = "belum ada foto";
         }
@@ -179,6 +179,11 @@ class MenuController extends Controller
             'foto_produk' => $foto ?: $menu->foto_produk,
             'foto_produk' => $foto,
         ]);
+
+        // update relasi kategori
+        if ($request->kategori) {
+            $menu->kategori()->sync($request->kategori);
+        }
 
         return redirect()->route('tenant.show', $tenantId);
     }
