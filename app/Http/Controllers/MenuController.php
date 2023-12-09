@@ -148,7 +148,7 @@ class MenuController extends Controller
             'nama_makanan' => '',
             'deskripsi' => '',
             'harga_produk' => '',
-            'foto_produk' => 'image|mimes:jpg,png,jpeg|max:2048',
+            'foto_produk' => '90- image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -220,9 +220,23 @@ class MenuController extends Controller
     // Delete restore data
     public function forceDelete($tenantId, $id)
     {
-        Menu::onlyTrashed()->where('id', $id)->forceDelete();
+        $menu = Menu::withTrashed()->findOrFail($id);
 
-        // redirect
+        // Hapus foto jika ada
+        if ($menu->foto_produk) {
+            $fotoPath = 'menu/' . $menu->foto_produk;
+
+            if (Storage::disk('public')->exists($fotoPath)) {
+                Storage::disk('public')->delete($fotoPath);
+            }
+        }
+
+        // Hapus record dari database secara permanen
+        $menu->forceDelete();
+
+        // Hapus relasi kategori
+        $menu->kategori()->detach();
+
         return redirect()->route('tenant.show', $tenantId);
     }
 }

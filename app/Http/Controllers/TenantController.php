@@ -162,6 +162,15 @@ class TenantController extends Controller
     public function destroy(string $id)
     {
         $tenant = Tenant::findOrFail($id);
+        // Hapus foto jika ada
+        if ($tenant->foto_tenant) {
+            $fotoPath = 'tenant/' . $tenant->foto_tenant;
+
+            if (Storage::disk('public')->exists($fotoPath)) {
+                Storage::disk('public')->delete($fotoPath);
+            }
+        }
+
         $tenant->delete();
 
         return redirect()->route('tenant.index')->with('status', 'Tenant berhasil dihapus!');
