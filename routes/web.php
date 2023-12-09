@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -26,7 +27,7 @@ use App\Models\RiwayatPesanan;
 
 Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.dashboard');
 
-Route::get('/detailriwayatpesanan',function () {
+Route::get('/detailriwayatpesanan', function () {
     return view('member.detailriwayatpesanan');
 });
 // AUTH
@@ -57,7 +58,7 @@ Route::post('/keranjangitem/tambah/{id}', [KeranjangItemController::class, 'tamb
 Route::delete('/keranjang/hapus', [KeranjangItemController::class, 'hapus'])->name('keranjangitem.hapus');
 
 // ADMIN
-Route::middleware(['auth', 'only_admin'])->group(
+Route::middleware(['auth'])->group(
     function () {
 
         Route::get('/ulasan-pengguna', function () {
@@ -102,6 +103,8 @@ Route::middleware(['auth', 'only_admin'])->group(
         Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
         Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
 
+        // KATEGORI ROUTE
+        Route::resource('kategori', KategoriController::class);
         // Ulasan Website
         Route::resource('ulasan', UlasanWebsiteController::class);
     }
@@ -115,17 +118,17 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
 
 // ROUTER HANYA UNTUK TES HALAMAN
 // ADMIN
-Route::get('/admin-dashboard', function () {
-    return view('admin.dashboard');
-});
+// Route::get('/admin-dashboard', function () {
+//     return view('admin.dashboard');
+// });
 
-Route::get('/admin-menu-menu-add', function () {
-    return view('admin.menu.menu-add');
-});
+// Route::get('/admin-menu-menu-add', function () {
+//     return view('admin.menu.menu-add');
+// });
 
-Route::get('/tenant-detail', function () {
-    return view('member.tenant.detail');
-});
+// Route::get('/tenant-detail', function () {
+//     return view('member.tenant.detail');
+// });
 
 // Route::get('/tenant', function () {
 //     return view('member.tenant.tenant');

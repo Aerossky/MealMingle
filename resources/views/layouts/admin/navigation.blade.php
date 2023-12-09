@@ -93,6 +93,23 @@
                         </a>
                     </li>
 
+
+                    {{-- kategori --}}
+                    <li>
+                        <a href="{{ route('kategori.index') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            {{-- svg kategori --}}
+                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M12 2l-5.5 9h11z" />
+                                <circle cx="17.5" cy="17.5" r="4.5" fill="currentColor" />
+                                <path fill="currentColor" d="M3 13.5h8v8H3z" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Kategori</span>
+                        </a>
+                    </li>
+
+
                 </ul>
             </li>
             <li>

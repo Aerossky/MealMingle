@@ -34,6 +34,9 @@
                             Deskripsi
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Kategori
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Harga
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -64,6 +67,15 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $menu->deskripsi }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    @foreach ($menu->kategori as $kategori)
+                                        {{ $kategori->nama_kategori }}
+                                        @if (!$loop->last)
+                                            {{-- Tambahkan koma jika bukan elemen terakhir --}}
+                                            ,
+                                        @endif
+                                    @endforeach
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $menu->harga_produk }}

@@ -64,7 +64,7 @@ class TenantController extends Controller
         if ($request->file('foto_tenant')) {
             $extension = $request->file('foto_tenant')->getClientOriginalExtension();
             $newName = $request->nama_tenant . '-' . now()->timestamp . '.' . $extension;
-            $request->file('foto_tenant')->storeAs('public/tenant/', $newName);
+            $request->file('foto_tenant')->storeAs('tenant/', $newName);
         }
 
         $validatedData = $validator->validated();
@@ -73,7 +73,7 @@ class TenantController extends Controller
         $tenant = Tenant::create($validatedData);
         $tenant->universitas()->attach($request->input('universitas_id'));
 
-        return redirect()->route('tenant.index')->with('status', 'Data berhasil ditambahkan!');
+        return redirect()->route('tenant.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -88,6 +88,7 @@ class TenantController extends Controller
         $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')
             ->orderBy('id', 'asc')
             ->where('tenant_id', $id)
+            ->with('kategori')
             ->get();
 
         return view('admin.tenant.tenant-detail', ['tenant' => $tenant, 'showMenu' => $showMenu, 'tenantId' => $tenantId]);
@@ -153,7 +154,7 @@ class TenantController extends Controller
 
         $tenant->universitas()->sync($request->input('universitas_id'));
 
-        return redirect()->route('tenant.index')->with('status', 'Tenant berhasil diperbarui!');
+        return redirect()->route('tenant.index')->with('success', 'Tenant berhasil diperbarui!');
     }
 
     /**
@@ -162,8 +163,17 @@ class TenantController extends Controller
     public function destroy(string $id)
     {
         $tenant = Tenant::findOrFail($id);
+        // Hapus foto jika ada
+        if ($tenant->foto_tenant) {
+            $fotoPath = 'tenant/' . $tenant->foto_tenant;
+
+            if (Storage::disk('public')->exists($fotoPath)) {
+                Storage::disk('public')->delete($fotoPath);
+            }
+        }
+
         $tenant->delete();
 
-        return redirect()->route('tenant.index')->with('status', 'Tenant berhasil dihapus!');
+        return redirect()->route('tenant.index')->with('success', 'Tenant berhasil dihapus!');
     }
 }

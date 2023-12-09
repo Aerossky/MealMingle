@@ -1,14 +1,14 @@
 @extends('layouts.admin.main')
-@section('title', 'Tenant Admin')
+@section('title', 'Kategori')
 
 @section('content')
 
     <div class="flex items-center justify-between">
-        <h1 class="font-bold text-2xl py-5">Tenant</h1>
+        <h1 class="font-bold text-2xl py-5">Kategori</h1>
         <div class="">
-            <a href="{{ route('tenant.create') }}"
+            <a href="{{ route('kategori.create') }}"
                 class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Tambah
-                Tenant</a>
+                Kategori</a>
         </div>
     </div>
 
@@ -24,6 +24,7 @@
         </div>
     @endif
 
+
     {{-- Content --}}
     <div class="p-4 bg-white border shadow-md min-h-40 rounded-lg overflow-x-auto">
 
@@ -35,19 +36,7 @@
                             No
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Nama Tenant
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Pemilik
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Universitas
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Deskripsi
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Foto
+                            Kategori
                         </th>
                         <th scope="col" class="px-6 py-3">
                         </th>
@@ -55,44 +44,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($tenants->count() === 0)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td colspan="7" class="py-4 text-center text-gray-500 dark:text-gray-400">
-                                No Data Avaible!
-                            </td>
+                    @if ($kategori->isEmpty())
+                        <tr>
+                            <td colspan="3" class="px-6 py-4 text-center">
                         </tr>
                     @else
-                        @foreach ($tenants as $tenant)
+                        {{-- Loop Data --}}
+                        @foreach ($kategori as $data)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row"
+                                <td scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $loop->iteration }}
-                                </th>
-                                <td class="px-6 py-4">{{ $tenant->nama_tenant }}</td>
-                                <td class="px-6 py-4">{{ $tenant->user->name }}</td>
-                                <td class="px-6 py-4">
-                                    @foreach ($tenant->universitas as $uni)
-                                        {{ $uni->universitas_name }}
-                                    @endforeach
                                 </td>
-                                <td class="px-6 py-4">{{ $tenant->deskripsi }}</td>
+
                                 <td class="px-6 py-4">
-                                    <img src="{{ asset('storage/tenant/' . $tenant->foto_tenant) }}" alt="foto tenant"
-                                        srcset="" height="80px" width="80px">
+                                    {{ $data->nama_kategori }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    <a href="{{ route('tenant.show', $tenant->id) }}"
-                                        class="text-yellow-600 hover:text-yellow-900">Detail<span class="sr-only"></a>
-                                    <a href="{{ route('tenant.edit', $tenant->id) }}"
+                                <td class="px-6 py-4 flex gap-2">
+                                    <a href="{{ route('kategori.edit', $data->id) }}"
                                         class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                                    <form action="{{ route('tenant.destroy', $tenant->id) }}" method="POST"
-                                        style="display: inline;">
+                                    <form action="{{ route('kategori.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-600 hover:text-red-900"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus Tenant ini?')">Delete<span
-                                                class="sr-only"></button>
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                     </form>
+
                                 </td>
                             </tr>
                         @endforeach
