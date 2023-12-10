@@ -83,10 +83,23 @@
                     </div>
 
                     <!-- Add to Cart Button -->
-                    <button type="submit"
-                        class="text-center w-full bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded-lg duration-300">
-                        Add to Cart
-                    </button>
+
+                    {{-- kalau belum login --}}
+                    @if (Auth::check())
+                        <button type="submit"
+                            class="text-center w-full bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded-lg duration-300">
+                            Add to Cart
+                        </button>
+                    @else
+                        <div class="">
+                            <a href="/signin"
+                                class="text-center block bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded-lg duration-300 w-full">
+                                Add to Cart
+                            </a>
+
+                        </div>
+                    @endif
+
                 </form>
 
                 <div class="my-2"></div>
