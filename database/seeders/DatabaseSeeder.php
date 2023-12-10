@@ -50,6 +50,9 @@ class DatabaseSeeder extends Seeder
             UlasanSeeder::class,
             UlasanTenantSeeder::class,
 
+            //jadwal pengiriman seeder
+            JadwalPengirimanSeeder::class,
+
         ]);
     }
 }

@@ -88,7 +88,7 @@ class MenuController extends Controller
 
     public function showDetail(string $id)
     {
-        $menu = Menu::findOrFail($id);
+        $menu = Menu::with('jadwal_pengiriman')->findOrFail($id);
         $filterdata = Kategori::all();
         return view('member.listmenu-detail', ['menu' => $menu, 'allfilter' => $filterdata]);
     }

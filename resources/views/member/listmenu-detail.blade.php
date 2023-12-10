@@ -2,7 +2,7 @@
 @section('title', 'Menu-Detail')
 
 @section('content')
-<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <section class="mx-auto my-auto px-5 dark:bg-gray-900 w-auto h-auto py-5 ">
 
         <div class="flex flex-col xl:flex-row max-w-lg md:max-w-full md:gap-4 md:p-2">
@@ -28,6 +28,20 @@
                     </p>
                 </div>
 
+                {{-- pilihan hari --}}
+                <div class="flex flex-row justify-start my-auto mb-4">
+                    <label for="pilihHari" class="mr-2 font-bold">Pilih Hari:</label>
+                    <select name="pilihHari" id="pilihHari" class="w-32 p-2 border border-gray-300 rounded">
+                        @foreach ($menu->jadwal_pengiriman as $jadwal)
+                            <option value="{{ $jadwal->hari }}">{{ $jadwal->hari }}, {{ $jadwal->waktu }}</option>
+                        @endforeach
+                        {{-- <option value="Senin">Senin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Kamis">Kamis</option>
+                        <option value="Jumat">Jumat</option> --}}
+                    </select>
+                </div>
             </div>
 
             {{-- add to cart --}}

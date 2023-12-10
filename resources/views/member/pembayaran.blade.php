@@ -5,8 +5,7 @@
     body {
         /* Ganti path dengan path yang sesuai ke file SVG di folder public */
         background-image: url('{{ asset('svg/bg-pembayaran.svg') }}');
-        /* Atur properti lain sesuai kebutuhan, seperti ukuran, posisi, dan pengulangan background */
-        backgrou
+
     }
 
     nd-size: cover;
