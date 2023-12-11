@@ -134,3 +134,8 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
 // Route::get('/menu', function () {
 //     return view('member.listmenu');
 // });
+
+
+Route::get('/tesbayar', function () {
+    return view('member.pembayaran');
+});
