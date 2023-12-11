@@ -6,26 +6,62 @@
     <section class="mx-auto my-auto px-5 dark:bg-gray-900 w-auto h-auto py-5 ">
 
         <div class="flex flex-col xl:flex-row max-w-lg md:max-w-full md:gap-4 md:p-2">
-            <!-- Product Image -->
-            <div class=" rounded-2xl md:col-span-4  xl:w-1/3">
-                <img src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Produk"
-                    class="my-auto w-full object-cover rounded cursor-pointer ">
-            </div>
 
-            <!-- Product Details -->
-            <div class="flex flex-col max-w-2xl py-2 md:col-span-4 xl:w-1/3">
-                <!-- Product Name -->
-                <h2 class="text-2xl font-extrabold text-gray-900 mt-4">{{ $menu->nama_makanan }}</h2>
+            <div class="xl:w-full xl:flex xl:flex-col">
+                <div class="xl:flex">
+                    <!-- Product Image -->
+                    <div class="w-full">
+                        <img src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Produk"
+                            class="w-full object-cover rounded cursor-pointer">
+                    </div>
 
-                <!-- Tenant Name -->
-                <h2 class="text-lg font-normal italic text-gray-400 mb-4">{{ $menu->tenant->nama_tenant }}</h2>
+                    <!-- Product Details -->
+                    <div class="ml-4">
+                        <!-- Product Name -->
+                        <h2 class="text-2xl font-bold text-gray-900 mt-4">{{ $menu->nama_makanan }}</h2>
 
-                <!-- Product Description -->
-                <div class="text-gray-700 ">
-                    <p>
-                        {{ $menu->deskripsi }}
-                    </p>
+                        <!-- Tenant Name -->
+                        <h2 class="text-lg font-normal  text-gray-400 mb-4">{{ $menu->tenant->nama_tenant }}</h2>
+
+                        <!-- Product Description -->
+                        <div class="text-gray-700">
+                            <p>{{ $menu->deskripsi }}</p>
+                        </div>
+                    </div>
                 </div>
+
+
+                {{-- list dummy produk --}}
+                <div class="hidden xl:block mt-2">
+                    <h1 class="font-medium text-xl">Makanan Serupa</h1>
+
+                    <div class="flex flex-wrap mt-2">
+                        {{-- Item Makanan 1 --}}
+
+                        <div class="relative mr-4 group">
+                            <a href="">
+                                <img class="w-52 h-52 object-cover rounded"
+                                    src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Makanan">
+                                <p class="mt-2">{{ $menu->nama_makanan }}</p>
+
+                                {{-- Harga (tampil saat dihover) --}}
+                                <div
+                                    class="opacity-0 group-hover:opacity-60 bg-white absolute top-0 left-0 bottom-5 right-0 p-2 rounded-b z-10 duration-700 flex justify-center items-center">
+                                    <p class="text-black text-center my-auto text-lg font-semibold">
+                                        {{ number_format($menu->harga_produk, 0, ',', '.') }}</p>
+                                </div>
+                            </a>
+                        </div>
+
+
+
+
+
+                        <!-- Tambahkan item makanan lainnya di sini -->
+                    </div>
+                </div>
+
+
 
             </div>
 
