@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use App\Models\Universitas;
 use App\Models\User;
+use App\Models\Keranjang;
+use App\Models\Universitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -45,7 +46,12 @@ class UserController extends Controller
         ]);
         $validatedData = $validator->validated();
         $validatedData['role_id'] = 3;
-        User::create($validatedData);
+        $user = User::create($validatedData);
+        $userId = $user->id;
+
+        Keranjang::create([
+            'user_id' => $userId,
+        ]);
 
         //ke halaman user
         return redirect()->route('user.index')->with('status', 'Data berhasil ditambahkan!');
