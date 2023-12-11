@@ -45,7 +45,12 @@
                         Kembali
                     </a>
                 </div>
-                <a href="" class="mt-2 font-normal">Anda mengalami masalah? hubungi kami</a>
+                <div class="mt-4">
+                    <p href="" class=" font-normal">Anda mengalami masalah? <span class="font-bold cursor-pointer">
+                            <a href="https://www.youtube.com/watch?v=nz-V3g6-1KQ" class="text-blue-600"
+                                target="_blank">Hubungi
+                                Kami</a></span></p>
+                </div>
             </div>
         </form>
 
