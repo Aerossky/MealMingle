@@ -20,7 +20,7 @@ return new class extends Migration
             // $table->string('email')->unique();
             // $table->string('jenis_kelamin');
             // $table->string('alamat');
-            $table->enum('status', ['aktif', 'tidakaktif'])->default('tidakaktif');
+            $table->enum('status', ['aktif', 'tidakaktif'])->default('aktif');
             $table->foreignId('universitas_id')->constrained('universitas')->onDelete('cascade');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
             $table->softDeletes();

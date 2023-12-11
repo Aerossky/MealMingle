@@ -21,30 +21,20 @@ class DatabaseSeeder extends Seeder
 
             //tenants seeder
             TenantSeeder::class,
-
-            //pivot tenant
             // TenantUniversitasSeeder::class,
 
             //foods seeder
             MenuSeeder::class,
             KategoriSeeder::class,
-
-            //pivot menu & kategories
             // MenuKategoriSeeder::class,
 
             //carts seeder
             KeranjangSeeder::class,
             KeranjangItemSeeder::class,
 
-            //pivot menu & cart
-            // MenuKeranjangItemSeeder::class,
-
             //histories seeder
-            RiwayatPesananSeeder::class,
-            RiwayatPesananItemSeeder::class,
-
-            //pivot menu & histories
-            // MenuRiwayatPesananItemSeeder::class,
+            // RiwayatPesananSeeder::class,
+            // RiwayatPesananItemSeeder::class,
 
             //review seeder
             UlasanSeeder::class,
