@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JadwalPengirimanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
@@ -101,6 +102,9 @@ Route::middleware(['auth'])->group(
         Route::get('user/data/terhapus', [UserController::class, 'deletedData'])->name('user.deletedData');
         Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
         Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
+
+        // Jadwal Pengiriman
+        Route::resource('jadwal', JadwalPengirimanController::class);
 
         // KATEGORI ROUTE
         Route::resource('kategori', KategoriController::class);
