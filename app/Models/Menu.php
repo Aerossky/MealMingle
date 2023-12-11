@@ -38,4 +38,9 @@ class Menu extends Model
     public function riwayat_pesanan_item(){
         return $this->hasMany(RiwayatPesananItem::class);
     }
+
+    public function jadwal_pengiriman(): BelongsToMany
+    {
+        return $this->belongsToMany(JadwalPengiriman::class, 'menu_jadwal_pengiriman', 'menu_id', 'jadwal_pengiriman_id');
+    }
 }

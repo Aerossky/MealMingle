@@ -58,15 +58,13 @@ Route::resource('keranjangitem', KeranjangItemController::class);
 Route::post('/keranjangitem/tambah/{id}', [KeranjangItemController::class, 'tambah'])->name('keranjangitem.tambah');
 Route::delete('/keranjang/hapus', [KeranjangItemController::class, 'hapus'])->name('keranjangitem.hapus');
 
+// Review
+Route::get('/ulasan-pengguna', function () {
+    return view('member.review');
+});
 // ADMIN
 Route::middleware(['auth'])->group(
     function () {
-
-        Route::get('/ulasan-pengguna', function () {
-            return view('member.review');
-        });
-
-
         // ADMIN(MAIN)
         Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
 
@@ -137,3 +135,8 @@ Route::middleware(['auth', 'only_tenant'])->group(function () {
 // Route::get('/menu', function () {
 //     return view('member.listmenu');
 // });
+
+
+Route::get('/tesbayar', function () {
+    return view('member.pembayaran');
+});
