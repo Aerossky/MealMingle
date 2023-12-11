@@ -8,6 +8,7 @@ use App\Models\Keranjang;
 use App\Models\Universitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,6 +22,12 @@ class UserController extends Controller
         //show data user
         $user = User::select('id', 'name', 'phone_number', 'status', 'universitas_id')->with('universitas')->get();
         return view('admin.user.user', compact('user'));
+    }
+
+    public function totalUser()
+    {
+        $totalUsers = User::count();
+        Session::put('totalUsers', $totalUsers);
     }
 
     /**
@@ -52,6 +59,8 @@ class UserController extends Controller
         Keranjang::create([
             'user_id' => $userId,
         ]);
+
+        $this->totalUser();
 
         //ke halaman user
         return redirect()->route('user.index')->with('status', 'Data berhasil ditambahkan!');
@@ -143,6 +152,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         // Melakukan Soft Delete
         $user->delete();
+        $this->totalUser();
 
         return redirect()->route('user.index');
     }
@@ -158,6 +168,7 @@ class UserController extends Controller
     {
         $user = User::onlyTrashed()->where('id', $id)->first();
         $user->restore();
+        $this->totalUser();
 
         // redirect
         return redirect()->route('user.index');

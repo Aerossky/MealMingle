@@ -45,6 +45,12 @@ class   AuthController extends Controller
         // generate session
         $keranjangController = new KeranjangController();
         $keranjangController->keranjangItem();
+        $tenantController = new TenantController();
+        $tenantController->totalTenant();
+        $userController = new UserController();
+        $userController->totalUser();
+        $ulasanWebsiteController = new UlasanWebsiteController();
+        $ulasanWebsiteController->totalUlasanWebsite();
 
         $request->session()->regenerate();
 
