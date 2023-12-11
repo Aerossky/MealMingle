@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UlasanWebsiteController extends Controller
@@ -16,6 +17,12 @@ class UlasanWebsiteController extends Controller
 
         $ulasan = Ulasan::all();
         return view('admin.ulasan.ulasan', compact('ulasan'));
+    }
+
+    public function totalUlasanWebsite()
+    {
+        $totalUlasanWebsites = Ulasan::count();
+        Session::put('totalUlasanWebsites', $totalUlasanWebsites);
     }
 
     /**
@@ -53,6 +60,8 @@ class UlasanWebsiteController extends Controller
             'deskripsi' => $request->deskripsi,
         ]);
 
+        $this->totalUlasanWebsite();
+
         return redirect()->back()->with('berhasil', 'Ulasan berhasil ditambahkan!');
     }
 
@@ -89,6 +98,7 @@ class UlasanWebsiteController extends Controller
         //delete
         $ulasan = Ulasan::find($id);
         $ulasan->delete();
+        $this->totalUlasanWebsite();
 
         return redirect()->route('ulasan.index')->with('status', 'Data berhasil dihapus!');
     }

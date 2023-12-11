@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
-            $table->integer('total_harga');
+            $table->integer('total_harga')->default(0);
             $table->string('note_pesanan')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

@@ -128,18 +128,23 @@ class KeranjangController extends Controller
 
     public function checkout(Request $request)
     {
+        // dd($request->all());
         $userId = Auth::id();
         $phone = Auth::user()->phone_number;
         $totalHarga = $request->total_harga;
 
-        $riwayat_pesanan_belum_dibayar = RiwayatPesanan::where('user_id', $userId)
-            ->where('transaction_status', 'Unpaid')
-            ->first();
-
-        if ($riwayat_pesanan_belum_dibayar) {
-            $riwayat_pesanan = $riwayat_pesanan_belum_dibayar;
-            $order_id = $riwayat_pesanan->order_id; // Gunakan order_id yang sudah ada jika pesanan belum dibayar
+        if ($totalHarga <= 0) {
+            return redirect()->route('keranjang.indexuser');
         } else {
+            $riwayat_pesanan_belum_dibayar = RiwayatPesanan::where('user_id', $userId)
+                ->where('transaction_status', 'Unpaid')
+                ->first();
+            // dd($riwayat_pesanan_belum_dibayar);
+
+            // if ($riwayat_pesanan_belum_dibayar) {
+            //     $riwayat_pesanan = $riwayat_pesanan_belum_dibayar;
+            //     $order_id = $riwayat_pesanan->order_id; // Gunakan order_id yang sudah ada jika pesanan belum dibayar
+            // } else {
             $order_id = 'ORDER-' . uniqid() . '-' . time();
 
             $riwayat_pesanan = RiwayatPesanan::create([
@@ -149,34 +154,36 @@ class KeranjangController extends Controller
                 'payment_type' => 'Tes Bank',
                 'order_id' => $order_id, // Simpan order_id yang baru dalam kolom order_id
             ]);
+            // dd($riwayat_pesanan);
+            // }
+
+            $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+            $keranjang_items = $keranjangs->keranjang_item;
+            foreach ($keranjang_items as $item) {
+                $item->delete();
+            }
+            $this->keranjangItem();
+
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            \Midtrans\Config::$isProduction = config('midtrans.is_production');
+            \Midtrans\Config::$isSanitized = true;
+            \Midtrans\Config::$is3ds = true;
+
+            $params = [
+                'transaction_details' => [
+                    'order_id' => $order_id, // Gunakan order_id yang sudah ada atau baru
+                    'gross_amount' => $riwayat_pesanan->total_harga,
+                ],
+                'customer_details' => [
+                    'first_name' => Auth::user()->name,
+                    'user_id' => $userId,
+                    'phone' => $phone,
+                ],
+            ];
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            return view('member.pembayaran', compact('snapToken', 'riwayat_pesanan'));
         }
-
-        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
-        $keranjang_items = $keranjangs->keranjang_item;
-        foreach ($keranjang_items as $item) {
-            $item->delete();
-        }
-        $this->keranjangItem();
-
-        \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        \Midtrans\Config::$isProduction = config('midtrans.is_production');
-        \Midtrans\Config::$isSanitized = true;
-        \Midtrans\Config::$is3ds = true;
-
-        $params = [
-            'transaction_details' => [
-                'order_id' => $order_id, // Gunakan order_id yang sudah ada atau baru
-                'gross_amount' => $riwayat_pesanan->total_harga,
-            ],
-            'customer_details' => [
-                'first_name' => Auth::user()->name,
-                'user_id' => $userId,
-                'phone' => $phone,
-            ],
-        ];
-
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('member.pembayaran', compact('snapToken', 'riwayat_pesanan'));
     }
 
     public function callback(Request $request)
@@ -300,6 +307,28 @@ class KeranjangController extends Controller
         ]);
 
         return redirect()->route('user.index')->with('status', 'Keranjang berhasil diperbarui!');
+    }
+
+    public function removeItem(string $id)
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $keranjang_items = $keranjangs->keranjang_item;
+        $delete_item = $keranjang_items->where('id', $id)->firstOrFail();
+
+        // dd($delete_item);
+
+        $delete_item->delete();
+
+        // $totalHarga = $keranjangs->keranjang_item->sum(function ($item) {
+        //     return $item->menu->harga_produk;
+        // });
+
+        // $keranjangs->total_harga = $totalHarga;
+        // $keranjangs->save();
+        $this->keranjangItem();
+
+        return redirect()->route('keranjang.indexuser');
     }
 
     /**

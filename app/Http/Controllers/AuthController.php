@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Keranjang;
 use App\Models\Universitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use App\Http\Controllers\KeranjangController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 class   AuthController extends Controller
@@ -44,6 +45,12 @@ class   AuthController extends Controller
         // generate session
         $keranjangController = new KeranjangController();
         $keranjangController->keranjangItem();
+        $tenantController = new TenantController();
+        $tenantController->totalTenant();
+        $userController = new UserController();
+        $userController->totalUser();
+        $ulasanWebsiteController = new UlasanWebsiteController();
+        $ulasanWebsiteController->totalUlasanWebsite();
 
         $request->session()->regenerate();
 
@@ -114,7 +121,13 @@ class   AuthController extends Controller
         $validatedData = $validator->validated();
         $validatedData['role_id'] = 3;
         $validatedData['universitas_id'] = $request->universitas;
-        User::create($validatedData);
+        $user = User::create($validatedData);
+        // $user;
+        $userId = $user->id;
+
+        Keranjang::create([
+            'user_id' => $userId,
+        ]);
 
         //ke halaman login
         return redirect()->route('signIn')->with('status', 'Data berhasil ditambahkan!');

@@ -51,6 +51,7 @@ Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu
 Route::resource('keranjang', KeranjangController::class);
 Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
 Route::post('/keranjang-checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
+Route::delete('/keranjang-remove/{id}', [KeranjangController::class, 'removeItem'])->name('keranjang.remove');
 
 // Keranjang Item Route
 Route::resource('keranjangitem', KeranjangItemController::class);

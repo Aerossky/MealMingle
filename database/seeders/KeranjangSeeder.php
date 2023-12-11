@@ -15,13 +15,38 @@ class KeranjangSeeder extends Seeder
     {
         $data = [
             [
-                'total_harga' => 100000,
-                'note_pesanan' => 'tidak pedas dan request sambel dipisah',
+                'total_harga' => 0,
+                'note_pesanan' => 'test untuk admin',
+                'user_id' => 1,
+            ],
+            [
+                'total_harga' => 0,
+                'note_pesanan' => 'test untuk user',
                 'user_id' => 2,
             ],
             [
-                'total_harga' => 150000,
-                'note_pesanan' => 'request bumbu dipisah',
+                'total_harga' => 0,
+                'note_pesanan' => '',
+                'user_id' => 3,
+            ],
+            [
+                'total_harga' => 0,
+                'note_pesanan' => null,
+                'user_id' => 4,
+            ],
+            [
+                'total_harga' => 0,
+                'note_pesanan' => null,
+                'user_id' => 5,
+            ],
+            [
+                'total_harga' => 0,
+                'note_pesanan' => null,
+                'user_id' => 6,
+            ],
+            [
+                'total_harga' => 0,
+                'note_pesanan' => null,
                 'user_id' => 7,
             ],
         ];

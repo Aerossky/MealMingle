@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Tenant;
 use App\Models\Universitas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,6 +23,12 @@ class TenantController extends Controller
             ->get();
 
         return view('admin.tenant.tenant', ['tenants' => $tenants]);
+    }
+
+    public function totalTenant()
+    {
+        $totalTenants = Tenant::count();
+        Session::put('totalTenants', $totalTenants);
     }
 
     /**
@@ -72,6 +79,8 @@ class TenantController extends Controller
 
         $tenant = Tenant::create($validatedData);
         $tenant->universitas()->attach($request->input('universitas_id'));
+
+        $this->totalTenant();
 
         return redirect()->route('tenant.index')->with('success', 'Data berhasil ditambahkan!');
     }
@@ -173,6 +182,7 @@ class TenantController extends Controller
         }
 
         $tenant->delete();
+        $this->totalTenant();
 
         return redirect()->route('tenant.index')->with('success', 'Tenant berhasil dihapus!');
     }
