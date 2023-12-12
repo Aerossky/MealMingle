@@ -114,10 +114,16 @@ class   AuthController extends Controller
         // Validasi data input pengguna
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            // 'email' => 'required|unique:users',
             'phone_number' => 'required|unique:users',
             'password' => 'required|min:8|max:50',
         ]);
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
         $validatedData = $validator->validated();
         $validatedData['role_id'] = 3;
         $validatedData['universitas_id'] = $request->universitas;
@@ -130,6 +136,6 @@ class   AuthController extends Controller
         ]);
 
         //ke halaman login
-        return redirect()->route('signIn')->with('status', 'Data berhasil ditambahkan!');
+        return redirect()->route('signIn')->with('success', 'Data berhasil ditambahkan!');
     }
 }
