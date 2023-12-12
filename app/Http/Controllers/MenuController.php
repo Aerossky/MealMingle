@@ -86,7 +86,7 @@ class MenuController extends Controller
      */
     public function show()
     {
-        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')->get();
+        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'foto_produk', 'tenant_id')->get();
         $filterdata = Kategori::all();
         return view('member.listmenu', ['allmenu' => $showMenu, 'allfilter' => $filterdata]);
     }
@@ -119,14 +119,14 @@ class MenuController extends Controller
 
             // Ambil menu berdasarkan id dari hasil tabel pivot
             $filteredMenu = Menu::whereIn('id', $pivotData->pluck('menu_id'))
-                ->select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')
+                ->select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'foto_produk', 'tenant_id')
                 ->get();
         } else {
             // Jika tidak ada filter dipilih, ambil semua menu
-            $filteredMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')->get();
+            $filteredMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'foto_produk', 'tenant_id')->get();
         }
         if ($filterSearch) {
-            $query = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id');
+            $query = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'foto_produk', 'tenant_id');
             $query->where('nama_makanan', 'like', '%' . $filterSearch . '%');
             $filteredMenu = $query->get();
         }
@@ -141,7 +141,8 @@ class MenuController extends Controller
     {
         $menu = Menu::findOrFail($menuId);
         $kategori = Kategori::all();
-        return view('admin.menu.menu-edit', ['menu' => $menu, 'tenantId' => $tenantId, 'menuId' => $menuId, 'kategori' => $kategori]);
+        $jadwal = JadwalPengiriman::all();
+        return view('admin.menu.menu-edit', ['menu' => $menu, 'tenantId' => $tenantId, 'menuId' => $menuId, 'kategori' => $kategori, 'jadwal' => $jadwal]);
     }
 
     /**
@@ -153,7 +154,7 @@ class MenuController extends Controller
             'nama_makanan' => '',
             'deskripsi' => '',
             'harga_produk' => '',
-            'foto_produk' => '90- image|mimes:jpg,png,jpeg|max:2048',
+            'foto_produk' => 'image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -163,18 +164,19 @@ class MenuController extends Controller
                 ->withErrors($validator);
         }
 
+        $menu = Menu::findOrFail($id);
+
         if ($request->file('foto_produk')) {
             $extension = $request->file('foto_produk')->getClientOriginalExtension();
             $foto = $request->nama_makanan . '-' . now()->timestamp . '.' . $extension;
             $request->file('foto_produk')->storeAs('menu/', $foto);
+
+            if ($menu->foto_produk) {
+                Storage::disk('public')->delete('menu/' . $menu->foto_produk);
+            }
         } else {
-            $foto = "belum ada foto";
-        }
-
-        $menu = Menu::findOrFail($id);
-
-        if ($menu->foto_produk && $foto) {
-            Storage::disk('public')->delete('menu/' . $menu->foto_produk);
+            // foto tidak diupdate, retain the existing image
+            $foto = $menu->foto_produk; // Set the variable $foto to the existing image filename
         }
 
         $menu->update([
@@ -182,7 +184,6 @@ class MenuController extends Controller
             'deskripsi' => $request->deskripsi,
             'harga_produk' => $request->harga_produk,
             'foto_produk' => $foto ?: $menu->foto_produk,
-            'foto_produk' => $foto,
         ]);
 
         // update relasi kategori
