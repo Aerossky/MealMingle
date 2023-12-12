@@ -46,7 +46,7 @@
                 <tbody>
                     @if ($riwayat_pesanans->isEmpty())
                         <tr>
-                            <td colspan="4" class="px-6 py-4 text-center">Tidak ada pesanan yang tersedia.</td>
+                            <td colspan="6" class="px-6 py-4 text-center">Tidak ada pesanan yang tersedia.</td>
                         </tr>
                     @else
                         {{-- Loop Data --}}
@@ -110,9 +110,9 @@
                                     <a href="{{ route('riwayatpesanan.show', $data->id) }}"
                                         class="text-yellow-600 hover:text-yellow-900">Detail<span class="sr-only"></a>
 
-                                    <a href="{{ route('universitas.edit', $data->id) }}"
+                                    <a href="{{ route('riwayatpesanan.edit', $data->id) }}"
                                         class="text-yellow-600 hover:text-yellow-900">Edit<span class="sr-only"></a>
-                                    <form action="{{ route('universitas.destroy', $data->id) }}" method="POST">
+                                    <form action="{{ route('riwayatpesanan.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
