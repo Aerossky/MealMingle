@@ -64,7 +64,7 @@ Route::get('/ulasan-pengguna', function () {
     return view('member.review');
 });
 // ADMIN
-Route::middleware(['auth'])->group(
+Route::middleware(['auth', 'only_admin'])->group(
     function () {
         // ADMIN(MAIN)
         Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
