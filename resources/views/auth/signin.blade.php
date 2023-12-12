@@ -26,6 +26,12 @@
                         <span class="font-medium"> {{ session('message') }}</span>
                     </div>
                 @endif
+                @if (session('success-status'))
+                    <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                        role="alert">
+                        <span class="font-medium"> {{ session('success-message') }}</span>
+                    </div>
+                @endif
                 {{-- Alert End --}}
                 <form action="{{ route('signIn.validate') }}" method="POST">
                     @csrf

@@ -130,6 +130,8 @@ class   AuthController extends Controller
         ]);
 
         //ke halaman login
-        return redirect()->route('signIn')->with('status', 'Data berhasil ditambahkan!');
+        return redirect()->route('signIn')
+        ->with('success-status', 'Data berhasil ditambahkan!')
+        ->with('success-message', 'Akun anda berhasil dibuat, welcome to MealMingle!');
     }
 }
