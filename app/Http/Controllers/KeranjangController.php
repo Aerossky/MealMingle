@@ -128,7 +128,7 @@ class KeranjangController extends Controller
         $totalHarga = $request->total_harga;
 
         if ($totalHarga <= 0) {
-            return redirect()->route('keranjang.indexuser');
+            return redirect()->route('keranjang.indexuser')->with('keranjang-error', 'Keranjang masih kosong, ayo tambah item!');
         } else {
             $riwayat_pesanan_belum_dibayar = RiwayatPesanan::where('user_id', $userId)
                 ->where('transaction_status', 'Unpaid')

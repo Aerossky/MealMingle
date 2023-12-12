@@ -5,6 +5,14 @@
 
     <div class="bg-white">
         <div class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+
+            @if (session('keranjang-error'))
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <span class="font-medium"> {{ session('keranjang-error') }}</span>
+                </div>
+            @endif
+
             <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Keranjang Mu</h1>
 
             {{-- input hidden --}}
