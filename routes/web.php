@@ -12,6 +12,7 @@ use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\KeranjangItemController;
+use App\Http\Controllers\RiwayatPesananController;
 use App\Models\Keranjang;
 use App\Models\RiwayatPesanan;
 
@@ -77,8 +78,8 @@ Route::middleware(['auth'])->group(
         // Route::resource('keranjang', KeranjangController::class);
 
         // Riwayat Pesanan Route
+        Route::get('riwayatpesanan/detail-pesanan', [RiwayatPesananController::class, 'detailPesanan'])->name('riwayatpesanan.detailPesanan');
         Route::resource('riwayatpesanan', RiwayatPesananController::class);
-
         // Menu Route
         Route::resource('menu', MenuController::class);
         Route::get('menu/add-menu/{id}', [MenuController::class, 'create'])->name('menu.add-menu');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('riwayat_pesanans', function (Blueprint $table) {
             $table->id();
             $table->integer('total_harga');
-            $table->string('payment_type');
+            // $table->string('payment_type');
             $table->string('transaction_status');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('order_id')->unique()->nullable();

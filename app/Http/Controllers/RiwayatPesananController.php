@@ -14,11 +14,11 @@ class RiwayatPesananController extends Controller
      */
     public function index()
     {
-        $riwayat_pesanans = RiwayatPesanan::select('id', 'total_harga', 'payment_type', 'transaction_status', 'user_id')
+        $riwayat_pesanans = RiwayatPesanan::with('user')->select('id', 'total_harga', 'payment_type', 'transaction_status', 'user_id', 'order_id')
             ->orderBy('id', 'asc')
-            ->paginate(1); // Paginate before getting the results
+            ->paginate(10); // Paginate before getting the results
 
-        return view('member.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
+        return view('admin.riwayatpesanan.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
     }
 
 
@@ -64,10 +64,9 @@ class RiwayatPesananController extends Controller
      */
     public function show($id)
     {
-        $riwayat_pesanan = RiwayatPesanan::findOrFail($id);
-        $userId = $id;
-
-        return view('admin.riwayatpesanan.riwayatpesanan-detail', ['riwayat_pesanan' => $riwayat_pesanan, 'userId' => $userId]);
+        //sesuai id
+        $riwayat_pesanan = RiwayatPesanan::with('riwayat_pesanan_item')->where('id', $id)->get();
+        return view('admin.riwayatpesanan.riwayatpesanan-detail', ['riwayat_pesanan' => $riwayat_pesanan]);
     }
 
     /**
@@ -123,5 +122,16 @@ class RiwayatPesananController extends Controller
         $riwayat_pesanan->delete();
 
         return redirect()->route('user.index')->with('status', 'Riwayat pesanan berhasil dihapus!');
+    }
+
+
+    // display for member view
+    public function indexUser()
+    {
+        $riwayat_pesanans = RiwayatPesanan::select('id', 'total_harga', 'payment_type', 'transaction_status', 'user_id')
+            ->orderBy('id', 'asc')
+            ->paginate(1); // Paginate before getting the results
+
+        return view('member.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
     }
 }

@@ -127,6 +127,23 @@
 
                 </ul>
             </li>
+
+            <li>
+                <a href="{{ route('riwayatpesanan.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M20.75 5.25H3.25C2.56 5.25 2 5.81 2 6.5V17.5C2 18.19 2.56 18.75 3.25 18.75H20.75C21.44 18.75 22 18.19 22 17.5V6.5C22 5.81 21.44 5.25 20.75 5.25ZM3.25 4C1.86 4 1 4.86 1 6.25V17.75C1 19.14 1.86 20 3.25 20H20.75C22.14 20 23 19.14 23 17.75V6.25C23 4.86 22.14 4 20.75 4H3.25ZM16 8H8V6H16V8ZM16 11H8V9H16V11ZM16 14H8V12H16V14Z" />
+                    </svg>
+
+                    <span class="flex-1 ms-3 whitespace-nowrap">Pesanan</span>
+                </a>
+            </li>
+
+
+
             <li>
                 <a href="{{ route('universitas.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
