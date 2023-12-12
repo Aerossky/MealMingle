@@ -14,7 +14,7 @@ class RiwayatPesananController extends Controller
      */
     public function index()
     {
-        $riwayat_pesanans = RiwayatPesanan::with('user')->select('id', 'total_harga', 'payment_type', 'transaction_status', 'user_id', 'order_id')
+        $riwayat_pesanans = RiwayatPesanan::with('user')->select('id', 'total_harga', 'transaction_status', 'user_id', 'order_id')
             ->orderBy('id', 'asc')
             ->paginate(10); // Paginate before getting the results
 
@@ -41,7 +41,6 @@ class RiwayatPesananController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'total_harga' => 'required',
-            'payment_type' => 'required',
             'transaction_status' => 'required',
             'user_id' => 'required',
         ]);
@@ -74,12 +73,10 @@ class RiwayatPesananController extends Controller
      */
     public function edit(string $id)
     {
-        $users = User::select('id', 'name')
-            ->orderBy('id', 'asc')
-            ->get();
 
         $riwayat_pesanan = RiwayatPesanan::findOrFail($id);
-        return view('admin.riwayatpesanan.riwayatpesanan-edit', ['riwayat_pesanan' => $riwayat_pesanan, 'users' => $users]);
+
+        return view('admin.riwayatpesanan.riwayatpesanan-edit', ['riwayat_pesanan' => $riwayat_pesanan]);
     }
 
     /**
@@ -87,11 +84,9 @@ class RiwayatPesananController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
-            'total_harga' => 'required',
-            'payment_type' => 'required',
             'transaction_status' => 'required',
-            'user_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -104,13 +99,10 @@ class RiwayatPesananController extends Controller
         $riwayat_pesanan = RiwayatPesanan::findOrFail($id);
 
         $riwayat_pesanan->update([
-            'total_harga' => $request->total_harga,
-            'payment_type' => $request->payment_type,
             'transaction_status' => $request->transaction_status,
-            'user_id' => $request->user_id,
         ]);
 
-        return redirect()->route('user.index')->with('status', 'Riwayat pesanan berhasil diperbarui!');
+        return redirect()->route('riwayatpesanan.index')->with('status', 'Riwayat pesanan berhasil diperbarui!');
     }
 
     /**
@@ -128,7 +120,7 @@ class RiwayatPesananController extends Controller
     // display for member view
     public function indexUser()
     {
-        $riwayat_pesanans = RiwayatPesanan::select('id', 'total_harga', 'payment_type', 'transaction_status', 'user_id')
+        $riwayat_pesanans = RiwayatPesanan::select('id', 'total_harga', 'transaction_status', 'user_id')
             ->orderBy('id', 'asc')
             ->paginate(1); // Paginate before getting the results
 
