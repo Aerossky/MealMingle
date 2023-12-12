@@ -48,16 +48,40 @@ class KeranjangItemController extends Controller
         $jumlah = $request->input('jumlah');
         $note_item = $request->input('note_item');
 
-        KeranjangItem::create([
-            'jumlah' => $jumlah,
-            'note_item' => $note_item,
-            'keranjang_id' => $keranjangs->id,
-            'menu_id' => $id,
-        ]);
+        $existingItem = KeranjangItem::where('keranjang_id', $keranjangs->id)
+            ->where('menu_id', $id)
+            ->first();
+
+        if ($existingItem) {
+            $existingItem->jumlah += $jumlah;
+            $existingItem->save();
+        } else {
+            KeranjangItem::create([
+                'jumlah' => $jumlah,
+                'note_item' => $note_item,
+                'keranjang_id' => $keranjangs->id,
+                'menu_id' => $id,
+            ]);
+        }
 
         $this->keranjangItem();
+        $this->getTotalHarga();
 
         return redirect()->route('keranjang.indexuser');
+    }
+
+    public function getTotalHarga()
+    {
+        $userId = Auth::id();
+        $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
+        $totalHarga = $keranjangs->keranjang_item->sum(function ($item) {
+            return $item->menu->harga_produk * $item->jumlah;
+        });
+
+        $keranjangs->total_harga = $totalHarga;
+        $keranjangs->save();
+
+        return $totalHarga;
     }
 
     public function keranjangItem()

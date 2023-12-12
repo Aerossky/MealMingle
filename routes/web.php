@@ -1,17 +1,21 @@
 <?php
 
+use App\Models\Keranjang;
+use App\Models\RiwayatPesanan;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JadwalPengirimanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
-use App\Http\Controllers\UlasanWebsiteController;
-use App\Http\Controllers\UniversitasController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangItemController;
+use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\RiwayatPesananController;
 use App\Models\Keranjang;
 use App\Models\RiwayatPesanan;
@@ -65,7 +69,7 @@ Route::get('/ulasan-pengguna', function () {
     return view('member.review');
 });
 // ADMIN
-Route::middleware(['auth'])->group(
+Route::middleware(['auth', 'only_admin'])->group(
     function () {
         // ADMIN(MAIN)
         Route::get('/admin-dashboard', [DashboardController::class, 'adminDashboard'])->name('admin.dashboard');
