@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JadwalPengiriman;
 use App\Models\Menu;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
@@ -31,7 +32,8 @@ class MenuController extends Controller
     {
         // kategori menu
         $kategori = Kategori::all();
-        return view('admin.menu.menu-add', ['tenantId' => $tenantId, 'kategori' => $kategori]);
+        $jadwal = JadwalPengiriman::all();
+        return view('admin.menu.menu-add', ['tenantId' => $tenantId, 'kategori' => $kategori, 'jadwal' => $jadwal]);
     }
 
     /**
@@ -72,6 +74,9 @@ class MenuController extends Controller
         // menambahkan relasi kategori
         $menu = Menu::latest()->first();
         $menu->kategori()->attach($request->kategori);
+
+        // menambahkan relasi jadwal pengiriman
+        $menu->jadwal_pengiriman()->attach($request->jadwal);
 
         return redirect()->route('tenant.show', $id);
     }
@@ -185,6 +190,11 @@ class MenuController extends Controller
             $menu->kategori()->sync($request->kategori);
         }
 
+        // update relasi jadwal pengiriman
+        if ($request->jadwal) {
+            $menu->jadwal_pengiriman()->sync($request->jadwal);
+        }
+
         return redirect()->route('tenant.show', $tenantId);
     }
 
@@ -236,6 +246,7 @@ class MenuController extends Controller
 
         // Hapus relasi kategori
         $menu->kategori()->detach();
+        $menu->jadwal_pengiriman()->detach();
 
         return redirect()->route('tenant.show', $tenantId);
     }
