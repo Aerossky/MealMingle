@@ -48,12 +48,21 @@ class KeranjangItemController extends Controller
         $jumlah = $request->input('jumlah');
         $note_item = $request->input('note_item');
 
-        KeranjangItem::create([
-            'jumlah' => $jumlah,
-            'note_item' => $note_item,
-            'keranjang_id' => $keranjangs->id,
-            'menu_id' => $id,
-        ]);
+        $existingItem = KeranjangItem::where('keranjang_id', $keranjangs->id)
+            ->where('menu_id', $id)
+            ->first();
+
+        if ($existingItem) {
+            $existingItem->jumlah += $jumlah;
+            $existingItem->save();
+        } else {
+            KeranjangItem::create([
+                'jumlah' => $jumlah,
+                'note_item' => $note_item,
+                'keranjang_id' => $keranjangs->id,
+                'menu_id' => $id,
+            ]);
+        }
 
         $this->keranjangItem();
 
