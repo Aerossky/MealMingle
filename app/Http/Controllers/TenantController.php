@@ -94,7 +94,7 @@ class TenantController extends Controller
         $tenantId = $id;
 
         // Filter showMenu based on tenant_id
-        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'hari', 'foto_produk', 'tenant_id')
+        $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'foto_produk', 'tenant_id')
             ->orderBy('id', 'asc')
             ->where('tenant_id', $id)
             ->with('kategori')

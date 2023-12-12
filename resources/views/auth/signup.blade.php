@@ -31,7 +31,19 @@
             </div>
             <div class="mx-auto my-auto">
                 <p class="text-left sm:pt-5 md:mt-5 text-4xl font-bold">Sign Up Your Account</p>
+
                 <form class="mt-14" action="{{ route('signup.storeData') }}" method="post">
+                    {{-- error validation request --}}
+                    @if ($errors->any())
+                        <div
+                            class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     @csrf
                     <div class="md:grid sm:grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="mb-6">
@@ -40,7 +52,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                             <input type="text" id="name" name="name"
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Nama" required>
+                                placeholder="Nama" value="{{ old('name') }}" required>
                         </div>
 
 
@@ -50,7 +62,7 @@
                                 Telepon</label>
                             <input type="number" id="phone_number" name="phone_number"
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Nomor Telepon" required>
+                                placeholder="Nomor Telepon" value="{{ old('phone_number') }}" required>
                         </div>
 
 

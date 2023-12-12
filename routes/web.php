@@ -4,6 +4,9 @@ use App\Models\Keranjang;
 use App\Models\RiwayatPesanan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JadwalPengirimanController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
@@ -14,6 +17,8 @@ use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangItemController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\RiwayatPesananController;
+use App\Models\Keranjang;
+use App\Models\RiwayatPesanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,8 +82,8 @@ Route::middleware(['auth', 'only_admin'])->group(
         // Route::resource('keranjang', KeranjangController::class);
 
         // Riwayat Pesanan Route
+        Route::get('riwayatpesanan/detail-pesanan', [RiwayatPesananController::class, 'detailPesanan'])->name('riwayatpesanan.detailPesanan');
         Route::resource('riwayatpesanan', RiwayatPesananController::class);
-
         // Menu Route
         Route::resource('menu', MenuController::class);
         Route::get('menu/add-menu/{id}', [MenuController::class, 'create'])->name('menu.add-menu');
@@ -102,6 +107,9 @@ Route::middleware(['auth', 'only_admin'])->group(
         Route::get('user/data/terhapus', [UserController::class, 'deletedData'])->name('user.deletedData');
         Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
         Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
+
+        // Jadwal Pengiriman
+        Route::resource('jadwal', JadwalPengirimanController::class);
 
         // KATEGORI ROUTE
         Route::resource('kategori', KategoriController::class);

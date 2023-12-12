@@ -14,15 +14,16 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $fillable = [
-      'nama_makanan',
-      'deskripsi',
-      'harga_produk',
-      'hari',
-      'foto_produk',
-      'tenant_id',
+        'nama_makanan',
+        'deskripsi',
+        'harga_produk',
+        //   'hari',
+        'foto_produk',
+        'tenant_id',
     ];
 
-    public function tenant(){
+    public function tenant()
+    {
         return $this->belongsTo(Tenant::class);
     }
 
@@ -31,11 +32,13 @@ class Menu extends Model
         return $this->belongsToMany(Kategori::class, 'menu_kategori', 'menu_id', 'kategori_id');
     }
 
-    public function keranjang_item(){
+    public function keranjang_item()
+    {
         return $this->hasMany(KeranjangItem::class);
     }
 
-    public function riwayat_pesanan_item(){
+    public function riwayat_pesanan_item()
+    {
         return $this->hasMany(RiwayatPesananItem::class);
     }
 
