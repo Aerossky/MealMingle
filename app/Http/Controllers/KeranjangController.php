@@ -32,16 +32,8 @@ class KeranjangController extends Controller
         $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
         $keranjang_items = $keranjangs->keranjang_item;
 
-        $totalHarga = $keranjangs->keranjang_item->sum(function ($item) {
-            return $item->menu->harga_produk;
-        });
-
-        $keranjangs->total_harga = $totalHarga;
-        $keranjangs->save();
-
-        // dd($userId);
-        // dd($keranjangs);
-        // dd($keranjang_items);
+        $this->getTotalHarga();
+        $this->keranjangItem();
 
         return view('member.keranjang', ['keranjangs' => $keranjangs, 'keranjang_items' => $keranjang_items, 'userId' => $userId]);
     }
@@ -52,7 +44,7 @@ class KeranjangController extends Controller
         $userId = Auth::id();
         $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
         $grossAmount = $keranjangs->keranjang_item->sum(function ($item) {
-            return $item->menu->harga_produk;
+            return $item->menu->harga_produk * $item->jumlah;
         });
 
         return $grossAmount;
@@ -62,10 +54,12 @@ class KeranjangController extends Controller
     {
         $userId = Auth::id();
         $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
-
         $totalHarga = $keranjangs->keranjang_item->sum(function ($item) {
             return $item->menu->harga_produk * $item->jumlah;
         });
+
+        $keranjangs->total_harga = $totalHarga;
+        $keranjangs->save();
 
         return $totalHarga;
     }
@@ -315,18 +309,10 @@ class KeranjangController extends Controller
         $keranjangs = Keranjang::with('keranjang_item')->where('user_id', $userId)->firstOrFail();
         $keranjang_items = $keranjangs->keranjang_item;
         $delete_item = $keranjang_items->where('id', $id)->firstOrFail();
-
-        // dd($delete_item);
-
         $delete_item->delete();
 
-        // $totalHarga = $keranjangs->keranjang_item->sum(function ($item) {
-        //     return $item->menu->harga_produk;
-        // });
-
-        // $keranjangs->total_harga = $totalHarga;
-        // $keranjangs->save();
         $this->keranjangItem();
+        $this->getTotalHarga();
 
         return redirect()->route('keranjang.indexuser');
     }
