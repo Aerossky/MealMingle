@@ -10,7 +10,7 @@
             <div class="xl:w-full xl:flex xl:flex-col">
                 <div class="xl:flex">
                     <!-- Product Image -->
-                    <div class="w-full">
+                    <div class="w-full max-w-md">
                         <img src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Produk"
                             class="w-full object-cover rounded cursor-pointer">
                     </div>

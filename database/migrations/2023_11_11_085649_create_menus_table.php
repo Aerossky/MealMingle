@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_makanan');
             $table->string('deskripsi');
             $table->integer('harga_produk');
-            $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
+            // $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
             $table->string('foto_produk');
             $table->foreignId('tenant_id')->constrained('tenants')->onDelete('cascade');
             $table->softDeletes();
