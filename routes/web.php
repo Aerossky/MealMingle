@@ -10,14 +10,12 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangItemController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\RiwayatPesananController;
-use App\Models\Keranjang;
-use App\Models\RiwayatPesanan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -112,10 +110,11 @@ Route::middleware(['auth', 'only_admin'])->group(
 
         // KATEGORI ROUTE
         Route::resource('kategori', KategoriController::class);
-        // Ulasan Website
-        Route::resource('ulasan', UlasanWebsiteController::class);
     }
 );
+
+// Ulasan Website
+Route::resource('ulasan', UlasanWebsiteController::class);
 
 // TENANT
 Route::middleware(['auth', 'only_tenant'])->group(function () {

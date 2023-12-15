@@ -47,6 +47,7 @@ class KeranjangItemController extends Controller
 
         $jumlah = $request->input('jumlah');
         $note_item = $request->input('note_item');
+        $hari = $request->hari;
 
         $existingItem = KeranjangItem::where('keranjang_id', $keranjangs->id)
             ->where('menu_id', $id)
@@ -61,6 +62,7 @@ class KeranjangItemController extends Controller
                 'note_item' => $note_item,
                 'keranjang_id' => $keranjangs->id,
                 'menu_id' => $id,
+                'waktu_pengiriman' => $hari,
             ]);
         }
 
