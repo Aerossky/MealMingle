@@ -10,14 +10,12 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangItemController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\RiwayatPesananController;
-use App\Models\Keranjang;
-use App\Models\RiwayatPesanan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +32,10 @@ Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.d
 
 Route::get('/detailriwayatpesanan', function () {
     return view('member.detailriwayatpesanan');
+});
+
+Route::get('/tenanttes', function() {
+    return view('tenant.dashboard');
 });
 // AUTH
 Route::middleware('guest')->group(
