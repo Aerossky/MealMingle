@@ -37,6 +37,27 @@ Route::get('/detailriwayatpesanan', function () {
 Route::get('/tenanttes', function() {
     return view('tenant.dashboard');
 });
+Route::get('/menusaya', function(){
+    return view('tenant.menusaya');
+});
+Route::get('/tambahmenu', function(){
+    return view('tenant.tambahmenu');
+});
+Route::get('/editmenu', function(){
+    return view('tenant.editmenu');
+});
+Route::get('/rekening', function(){
+    return view('tenant.rekening');
+});
+Route::get('/saldo', function(){
+    return view('tenant.saldo');
+});
+Route::get('/profiltenant', function(){
+    return view('tenant.profiltenant');
+});
+Route::get('/tenantpengiriman', function(){
+    return view('tenant.pengiriman');
+});
 // AUTH
 Route::middleware('guest')->group(
     function () {

@@ -12,6 +12,7 @@
 <body class="font-Montserrat overflow-x-hidden md:overflow-x-auto">
 
     {{-- Sidebar --}}
+
     @include('layouts.tenant.navigation')
 
     {{-- Content --}}
