@@ -80,6 +80,7 @@ Route::middleware(['auth', 'only_admin'])->group(
         // Route::resource('keranjang', KeranjangController::class);
 
         // Riwayat Pesanan Route
+        Route::get('riwayatpesanan/search', [RiwayatPesananController::class, 'index'])->name('riwayatpesanan.search');
         Route::get('riwayatpesanan/detail-pesanan', [RiwayatPesananController::class, 'detailPesanan'])->name('riwayatpesanan.detailPesanan');
         Route::resource('riwayatpesanan', RiwayatPesananController::class);
         // Menu Route

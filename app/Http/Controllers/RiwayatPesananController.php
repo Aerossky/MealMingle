@@ -13,11 +13,19 @@ class RiwayatPesananController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $riwayat_pesanans = RiwayatPesanan::with('user')->select('id', 'total_harga', 'transaction_status', 'user_id', 'order_id', 'bukti_pembayaran')
-            ->orderBy('id', 'asc')
-            ->paginate(10); // Paginate before getting the results
+        $query = $request->get('search');
+
+        // Query pencarian ke dalam data RiwayatPesanan
+        $riwayat_pesanans = RiwayatPesanan::join('users', 'riwayat_pesanans.user_id', '=', 'users.id')
+            ->select('riwayat_pesanans.*')
+            ->where('users.name', 'like', '%' . $query . '%')
+            ->orWhere('riwayat_pesanans.total_harga', 'like', '%' . $query . '%')
+            ->orWhere('riwayat_pesanans.transaction_status', 'like', '%' . $query . '%')
+            ->orWhere('riwayat_pesanans.order_id', 'like', '%' . $query . '%')
+            ->orderBy('riwayat_pesanans.id', 'asc')
+            ->paginate(10);
 
         return view('admin.riwayatpesanan.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
     }
