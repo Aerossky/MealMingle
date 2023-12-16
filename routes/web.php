@@ -10,14 +10,12 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangItemController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\RiwayatPesananController;
-use App\Models\Keranjang;
-use App\Models\RiwayatPesanan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +32,31 @@ Route::get('/', [DashboardController::class, 'memberDashboard'])->name('member.d
 
 Route::get('/detailriwayatpesanan', function () {
     return view('member.detailriwayatpesanan');
+});
+
+Route::get('/tenanttes', function() {
+    return view('tenant.dashboard');
+});
+Route::get('/menusaya', function(){
+    return view('tenant.menusaya');
+});
+Route::get('/tambahmenu', function(){
+    return view('tenant.tambahmenu');
+});
+Route::get('/editmenu', function(){
+    return view('tenant.editmenu');
+});
+Route::get('/rekening', function(){
+    return view('tenant.rekening');
+});
+Route::get('/saldo', function(){
+    return view('tenant.saldo');
+});
+Route::get('/profiltenant', function(){
+    return view('tenant.profiltenant');
+});
+Route::get('/tenantpengiriman', function(){
+    return view('tenant.pengiriman');
 });
 // AUTH
 Route::middleware('guest')->group(
