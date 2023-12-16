@@ -151,7 +151,7 @@
 
                 <div class="mt-6">
                     <div class="">
-                        <form action="{{ route('keranjang.checkout') }}" method="POST" {{-- class="mt-12 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16" --}}>
+                        <form action="{{ route('keranjang.checkout', ['id' => Auth::id()]) }}" method="GET">
                             @csrf
                             <input type="hidden" name="total_harga" value="{{ $keranjangs->total_harga }}">
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
@@ -160,6 +160,7 @@
                                 Checkout
                             </button>
                         </form>
+
                     </div>
                     <div class="mt-8">
                         <a href="menus/showmenu"

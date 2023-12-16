@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Config;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
 use App\Models\KeranjangItem;
 use App\Models\RiwayatPesanan;
+use App\Models\RiwayatPesananItem;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class KeranjangController extends Controller
 {
@@ -64,26 +65,65 @@ class KeranjangController extends Controller
         return $totalHarga;
     }
 
-    public function checkout()
+    public function checkout($userId)
     {
-        return view('member.pembayaran');
+        $keranjang = Keranjang::where('user_id', $userId)->first();
+
+        return view('member.pembayaran', ['keranjang' => $keranjang]);
     }
 
-    public function callback(Request $request)
+    // bayar
+    public function bayar(Request $request, $userId)
     {
-        $serverKey = config('midtrans.server_key');
-        $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        $validator = Validator::make($request->all(), [
+            'foto_bukti' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+        ]);
 
-        // Memeriksa apakah hashed yang dikirim dari Midtrans sama dengan yang dibuat
-        if ($hashed == $request->signature_key) {
-            if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
-                $order = RiwayatPesanan::where('order_id', $request->order_id)->firstOrFail();
-                $order->update(['transaction_status' => 'Paid']);
-
-                // Menyimpan payment_type dari callback Midtrans ke dalam pesanan
-                $order->update(['payment_type' => $request->payment_type]);
-            }
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
         }
+
+        $foto = '';
+        if ($request->file('foto_bukti')) {
+            $extension = $request->file('foto_bukti')->getClientOriginalExtension();
+            $foto = rand(1, 100) . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto_bukti')->storeAs('bukti/', $foto);
+        } else {
+            $foto = "belum ada foto";
+        }
+
+
+        $keranjang = Keranjang::where('user_id', $userId)->first();
+        $keranjangItems = $keranjang->keranjang_item;
+
+        // Riwayat Pesanan
+        $riwayatPesanan = new RiwayatPesanan();
+        $riwayatPesanan->user_id = $userId;
+        $riwayatPesanan->total_harga = $keranjang->total_harga;
+        $riwayatPesanan->order_id = 'ORD-' . time() . '-' . mt_rand(100, 999);
+        $riwayatPesanan->bukti_pembayaran = $foto;
+
+        $riwayatPesanan->save();
+
+
+        // Pindahkan data dari KeranjangItem ke RiwayatPesananItem
+        foreach ($keranjangItems as $item) {
+            $riwayatItem = new RiwayatPesananItem();
+            $riwayatItem->jumlah = $item->jumlah;
+            $riwayatItem->note_item = $item->note_item;
+            $riwayatItem->riwayat_pesanan_id = $riwayatPesanan->id;
+            $riwayatItem->menu_id = $item->menu_id;
+            $riwayatItem->waktu_pengiriman = $item->waktu_pengiriman;
+            $riwayatItem->save();
+
+            // delete item dari keranjang
+            $item->delete();
+        }
+
+        return redirect()->route('menu.show-Normal')->with('success', 'Pesanan akan di proses, terimakasih!');
     }
 
     public function keranjangItem()

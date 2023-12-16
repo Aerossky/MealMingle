@@ -73,7 +73,7 @@
                                 class="w-full bg-gray-50 border  text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
                         </div>
-                        {{-- @dd($options) --}}
+                        
                         <div class="mb-6">
                             <label for="universitas"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">University</label>

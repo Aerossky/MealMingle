@@ -35,9 +35,9 @@
                         <option value="konfirmasi" <?php if ($status_terpilih === 'konfirmasi') {
                             echo 'selected';
                         } ?>>Konfirmasi</option>
-                        <option value="menunggu_pembayaran" <?php if ($status_terpilih === 'menunggu_pembayaran') {
+                        <option value="menunggu_konfirmasi" <?php if ($status_terpilih === 'menunggu_konfirmasi') {
                             echo 'selected';
-                        } ?>>Menunggu Pembayaran</option>
+                        } ?>>Menunggu Konfirmasi</option>
                     </select>
                 </div>
 

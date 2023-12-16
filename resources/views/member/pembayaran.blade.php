@@ -17,9 +17,10 @@
 
     <div class="bg-white mt-5 p-6 rounded-lg shadow-md mx-auto max-w-screen-md">
         <h1 class="text-2xl font-bold mb-4">Detail Pembayaran</h1>
-        <form action="">
+        <form action="{{ route('keranjang.bayar', ['id' => Auth::id()]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <p class="mb-2">Total Pembayaran: <span id="totalAmount"
-                    class="font-bold">Rp.{{ number_format(10000, 0, ',', '.') }}</span></p>
+                    class="font-bold">Rp.{{ number_format($keranjang->total_harga, 0, ',', '.') }}</span></p>
             <div class="flex gap-3 justify-start items-center">
                 <p class="mb-4">Nomor Rekening: <span id="accountNumber" class="font-bold">123456789011</span> (AN.ABCD)
                 </p>
@@ -31,7 +32,7 @@
                 Pembayaran</label>
             <input
                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                id="bukti" name="bukti" type="file" multiple>
+                id="foto_bukti" name="foto_bukti" type="file" multiple>
 
             {{-- button --}}
             <div class="mt-5">

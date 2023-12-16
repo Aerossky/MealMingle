@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\RiwayatPesanan;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RiwayatPesananController extends Controller
@@ -14,7 +15,7 @@ class RiwayatPesananController extends Controller
      */
     public function index()
     {
-        $riwayat_pesanans = RiwayatPesanan::with('user')->select('id', 'total_harga', 'transaction_status', 'user_id', 'order_id')
+        $riwayat_pesanans = RiwayatPesanan::with('user')->select('id', 'total_harga', 'transaction_status', 'user_id', 'order_id', 'bukti_pembayaran')
             ->orderBy('id', 'asc')
             ->paginate(10); // Paginate before getting the results
 
@@ -113,7 +114,16 @@ class RiwayatPesananController extends Controller
         $riwayat_pesanan = RiwayatPesanan::findOrFail($id);
         $riwayat_pesanan->delete();
 
-        return redirect()->route('user.index')->with('status', 'Riwayat pesanan berhasil dihapus!');
+        // Hapus foto jika ada
+        if ($riwayat_pesanan->bukti_pembayaran) {
+            $fotoPath = 'bukti/' . $riwayat_pesanan->bukti_pembayaran;
+
+            if (Storage::disk('public')->exists($fotoPath)) {
+                Storage::disk('public')->delete($fotoPath);
+            }
+        }
+
+        return redirect()->route('riwayatpesanan.index')->with('status', 'Riwayat pesanan berhasil dihapus!');
     }
 
 
