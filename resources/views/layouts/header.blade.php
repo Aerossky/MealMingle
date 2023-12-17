@@ -53,17 +53,39 @@
                     </a>
                 </div>
                 {{-- sudah login --}}
-                <div class="hidden md:block cursor-pointer">
+                <div id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+                    class="hidden md:block cursor-pointer">
                     <p><span class="font-bold">Halo, {{ Auth::user()->name }}</span></p>
                 </div>
-                <div class=" justify-center items-center my-auto mx-auto hidden md:flex">
-                    <form action="/logout" method="POST">
-                        @csrf
-                        <button type="submit"
-                            class="px-4 py-2 mt-2 text-sm text-white font-medium bg-merahMM rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-800 ml-5">
+                <!-- Dropdown menu -->
+                <div id="dropdownDivider"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+                        @if (Auth::check())
+                            @if (Auth::user()->role_id == 1)
+                                <li>
+                                    <a href="/admin-dashboard"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin
+                                        Dashboard</a>
+                                </li>
+                            @endif
+                        @endif
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                        </li>
+
+                    </ul>
+                    <div class="py-2">
+                        <a href="/logout"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                             Logout
-                        </button>
-                    </form>
+                        </a>
+                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
             @else
                 {{-- Belum Login --}}
@@ -105,14 +127,6 @@
                     <a href="/#faq"
                         class="block px-3 py-2 text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">FAQ</a>
                 </li>
-                @if (Auth::check())
-                    @if (Auth::user()->role_id == 1)
-                    <li>
-                        <a href="/admin-dashboard"
-                            class="block px-3 py-2 text-black hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-800 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Admin</a>
-                    </li>
-                    @endif
-                @endif
 
                 @if (Auth::check())
                     <li>
