@@ -32,7 +32,6 @@
             <img src="{{ asset('img/logo.png') }}" class="h-14 lg:h-16" alt="MealMingle Logo">
         </a>
         <div class="flex space-x-3 items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
-
             {{-- (DEV)  --}}
             @if (Auth::check())
                 {{-- Cart Button --}}
@@ -71,7 +70,7 @@
                             @endif
                         @endif
                         <li>
-                            <a href="#"
+                            <a href="{{ route('setting.index') }}"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                         </li>
 
