@@ -67,6 +67,10 @@ Route::delete('/keranjang/hapus', [KeranjangItemController::class, 'hapus'])->na
 Route::get('/ulasan-pengguna', function () {
     return view('member.review');
 });
+
+// SETING ROUTE
+Route::resource('setting', SettingController::class);
+
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
     function () {
@@ -113,9 +117,6 @@ Route::middleware(['auth', 'only_admin'])->group(
 
         // KATEGORI ROUTE
         Route::resource('kategori', KategoriController::class);
-
-        // SETING ROUTE
-        Route::resource('setting', SettingController::class);
     }
 );
 
