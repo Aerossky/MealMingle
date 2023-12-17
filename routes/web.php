@@ -16,7 +16,7 @@ use App\Http\Controllers\KeranjangItemController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\RiwayatPesananController;
 use App\Http\Controllers\JadwalPengirimanController;
-
+use App\Http\Controllers\RiwayatPesananUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +71,13 @@ Route::get('/ulasan-pengguna', function () {
 // SETING ROUTE
 Route::resource('setting', SettingController::class);
 
+// riwayat pesanan
+Route::resource('user-riwayat', RiwayatPesananUserController::class);
+
+
+// Ulasan Website
+Route::resource('ulasan', UlasanWebsiteController::class);
+
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
     function () {
@@ -120,8 +127,7 @@ Route::middleware(['auth', 'only_admin'])->group(
     }
 );
 
-// Ulasan Website
-Route::resource('ulasan', UlasanWebsiteController::class);
+
 
 // TENANT
 Route::middleware(['auth', 'only_tenant'])->group(function () {

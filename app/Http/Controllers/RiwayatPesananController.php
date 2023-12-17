@@ -134,14 +134,4 @@ class RiwayatPesananController extends Controller
         return redirect()->route('riwayatpesanan.index')->with('status', 'Riwayat pesanan berhasil dihapus!');
     }
 
-
-    // display for member view
-    public function indexUser()
-    {
-        $riwayat_pesanans = RiwayatPesanan::select('id', 'total_harga', 'transaction_status', 'user_id')
-            ->orderBy('id', 'asc')
-            ->paginate(1); // Paginate before getting the results
-
-        return view('member.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
-    }
 }
