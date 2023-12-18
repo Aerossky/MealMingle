@@ -4,17 +4,19 @@ use App\Models\Keranjang;
 use App\Models\RiwayatPesanan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\JadwalPengirimanController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangItemController;
 use App\Http\Controllers\UlasanWebsiteController;
 use App\Http\Controllers\RiwayatPesananController;
+
+use App\Http\Controllers\JadwalPengirimanController;
+use App\Http\Controllers\RiwayatPesananUserController;
 
 
 /*
@@ -76,9 +78,10 @@ Route::get('menus/showmenu-detail/{menu}', [MenuController::class, 'showDetail']
 Route::get('filteredMenus', [MenuController::class, 'showFiltered'])->name('menu.show-Filtered');
 
 // Keranjang Route
+Route::post('/pembayaran/{id}', [KeranjangController::class, 'bayar'])->name('keranjang.bayar');
+Route::get('/keranjang-checkout/{id}', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
 Route::resource('keranjang', KeranjangController::class);
 Route::get('/keranjang', [KeranjangController::class, 'indexuser'])->name('keranjang.indexuser');
-Route::post('/keranjang-checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
 Route::delete('/keranjang-remove/{id}', [KeranjangController::class, 'removeItem'])->name('keranjang.remove');
 
 // Keranjang Item Route
@@ -90,6 +93,17 @@ Route::delete('/keranjang/hapus', [KeranjangItemController::class, 'hapus'])->na
 Route::get('/ulasan-pengguna', function () {
     return view('member.review');
 });
+
+// SETING ROUTE
+Route::resource('setting', SettingController::class);
+
+// riwayat pesanan
+Route::resource('user-riwayat', RiwayatPesananUserController::class);
+
+
+// Ulasan Website
+Route::resource('ulasan', UlasanWebsiteController::class);
+
 // ADMIN
 Route::middleware(['auth', 'only_admin'])->group(
     function () {
@@ -104,6 +118,7 @@ Route::middleware(['auth', 'only_admin'])->group(
         // Route::resource('keranjang', KeranjangController::class);
 
         // Riwayat Pesanan Route
+        Route::get('riwayatpesanan/search', [RiwayatPesananController::class, 'index'])->name('riwayatpesanan.search');
         Route::get('riwayatpesanan/detail-pesanan', [RiwayatPesananController::class, 'detailPesanan'])->name('riwayatpesanan.detailPesanan');
         Route::resource('riwayatpesanan', RiwayatPesananController::class);
         // Menu Route
@@ -130,15 +145,15 @@ Route::middleware(['auth', 'only_admin'])->group(
         Route::get('user/data/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
         Route::get('user/data/terhapus/{id}', [UserController::class, 'forceDelete'])->name('user.forceDelete');
 
-        // Jadwal Pengiriman
+        // JADWAL PENGIRIMAN ROUTE
         Route::resource('jadwal', JadwalPengirimanController::class);
 
         // KATEGORI ROUTE
         Route::resource('kategori', KategoriController::class);
-        // Ulasan Website
-        Route::resource('ulasan', UlasanWebsiteController::class);
     }
 );
+
+
 
 // TENANT
 Route::middleware(['auth', 'only_tenant'])->group(function () {

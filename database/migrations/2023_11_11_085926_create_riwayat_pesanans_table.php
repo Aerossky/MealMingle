@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('total_harga');
             // $table->string('payment_type');
-            $table->string('transaction_status');
+            $table->string('transaction_status')->default('menunggu_konfirmasi');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('order_id')->unique()->nullable();
+            $table->string('bukti_pembayaran')->nullable();
             $table->timestamps();
         });
     }

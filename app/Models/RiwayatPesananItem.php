@@ -12,16 +12,20 @@ class RiwayatPesananItem extends Model
     protected $table = 'riwayat_pesanan_items';
 
     protected $fillable = [
-      'jumlah',
-      'riwayat_pesanan_id',
-      'menu_id',
+        'jumlah',
+        'note_item',
+        'riwayat_pesanan_id',
+        'menu_id',
+        'waktu_pengiriman',
     ];
 
-    public function riwayat_pesanan(){
+    public function riwayat_pesanan()
+    {
         return $this->belongsTo(RiwayatPesanan::class);
     }
 
-    public function menu(){
+    public function menu()
+    {
         return $this->belongsTo(Menu::class);
     }
 }

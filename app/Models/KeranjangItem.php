@@ -12,17 +12,20 @@ class KeranjangItem extends Model
     protected $table = 'keranjang_items';
 
     protected $fillable = [
-      'jumlah',
-      'note_item',
-      'keranjang_id',
-      'menu_id',
+        'jumlah',
+        'note_item',
+        'keranjang_id',
+        'menu_id',
+        'waktu_pengiriman',
     ];
 
-    public function keranjang(){
+    public function keranjang()
+    {
         return $this->belongsTo(Keranjang::class);
     }
 
-    public function menu(){
+    public function menu()
+    {
         return $this->belongsTo(Menu::class);
     }
 }

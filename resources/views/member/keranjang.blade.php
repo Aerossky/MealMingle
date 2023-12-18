@@ -55,14 +55,9 @@
                                         <div class="mt-4 sm:mt-0 sm:pr-9">
                                             <select id="quantity-0" name="quantity-0"
                                                 class="max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
+                                                <!-- Menampilkan jumlah dari variabel $keranjang_item->jumlah -->
+                                                <option value="{{ $keranjang_item->jumlah }}">{{ $keranjang_item->jumlah }}
+                                                </option>
                                             </select>
 
                                             <div class="absolute top-0 right-0">
@@ -156,7 +151,7 @@
 
                 <div class="mt-6">
                     <div class="">
-                        <form action="{{ route('keranjang.checkout') }}" method="POST" {{-- class="mt-12 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16" --}}>
+                        <form action="{{ route('keranjang.checkout', ['id' => Auth::id()]) }}" method="GET">
                             @csrf
                             <input type="hidden" name="total_harga" value="{{ $keranjangs->total_harga }}">
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
@@ -165,6 +160,7 @@
                                 Checkout
                             </button>
                         </form>
+
                     </div>
                     <div class="mt-8">
                         <a href="menus/showmenu"

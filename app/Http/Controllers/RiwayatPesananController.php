@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\RiwayatPesanan;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RiwayatPesananController extends Controller
@@ -12,11 +13,19 @@ class RiwayatPesananController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $riwayat_pesanans = RiwayatPesanan::with('user')->select('id', 'total_harga', 'transaction_status', 'user_id', 'order_id')
-            ->orderBy('id', 'asc')
-            ->paginate(10); // Paginate before getting the results
+        $query = $request->get('search');
+
+        // Query pencarian ke dalam data RiwayatPesanan
+        $riwayat_pesanans = RiwayatPesanan::join('users', 'riwayat_pesanans.user_id', '=', 'users.id')
+            ->select('riwayat_pesanans.*')
+            ->where('users.name', 'like', '%' . $query . '%')
+            ->orWhere('riwayat_pesanans.total_harga', 'like', '%' . $query . '%')
+            ->orWhere('riwayat_pesanans.transaction_status', 'like', '%' . $query . '%')
+            ->orWhere('riwayat_pesanans.order_id', 'like', '%' . $query . '%')
+            ->orderBy('riwayat_pesanans.id', 'asc')
+            ->paginate(10);
 
         return view('admin.riwayatpesanan.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
     }
@@ -113,17 +122,16 @@ class RiwayatPesananController extends Controller
         $riwayat_pesanan = RiwayatPesanan::findOrFail($id);
         $riwayat_pesanan->delete();
 
-        return redirect()->route('user.index')->with('status', 'Riwayat pesanan berhasil dihapus!');
+        // Hapus foto jika ada
+        if ($riwayat_pesanan->bukti_pembayaran) {
+            $fotoPath = 'bukti/' . $riwayat_pesanan->bukti_pembayaran;
+
+            if (Storage::disk('public')->exists($fotoPath)) {
+                Storage::disk('public')->delete($fotoPath);
+            }
+        }
+
+        return redirect()->route('riwayatpesanan.index')->with('status', 'Riwayat pesanan berhasil dihapus!');
     }
 
-
-    // display for member view
-    public function indexUser()
-    {
-        $riwayat_pesanans = RiwayatPesanan::select('id', 'total_harga', 'transaction_status', 'user_id')
-            ->orderBy('id', 'asc')
-            ->paginate(1); // Paginate before getting the results
-
-        return view('member.riwayatpesanan', ['riwayat_pesanans' => $riwayat_pesanans]);
-    }
 }

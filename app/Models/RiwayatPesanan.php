@@ -16,7 +16,8 @@ class RiwayatPesanan extends Model
         'payment_type',
         'transaction_status',
         'user_id',
-        'order_id'
+        'order_id',
+        'bukti_pembayaran'
     ];
 
     public function user()

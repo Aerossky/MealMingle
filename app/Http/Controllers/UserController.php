@@ -96,7 +96,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         // Validasi hanya jika terdapat perubahan email
-        if ($request->email !== $user->email) {
+        if ($request->phone_number !== $user->phone_number) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'phone_number' => 'required|numeric|unique:users,phone_number,' . $id,

@@ -4,65 +4,55 @@
 @section('content')
     <!-- This example requires Tailwind CSS v2.0+ -->
     <main class="px-4 pt-16 pb-24 sm:px-6 sm:pt-24 lg:px-8 lg:py-32">
+        {{-- button kembali --}}
+        <div class="max-w-3xl mx-auto mb-3">
+            <div class="max-w-xl">
+                <a href="{{ url()->previous() }}">
+                    <button type="button"
+                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-kuningMM hover:bg-kuningMM focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-kuningMM">
+                        <!-- Heroicon name: solid/chevron-left -->
+                        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M10.707 3.293a1 1 0 010 1.414L7.414 9H17a1 1 0 110 2H7.414l3.293 3.293a1 1 0 11-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Kembali
+                    </button>
+                </a>
+            </div>
+        </div>
+
         <div class="max-w-3xl mx-auto">
             <div class="max-w-xl">
                 <h1 class="text-sm font-semibold uppercase tracking-wide text-green-500">Payment Successful!</h1>
                 <p class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Detail Riwayat Pesanan</p>
-                <p class="mt-4 text-base text-gray-500">Pesanan Anda #123456 telah dikirim.</p>
 
                 <dl class="mt-5 text-sm font-medium">
                     <dt class="text-gray-900">Order Number</dt>
-                    <dd class="text-kuningMM mt-2">#123456</dd>
+                    <dd class="text-kuningMM mt-2">#{{ $riwayatPesanan[0]->order_id }}</dd>
                 </dl>
             </div>
-
             <section aria-labelledby="order-heading" class="mt-10 border-t border-gray-200">
                 <h2 id="order-heading" class="sr-only">Pesanan Anda</h2>
 
-                <div class="py-10 border-b border-gray-200 flex space-x-6">
-                    <img src="{{ asset('img/logo.png') }}" alt=""
-                        class="flex-none w-20 h-20 object-center object-cover bg-gray-200 rounded-lg md:w-40 md:h-40">
-                    <div class="flex-auto flex flex-col">
-                        <div>
-                            <h4 class="font-medium text-gray-900">MealMingle</h4>
-                            <p class="mt-2 text-sm text-gray-600">nyamnyamnyam enak nyamnyamnyam enak nyamnyamnyam enak</p>
-                        </div>
-                        <div class="mt-6 flex-1 flex items-end">
-                            <dl class="flex text-sm divide-x divide-gray-200 space-x-4 sm:space-x-6">
-                                <div class="flex">
-                                    <dt class="font-medium text-gray-900">Jumlah</dt>
-                                    <dd class="ml-2 text-gray-700">3</dd>
+                @foreach ($riwayatPesanan as $data)
+                    @foreach ($data->riwayat_pesanan_item as $item)
+                        <div class="py-10 border-b border-gray-200 flex space-x-6">
+                            <img src="{{ asset('img/logo.png') }}" alt=""
+                                class="flex-none w-20 h-20 object-center object-cover bg-gray-200 rounded-lg md:w-40 md:h-40">
+                            <div class="flex-auto flex flex-col">
+                                <div>
+                                    <!-- Mengakses properti menu pada setiap riwayat_pesanan_item -->
+                                    <h4 class="font-medium text-gray-900">{{ $item->menu->nama_makanan }}</h4>
+                                    <p class="mt-2 text-sm text-gray-600">{{ $item->menu->deskripsi }}a</p>
                                 </div>
-                                <div class="pl-4 flex sm:pl-6">
-                                    <dt class="font-medium text-gray-900">Harga</dt>
-                                    <dd class="ml-2 text-gray-700">Rp10.000,00</dd>
-                                </div>
-                            </dl>
+                                <!-- ... -->
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="py-10 border-b border-gray-200 flex space-x-6">
-                    <img src="{{ asset('img/logo.png') }}" alt=""
-                        class="flex-none w-20 h-20 object-center object-cover bg-gray-200 rounded-lg md:w-40 md:h-40">
-                    <div class="flex-auto flex flex-col">
-                        <div>
-                            <h4 class="font-medium text-gray-900">MealMingle</h4>
-                            <p class="mt-2 text-sm text-gray-600">nyamnyamnyam enak nyamnyamnyam enak nyamnyamnyam enak</p>
-                        </div>
-                        <div class="mt-6 flex-1 flex items-end">
-                            <dl class="flex text-sm divide-x divide-gray-200 space-x-4 sm:space-x-6">
-                                <div class="flex">
-                                    <dt class="font-medium text-gray-900">Jumlah</dt>
-                                    <dd class="ml-2 text-gray-700">3</dd>
-                                </div>
-                                <div class="pl-4 flex sm:pl-6">
-                                    <dt class="font-medium text-gray-900">Harga</dt>
-                                    <dd class="ml-2 text-gray-700">Rp10.000,00</dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endforeach
+
 
                 <div class="sm:ml-40 sm:pl-6">
                     <dl class="grid grid-cols-2 gap-x-6 text-sm py-10">

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('note_item')->nullable();
             $table->foreignId('keranjang_id')->constrained('keranjangs')->onDelete('cascade');
             $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade');
+            $table->string('waktu_pengiriman');
             $table->timestamps();
         });
     }

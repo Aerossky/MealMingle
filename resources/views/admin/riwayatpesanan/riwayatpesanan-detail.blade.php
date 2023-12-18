@@ -29,6 +29,9 @@
                             Jumlah
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Note
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Tenant
                         </th>
                     </tr>
@@ -57,6 +60,14 @@
                                     </td>
 
                                     <td class="px-6 py-4">
+                                        @if ($item->note_item == null)
+                                            -
+                                        @endif
+                                        {{ $item->note_item }}
+                                    </td>
+
+
+                                    <td class="px-6 py-4">
                                         <a href="https://api.whatsapp.com/send?phone={{ $item->menu->tenant->user->phone_number }}"
                                             target="_blank">
                                             {{ $item->menu->tenant->nama_tenant }} </a>
@@ -68,7 +79,6 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 
 

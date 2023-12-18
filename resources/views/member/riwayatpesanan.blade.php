@@ -2,13 +2,10 @@
 @section('title', 'Riwayat Pesanan')
 
 @section('content')
-
     <div class="bg-white">
         <div class="max-w-7xl mx-auto py-8 px-4 md:px-6 lg:pb-12 lg:px-8">
             <div class="max-w-xl">
                 <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 md:text-3xl">Riwayat Pesanan</h1>
-                <p class="mt-2 text-sm md:text-start text-gray-500">username
-                </p>
             </div>
             <div class="mt-4">
                 <form class="w-full" method="GET" action="">
@@ -32,65 +29,87 @@
             </div>
             <div class="mt-8">
                 <div class="space-y-8">
-                    <div>
-                        <div class="bg-gray-50 rounded-lg py-6 px-4 md:px-6 md:flex md:items-center md:justify-between divide-gray-200">
-                            <div class="flex justify-between pt-6 font-medium text-gray-900 md:block md:pt-0">
-                                <dt class="text-sm text-center">Waktu Pesanan</dt>
-                                <dd class="text-sm text-center text-gray-500">1 Desember 2023</dd>
-                            </div>
-                            <div class="flex justify-between pt-6 font-medium text-gray-900 md:block md:pt-0">
-                                <dt class="text-sm text-center">Order Number</dt>
-                                <dd class="text-sm text-center text-gray-500">#123456</dd>
-                            </div>
-                            <div class="flex justify-between pt-6 font-medium text-gray-900 md:block md:pt-0">
-                                <dt class="text-sm text-center">Total Harga</dt>
-                                <dd class="text-sm text-center text-gray-500">Rp230.000,00</dd>
+                    @foreach ($riwayatPesanan as $data)
+                        <div>
+                            <div
+                                class="bg-gray-50 rounded-lg py-6 px-4 md:px-6 md:flex md:items-center md:justify-between divide-gray-200">
+                                <div class="flex justify-between pt-6 font-medium text-gray-900 md:block md:pt-0">
+                                    <dt class="text-sm text-center">Waktu Pesanan</dt>
+                                    <dd class="text-sm text-center text-gray-500">{{ $data->created_at }}</dd>
+                                </div>
+                                <div class="flex justify-between pt-6 font-medium text-gray-900 md:block md:pt-0">
+                                    <dt class="text-sm text-center">Order Number</dt>
+                                    <dd class="text-sm text-center text-gray-500">#{{ $data->order_id }}</dd>
+                                </div>
+                                <div class="flex justify-between pt-6 font-medium text-gray-900 md:block md:pt-0">
+                                    <dt class="text-sm text-center">Total Harga</dt>
+                                    <dd class="text-sm text-center text-gray-500">
+                                        {{ 'Rp ' . number_format($data->total_harga, 0, ',', '.') }}
+                                    </dd>
+                                </div>
+
+                                <div class="flex justify-between pt-6 md:pt-0 space-y-0 font-medium text-gray-900 md:block">
+                                    <dt class="text-sm text-center">Status Transaksi</dt>
+                                    @if ($data->transaction_status == 'menunggu_konfirmasi')
+                                        <dd class="text-sm text-center text-yellow-600 font-semibold">Menunggu Konfirmasi
+                                        </dd>
+                                    @elseif ($data->transaction_status == 'konfirmasi')
+                                        <dd class="text-sm text-center text-blue-600 font-semibold">Konfirmasi</dd>
+                                    @elseif ($data->transaction_status == 'diproses')
+                                        <dd class="text-sm text-center text-blue-600 font-semibold">Diproses</dd>
+                                    @elseif ($data->transaction_status == 'dibatalkan')
+                                        <dd class="text-sm text-center text-red-600 font-semibold">Dibatalkan</dd>
+                                    @elseif ($data->transaction_status == 'selesai')
+                                        <dd class="text-sm text-center text-green-600 font-semibold">Selesai</dd>
+                                    @endif
+                                </div>
+                                <div class="flex justify-between pt-6 md:pt-0 space-y-0 font-medium text-gray-900 md:block">
+                                    <dt class="text-sm text-center">Jenis Pembayaran</dt>
+                                    <dd class="text-sm text-center text-gray-500">Transfer</dd>
+                                </div>
+                                <div class="flex justify-between pt-6 md:pt-0 space-y-0 font-medium text-gray-900 md:block">
+                                    <dt class="text-sm text-center font-semibold">Detail Pesanan</dt>
+                                    <dd class="text-sm text-center text-gray-500">
+                                        <!-- Menggunakan elemen anchor <a> untuk membuat tautan -->
+                                        <a href="{{ route('user-riwayat.show', $data->id) }}" class="underline">Lihat Detail
+                                            Pesanan</a>
+                                    </dd>
+                                </div>
                             </div>
 
-                            <div class="flex justify-between pt-6 md:pt-0 space-y-0 font-medium text-gray-900 md:block">
-                                <dt class="text-sm text-center">Status Transaksi</dt>
-                                <dd class="text-sm text-center text-green-500">Done</dd>
-                            </div>
-                            <div class="flex justify-between pt-6 md:pt-0 space-y-0 font-medium text-gray-900 md:block">
-                                <dt class="text-sm text-center">Jenis Pembayaran</dt>
-                                <dd class="text-sm text-center text-gray-500">Transfer</dd>
-                            </div>
-                            <div class="flex justify-between pt-6 md:pt-0 space-y-0 font-medium text-gray-900 md:block">
-                                <dt class="text-sm text-center">Waktu Pengiriman</dt>
-                                <dd class="text-sm text-center text-gray-500">1 Desember 2023</dd>
-                            </div>
+
+                            {{-- <div class="mt-3 overflow-x-auto">
+                                <table class="w-full text-gray-500">
+                                    <thead class="text-sm text-gray-500 text-center bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="md:w-1/4 lg:w-1/4 py-3 font-normal">Item</th>
+                                            <th scope="col" class="md:w-1/4 lg:w-1/4 py-3 font-normal">Jumlah</th>
+                                            <th scope="col" class="md:w-1/4 lg:w-1/4 py-3 font-normal">Waktu Pengiriman
+                                            </th>
+                                            <th scope="col" class="md:w-1/4 lg:w-1/4 py-3 font-normal">Harga</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-b border-gray-200 divide-y divide-gray-200 text-sm text-center">
+                                        @foreach ($data->riwayat_pesanan_item as $data)
+                                            <tr>
+                                                <td class="py-6 font-medium text-gray-900">{{ $data->menu->nama_makanan }}
+                                                </td>
+                                                <td class="py-6 text-gray-900 font-medium">{{ $data->jumlah }}
+                                                </td>
+                                                <td class="py-6 text-gray-900 font-medium">{{ $data->waktu_pengiriman }}
+                                                </td>
+                                                <td class="py-6 text-gray-900 font-medium">
+                                                    {{ 'Rp ' . number_format($data->menu->harga_produk, 0, ',', '.') }}</td>
+                                            </tr>
+                                        @endforeach
+
+
+                                    </tbody>
+                                </table>
+                            </div> --}}
                         </div>
-                        <div class="mt-3 overflow-x-auto">
-                            <table class="w-full text-gray-500">
-                                <thead class="text-sm text-gray-500 text-center bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="md:w-1/3 lg:w-1/3 py-3 font-normal">Item</th>
-                                        <th scope="col" class="md:w-1/3 lg:w-1/3 py-3 font-normal">Jumlah</th>
-                                        <th scope="col" class="md:w-1/3 lg:w-1/3 py-3 font-normal">Harga</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="border-b border-gray-200 divide-y divide-gray-200 text-sm text-center">
-                                    <tr>
-                                        <td class="py-6 font-medium text-gray-900">MealMingle</td>
-                                        <td class="py-6 text-gray-900 font-medium">3</td>
-                                        <td class="py-6 text-gray-900 font-medium">Rp10.000,00</td>
-                                    </tr>
-                                    <!--more item-->
-                                    <tr>
-                                        <td class="py-6 font-medium text-gray-900">MealMingle</td>
-                                        <td class="py-6 text-gray-900 font-medium">3</td>
-                                        <td class="py-6 text-gray-900 font-medium">Rp10.000,00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-6 font-medium text-gray-900">MealMingle</td>
-                                        <td class="py-6 text-gray-900 font-medium">3</td>
-                                        <td class="py-6 text-gray-900 font-medium">Rp10.000,00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div>
+                    @endforeach
+                    {{-- <div>
                         <div class="bg-gray-50 rounded-lg py-6 px-4 md:px-6 md:flex md:items-center md:justify-between">
                             <div class="flex justify-between pt-6 font-medium text-gray-900 md:block md:pt-0">
                                 <dt class="text-sm text-center">Waktu Pesanan</dt>
@@ -147,13 +166,13 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> --}}
                     <!--more order-->
 
                 </div>
             </div>
             <div class="mt-5">
-                {{ $riwayat_pesanans->links('pagination::simple-tailwind') }}
+                {{-- {{ $riwayat_pesanans->links('pagination::simple-tailwind') }} --}}
             </div>
         </div>
 
