@@ -97,25 +97,30 @@
 
                                         switch ($status) {
                                             case 'menunggu_konfirmasi':
-                                                $spanClass = 'bg-yellow-100 text-yellow-800';
+                                                $spanClass = 'bg-yellow-300 text-yellow-900';
                                                 $statusText = 'Menunggu Konfirmasi';
                                                 break;
                                             case 'konfirmasi':
-                                                $spanClass = 'bg-blue-100 text-blue-800';
+                                                $spanClass = 'bg-blue-300 text-blue-900';
                                                 $statusText = 'Konfirmasi';
                                                 break;
+                                            case 'diproses':
+                                                $spanClass = 'bg-blue-300 text-blue-900';
+                                                $statusText = 'Diproses';
+                                                break;
                                             case 'dibatalkan':
-                                                $spanClass = 'bg-red-100 text-red-800';
+                                                $spanClass = 'bg-red-300 text-red-900';
                                                 $statusText = 'Dibatalkan';
                                                 break;
                                             case 'selesai':
-                                                $spanClass = 'bg-green-100 text-green-800';
+                                                $spanClass = 'bg-green-300 text-green-900';
                                                 $statusText = 'Selesai';
                                                 break;
                                             default:
-                                                $spanClass = 'bg-gray-100 text-gray-800';
+                                                $spanClass = 'bg-gray-300 text-gray-900';
                                                 $statusText = 'Status Tidak Diketahui';
                                         }
+
                                     @endphp
 
                                     <span

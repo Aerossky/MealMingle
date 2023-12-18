@@ -29,6 +29,12 @@
             </div>
             <div class="mt-8">
                 <div class="space-y-8">
+                    @if ($riwayatPesanan->isEmpty())
+                        <div class="message"
+                            style="background-color: #f7f7f7; color: #333; padding: 10px; border-radius: 5px;">
+                            Belum Ada Riwayat Pesanan
+                        </div>
+                    @endif
                     @foreach ($riwayatPesanan as $data)
                         <div>
                             <div

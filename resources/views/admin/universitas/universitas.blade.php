@@ -30,6 +30,9 @@
                             Nama Universitas
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Alamat
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                         </th>
 
                     </tr>
@@ -50,6 +53,10 @@
 
                                 <td class="px-6 py-4">
                                     {{ $data->universitas_name }}
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    {{ $data->alamat }}
                                 </td>
                                 <td class="px-6 py-4 flex gap-2">
                                     <a href="{{ route('universitas.edit', $data->id) }}"

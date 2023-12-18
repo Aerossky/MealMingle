@@ -16,19 +16,16 @@ class UniversitasSeeder extends Seeder
         $data = [
             [
                 'universitas_name' => "Universitas Ciputra Surabaya",
+                'alamat' => "Universitas Ciputra Surabaya
+                CitraLand CBD Boulevard, Made, Kec. Sambikerep, Surabaya, Jawa Timur 60219",
             ],
-            [
-                'universitas_name' => "Universitas Surabaya",
-            ],
-            [
-                'universitas_name' => "Universitas Kristen Petra",
-            ]
         ];
 
         //insert data
         foreach ($data as $item) {
             Universitas::create([
                 'universitas_name' => $item['universitas_name'],
+                'alamat' => $item['alamat'],
             ]);
         }
     }

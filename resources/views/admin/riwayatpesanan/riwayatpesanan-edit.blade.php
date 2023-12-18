@@ -35,10 +35,14 @@
                         <option value="konfirmasi" <?php if ($status_terpilih === 'konfirmasi') {
                             echo 'selected';
                         } ?>>Konfirmasi</option>
+                        <option value="diproses" <?php if ($status_terpilih === 'diproses') {
+                            echo 'selected';
+                        } ?>>Diproses</option>
                         <option value="menunggu_konfirmasi" <?php if ($status_terpilih === 'menunggu_konfirmasi') {
                             echo 'selected';
                         } ?>>Menunggu Konfirmasi</option>
                     </select>
+
                 </div>
 
 

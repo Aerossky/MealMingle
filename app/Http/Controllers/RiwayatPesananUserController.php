@@ -15,7 +15,7 @@ class RiwayatPesananUserController extends Controller
     {
         //
         $userId = auth()->user()->id;
-        $riwayatPesanan = RiwayatPesanan::where('user_id', $userId)->get();
+        $riwayatPesanan = RiwayatPesanan::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         return view('member.riwayatpesanan', compact('riwayatPesanan'));
     }
 

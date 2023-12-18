@@ -9,12 +9,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\UniversitasController;
 use App\Http\Controllers\KeranjangItemController;
 use App\Http\Controllers\UlasanWebsiteController;
-use App\Http\Controllers\RiwayatPesananController;
 
+use App\Http\Controllers\RiwayatPesananController;
 use App\Http\Controllers\JadwalPengirimanController;
 use App\Http\Controllers\RiwayatPesananUserController;
 
