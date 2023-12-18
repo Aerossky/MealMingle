@@ -20,12 +20,7 @@ class TenantSeeder extends Seeder
                 'foto_tenant' => "PAPA JOE",
                 'user_id' => 3,
             ],
-            [
-                'nama_tenant' => "PAPA JOV",
-                'deskripsi' => "restorant papa jov",
-                'foto_tenant' => "PAPA JOV",
-                'user_id' => 4,
-            ],
+
         ];
 
         //insert data

@@ -16,12 +16,12 @@ class KeranjangSeeder extends Seeder
         $data = [
             [
                 'total_harga' => 0,
-                'note_pesanan' => 'test untuk admin',
+                'note_pesanan' => '',
                 'user_id' => 1,
             ],
             [
                 'total_harga' => 0,
-                'note_pesanan' => 'test untuk user',
+                'note_pesanan' => '',
                 'user_id' => 2,
             ],
             [
