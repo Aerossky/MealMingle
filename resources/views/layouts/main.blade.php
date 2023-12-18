@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') | MealMingle</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}" />
     {{-- tailwind --}}
     @vite(['resources/css/app.css', 'resources/css/header.css', 'resources/css/tenant.css', 'resources/js/app.js'])
 
