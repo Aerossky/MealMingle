@@ -27,17 +27,18 @@
             <div class="max-w-xl">
                 <h1 class="text-sm font-semibold uppercase tracking-wide text-green-500">
                     @if ($riwayatPesanan[0]->transaction_status == 'menunggu_konfirmasi')
-                        <dd class="text-sm  text-yellow-600 font-semibold">Menunggu Konfirmasi
-                        </dd>
+                        <dd class="text-sm text-yellow-600 font-semibold">Menunggu Konfirmasi</dd>
                     @elseif ($riwayatPesanan[0]->transaction_status == 'konfirmasi')
-                        <dd class="text-sm  text-blue-600 font-semibold">Konfirmasi</dd>
+                        <dd class="text-sm text-blue-600 font-semibold">Konfirmasi</dd>
                     @elseif ($riwayatPesanan[0]->transaction_status == 'diproses')
-                        <dd class="text-sm  text-blue-600 font-semibold">Diproses</dd>
+                        <dd class="text-sm text-blue-600 font-semibold">Diproses</dd>
                     @elseif ($riwayatPesanan[0]->transaction_status == 'dibatalkan')
-                        <dd class="text-sm  text-red-600 font-semibold">Dibatalkan</dd>
+                        <dd class="text-sm text-red-600 font-semibold">Dibatalkan</dd>
                     @elseif ($riwayatPesanan[0]->transaction_status == 'selesai')
-                        <dd class="text-sm  text-green-600 font-semibold">Selesai</dd>
+                        <dd class="text-sm text-green-600 font-semibold">Selesai</dd>
                     @endif
+
+
                 </h1>
 
                 <p class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Detail Riwayat Pesanan</p>

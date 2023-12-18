@@ -34,6 +34,9 @@
                         <th scope="col" class="px-6 py-3">
                             Tenant
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Waktu Pengiriman
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +67,10 @@
                                             -
                                         @endif
                                         {{ $item->note_item }}
+                                    </td>
+
+                                    <td>
+                                        {{ $item->waktu_pengiriman }}
                                     </td>
 
 
