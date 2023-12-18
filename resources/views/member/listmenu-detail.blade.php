@@ -32,11 +32,10 @@
 
 
                 {{-- list dummy produk --}}
-                <div class="hidden xl:block mt-2">
+                {{-- <div class="hidden xl:block mt-2">
                     <h1 class="font-medium text-xl">Makanan Serupa</h1>
 
                     <div class="flex flex-wrap mt-2">
-                        {{-- Item Makanan 1 --}}
 
                         <div class="relative mr-4 group">
                             <a href="">
@@ -44,7 +43,7 @@
                                     src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Makanan">
                                 <p class="mt-2">{{ $menu->nama_makanan }}</p>
 
-                                {{-- Harga (tampil saat dihover) --}}
+
                                 <div
                                     class="opacity-0 group-hover:opacity-60 bg-white absolute top-0 left-0 bottom-5 right-0 p-2 rounded-b z-10 duration-700 flex justify-center items-center">
                                     <p class="text-black text-center my-auto text-lg font-semibold">
@@ -53,7 +52,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
 
@@ -75,8 +74,9 @@
                             class="w-16 p-2 border border-gray-300 rounded">
                     </div>
 
+
                     {{-- Hari --}}
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <label for="hari" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Pilih Hari
                             Anda Ingin Dikirim:
                         </label>
@@ -87,6 +87,21 @@
                             @foreach ($menu->jadwal_pengiriman as $jadwal)
                                 <option value="{{ $jadwal->hari }},{{ $jadwal->waktu }}">{{ $jadwal->hari }},
                                     {{ $jadwal->waktu }}</option>
+                            @endforeach
+                        </select>
+                    </div> --}}
+
+                    <div class="mb-4">
+                        <label for="hari" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                            Pilih Hari dan Waktu Anda Ingin Dikirim:
+                        </label>
+                        <select id="hari" name="hari"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required>
+                            <option value="" selected disabled>Pilih Hari dan Waktu</option>
+                            @foreach ($hari_dan_waktu_yang_ditampilkan as $jadwal)
+                                <option value="{{ $jadwal['hari'] }},{{ $jadwal['waktu'] }}">{{ $jadwal['hari'] }},
+                                    {{ $jadwal['waktu'] }}</option>
                             @endforeach
                         </select>
                     </div>

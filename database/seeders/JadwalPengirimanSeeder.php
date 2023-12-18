@@ -27,6 +27,14 @@ class JadwalPengirimanSeeder extends Seeder
                 'hari' => "Rabu",
                 'waktu' => "11:00",
             ],
+            [
+                'hari' => "Kamis",
+                'waktu' => "11:00",
+            ],
+            [
+                'hari' => "Jumat",
+                'waktu' => "11:00",
+            ],
 
         ];
 

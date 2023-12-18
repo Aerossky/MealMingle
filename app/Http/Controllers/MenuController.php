@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JadwalPengiriman;
+use Carbon\Carbon;
 use App\Models\Menu;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use App\Models\JadwalPengiriman;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -93,9 +94,55 @@ class MenuController extends Controller
 
     public function showDetail(string $id)
     {
+
+        // $menu = Menu::with('jadwal_pengiriman')->findOrFail($id);
+        // return view('member.listmenu-detail', ['menu' => $menu]);
         $menu = Menu::with('jadwal_pengiriman')->findOrFail($id);
-        $filterdata = Kategori::all();
-        return view('member.listmenu-detail', ['menu' => $menu, 'allfilter' => $filterdata]);
+
+        $hari_ini = Carbon::now()->isoFormat('dddd'); // Mendapatkan hari ini dalam bahasa Inggris
+
+        $nama_hari = [
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu',
+            'Sunday' => 'Minggu'
+        ];
+
+        $hari_ini_bahasa_indonesia = $nama_hari[$hari_ini];
+
+        // Menentukan urutan hari-hari yang ingin ditampilkan
+        $urutan_hari = [
+            'Senin', 'Rabu', 'Jumat'
+        ];
+
+        // Menemukan indeks hari ini dalam urutan
+        $index_hari_ini = array_search($hari_ini_bahasa_indonesia, $urutan_hari);
+
+        // Mengambil hari-hari dan waktu yang ingin ditampilkan mulai dari hari setelah hari ini hingga Jumat
+        $hari_dan_waktu_yang_ditampilkan = [];
+        for ($i = 0; $i < 3; $i++) {
+            $index = ($index_hari_ini + $i) % count($urutan_hari);
+            $hari_yang_ditampilkan = $urutan_hari[$index];
+
+            $jadwal_yang_cocok = $menu->jadwal_pengiriman->first(function ($jadwal) use ($hari_yang_ditampilkan) {
+                return $jadwal->hari == $hari_yang_ditampilkan;
+            });
+
+            if ($jadwal_yang_cocok) {
+                $hari_dan_waktu_yang_ditampilkan[] = [
+                    'hari' => $hari_yang_ditampilkan,
+                    'waktu' => $jadwal_yang_cocok->waktu
+                ];
+            }
+        }
+
+        return view('member.listmenu-detail', [
+            'menu' => $menu,
+            'hari_dan_waktu_yang_ditampilkan' => $hari_dan_waktu_yang_ditampilkan
+        ]);
     }
 
     public function showFiltered(Request $request)

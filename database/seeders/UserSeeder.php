@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
                 'phone_number' => "08112",
                 'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
-                'universitas_id' => 2,
+                'universitas_id' => 1,
                 'role_id' => 3,
             ],
             [
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
                 'phone_number' => "08113",
                 'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
-                'universitas_id' => 3,
+                'universitas_id' => 1,
                 'role_id' => 2,
             ],
             [
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
                 'phone_number' => "08114",
                 'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
-                'universitas_id' => 3,
+                'universitas_id' => 1,
                 'role_id' => 2,
             ],
             [
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
                 'phone_number' => "08115",
                 'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
-                'universitas_id' => 3,
+                'universitas_id' => 1,
                 'role_id' => 2,
             ],
             [
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
                 'phone_number' => "08116",
                 'password' => Hash::make('anjay123'),
                 'status' => 'aktif',
-                'universitas_id' => 3,
+                'universitas_id' => 1,
                 'role_id' => 2,
             ],
             [
