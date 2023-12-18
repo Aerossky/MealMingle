@@ -25,17 +25,6 @@ class UlasanTenantSeeder extends Seeder
                 'tenant_id' => 1,
                 'user_id' => 7,
             ],
-            [
-                'ulasan' => "clean and delicioso",
-                'tenant_id' => 2,
-                'user_id' => 2,
-            ],
-            [
-                'ulasan' => "big portion",
-                'tenant_id' => 2,
-                'user_id' => 7,
-            ],
-
         ];
 
         // insert data ke table
