@@ -130,9 +130,9 @@
         </section>
 
         {{-- about section --}}
-        <section class="bg-merahMM mt-[-380px] md:mt-[-105px] text-center aboutbg" id="about">
+        <section class="bg-merahMM mt-[-350px] md:mt-[-105px] text-center aboutbg" id="about">
             <div class="py-12 mt-[190px] md:mt-10 about">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-[130px] md:mt-10">
                     <div class="lg:text-center">
                         <h2 class="text-base text-kuningMM font-semibold tracking-wide uppercase">Apa Sih MealMingle
                         </h2>
