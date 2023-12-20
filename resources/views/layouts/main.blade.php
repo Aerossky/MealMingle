@@ -8,8 +8,10 @@
     <title>@yield('title') | MealMingle</title>
     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}" />
     {{-- tailwind --}}
-    @vite(['resources/css/app.css', 'resources/css/header.css', 'resources/css/tenant.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tenant.css') }}">
     {{-- scroll reveal --}}
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
@@ -26,7 +28,7 @@
     </div>
 
     {{-- Footer --}}
-    {{-- @include('layouts.footer') --}}
+    @include('layouts.footer')
 
 </body>
 
