@@ -155,16 +155,20 @@
                             @csrf
                             <input type="hidden" name="total_harga" value="{{ $keranjangs->total_harga }}">
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                            <button type="submit"
-                                class="w-full bg-merahMM border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
-                                Checkout
-                            </button>
+                            {{-- kondisi disable button checkout --}}
+                            @if ($keranjang_items->isEmpty())
+                            @else
+                                <button type="submit"
+                                    class="w-full bg-merahMM border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 duration-500">
+                                    Checkout
+                                </button>
+                            @endif
                         </form>
 
                     </div>
                     <div class="mt-8">
                         <a href="menus/showmenu"
-                            class="text-center block w-full border border-merahMM rounded-md shadow-sm py-3 px-4 text-base font-medium text-merahMM hover:bg-red-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
+                            class="text-center block w-full border border-merahMM rounded-md shadow-sm py-3 px-4 text-base font-medium text-merahMM hover:bg-red-200 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 duration-500">
                             Kembali
                         </a>
                     </div>

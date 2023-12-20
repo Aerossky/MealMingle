@@ -37,28 +37,28 @@ Route::get('/detailriwayatpesanan', function () {
     return view('member.detailriwayatpesanan');
 });
 
-Route::get('/tenanttes', function() {
+Route::get('/tenanttes', function () {
     return view('tenant.dashboard');
 });
-Route::get('/menusaya', function(){
+Route::get('/menusaya', function () {
     return view('tenant.menusaya');
 });
-Route::get('/tambahmenu', function(){
+Route::get('/tambahmenu', function () {
     return view('tenant.tambahmenu');
 });
-Route::get('/editmenu', function(){
+Route::get('/editmenu', function () {
     return view('tenant.editmenu');
 });
-Route::get('/rekening', function(){
+Route::get('/rekening', function () {
     return view('tenant.rekening');
 });
-Route::get('/saldo', function(){
+Route::get('/saldo', function () {
     return view('tenant.saldo');
 });
-Route::get('/profiltenant', function(){
+Route::get('/profiltenant', function () {
     return view('tenant.profiltenant');
 });
-Route::get('/tenantpengiriman', function(){
+Route::get('/tenantpengiriman', function () {
     return view('tenant.pengiriman');
 });
 // AUTH
@@ -160,30 +160,4 @@ Route::middleware(['auth', 'only_admin'])->group(
 Route::middleware(['auth', 'only_tenant'])->group(function () {
     // Rute yang hanya dapat diakses oleh tenant
     Route::get('/tenant-dashboard', [DashboardController::class, 'tenantDashboard'])->name('tenant.dashboard');
-});
-
-// ROUTER HANYA UNTUK TES HALAMAN
-// ADMIN
-// Route::get('/admin-dashboard', function () {
-//     return view('admin.dashboard');
-// });
-
-// Route::get('/admin-menu-menu-add', function () {
-//     return view('admin.menu.menu-add');
-// });
-
-// Route::get('/tenant-detail', function () {
-//     return view('member.tenant.detail');
-// });
-
-// Route::get('/tenant', function () {
-//     return view('member.tenant.tenant');
-// });
-// Route::get('/menu', function () {
-//     return view('member.listmenu');
-// });
-
-
-Route::get('/tesbayar', function () {
-    return view('member.pembayaran');
 });
