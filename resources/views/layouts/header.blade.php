@@ -1,3 +1,4 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 <nav class="bg-kuningMM fixed top-0 z-20 w-full  dark:bg-gray-900 start-0 dark:border-gray-600 ">
 
     {{-- OPEN CART --}}
@@ -54,8 +55,10 @@
                 {{-- sudah login --}}
                 <div id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
                     class="hidden md:block cursor-pointer">
-                    <p><span class="font-bold">Halo, {{ Auth::user()->name }}</span></p>
+                    <p><span class="font-bold">Halo, {{ Auth::user()->name }}</span> <i
+                            class="fas fa-chevron-down ml-1"></i></p>
                 </div>
+
                 <!-- Dropdown menu -->
                 <div id="dropdownDivider"
                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
