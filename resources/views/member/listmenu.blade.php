@@ -50,7 +50,7 @@
 
 
             {{-- jarak kiri kanan --}}
-            <div class="px-4 mb-20 md:px-48">
+            <div class="px-4 mb-20 xl:px-48">
                 <div class="mt-3">
                     <div class="flex gap-2">
                         <div class="flex col-span-11 w-full">
@@ -107,7 +107,7 @@
                 </div>
 
                 {{-- Makanan Card --}}
-                <div class="bg-white font-Montserrat md:px-14">
+                <div class="bg-white font-Montserrat md:px-14 ">
                     <div class="sm:px-6 lg:max-w-7xl lg:px-8">
                         @if (count($allmenu) > 0)
                             <div class="md:flex md:items-center md:justify-between mt-5">
@@ -119,7 +119,6 @@
                         <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 md:gap-y-1 lg:gap-x-8">
                             {{-- Loop Tenant --}}
                             @foreach ($allmenu as $item)
-                                {{-- @for ($i = 1; $i <= 8; $i++) --}}
                                 <div class="group relative mb-5">
                                     <div
                                         class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
@@ -155,6 +154,13 @@
                         @endif
 
                     </div>
+
+                    {{-- paginate --}}
+                    <div class="flex justify-center">
+                        {{-- {{ $allmenu->links('pagination::tailwind') }} --}}
+                        {{-- {{ $allfilter->links('pagination::tailwind') }} --}}
+                    </div>
+
                 </div>
             </div>
 

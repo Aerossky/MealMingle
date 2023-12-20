@@ -85,7 +85,7 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Request $request)
     {
         $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'foto_produk', 'tenant_id')->get();
         $filterdata = Kategori::all();
