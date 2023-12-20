@@ -85,7 +85,7 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show()
     {
         $showMenu = Menu::select('id', 'nama_makanan', 'deskripsi', 'harga_produk', 'foto_produk', 'tenant_id')->get();
         $filterdata = Kategori::all();
@@ -99,7 +99,8 @@ class MenuController extends Controller
         // return view('member.listmenu-detail', ['menu' => $menu]);
         $menu = Menu::with('jadwal_pengiriman')->findOrFail($id);
 
-        $hari_ini = Carbon::now()->isoFormat('dddd'); // Mendapatkan hari ini dalam bahasa Inggris
+        // Mendapatkan hari ini dalam bahasa Inggris
+        $hari_ini = Carbon::now()->isoFormat('dddd');
 
         $nama_hari = [
             'Monday' => 'Senin',
@@ -113,35 +114,20 @@ class MenuController extends Controller
 
         $hari_ini_bahasa_indonesia = $nama_hari[$hari_ini];
 
-        // Menentukan urutan hari-hari yang ingin ditampilkan
-        $urutan_hari = [
-            'Senin', 'Rabu', 'Jumat'
-        ];
-
-        // Menemukan indeks hari ini dalam urutan
-        $index_hari_ini = array_search($hari_ini_bahasa_indonesia, $urutan_hari);
-
-        // Mengambil hari-hari dan waktu yang ingin ditampilkan mulai dari hari setelah hari ini hingga Jumat
-        $hari_dan_waktu_yang_ditampilkan = [];
-        for ($i = 0; $i < 3; $i++) {
-            $index = ($index_hari_ini + $i) % count($urutan_hari);
-            $hari_yang_ditampilkan = $urutan_hari[$index];
-
-            $jadwal_yang_cocok = $menu->jadwal_pengiriman->first(function ($jadwal) use ($hari_yang_ditampilkan) {
-                return $jadwal->hari == $hari_yang_ditampilkan;
-            });
-
-            if ($jadwal_yang_cocok) {
-                $hari_dan_waktu_yang_ditampilkan[] = [
-                    'hari' => $hari_yang_ditampilkan,
-                    'waktu' => $jadwal_yang_cocok->waktu
-                ];
-            }
-        }
+        // Query untuk mengambil jadwal pengiriman dari tabel jadwal_pengiriman
+        $jadwal_pengiriman = DB::table('jadwal_pengiriman')
+            ->where('hari', '>', $hari_ini_bahasa_indonesia) // Mengambil hari setelah hari ini
+            ->orWhere(function ($query) use ($hari_ini_bahasa_indonesia, $nama_hari) {
+                $query->where('hari', '<', $hari_ini_bahasa_indonesia)
+                    ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")');
+            })
+            ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")')
+            ->limit(7) // Ambil 7 hari ke depan, tidak termasuk hari saat ini
+            ->get();
 
         return view('member.listmenu-detail', [
             'menu' => $menu,
-            'hari_dan_waktu_yang_ditampilkan' => $hari_dan_waktu_yang_ditampilkan
+            'jadwal_pengiriman' => $jadwal_pengiriman
         ]);
     }
 

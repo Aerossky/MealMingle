@@ -99,9 +99,9 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required>
                             <option value="" selected disabled>Pilih Hari dan Waktu</option>
-                            @foreach ($hari_dan_waktu_yang_ditampilkan as $jadwal)
-                                <option value="{{ $jadwal['hari'] }},{{ $jadwal['waktu'] }}">{{ $jadwal['hari'] }},
-                                    {{ $jadwal['waktu'] }}</option>
+                            @foreach ($jadwal_pengiriman as $jadwal)
+                                <option value="{{ $jadwal->hari }},{{ $jadwal->waktu }}">{{ $jadwal->hari }},
+                                    {{ $jadwal->waktu }}</option>
                             @endforeach
                         </select>
                     </div>
