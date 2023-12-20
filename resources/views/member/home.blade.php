@@ -7,7 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home | MealMingle</title>
     {{-- tailwind --}}
-    @vite(['resources/css/app.css', 'resources/css/header.css', 'resources/js/app.js', 'resources/js/home.js'])
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tenant.css') }}">
 
     {{-- scroll reveal --}}
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
@@ -77,9 +80,9 @@
                             </p>
                         </div>
                         <div class=" flex justify-center md:justify-start ">
-                            <button type="button"
+                            <a href="{{ route('menu.show-Normal') }}"
                                 class="mt-[30px] text-white bg-merahMM hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 duration-700">Mulai
-                                Perjalanan</button>
+                                Perjalanan</a>
                         </div>
                     </div>
 
@@ -217,8 +220,6 @@
                         </div>
                     </figcaption>
                 </figure>
-
-
             </div>
         </section>
 
@@ -278,8 +279,6 @@
                                             pesanan melalui email atau melalui platform kami.</p>
                                     </dd>
                                 </div>
-
-
                                 <div x-data="{ open: false }">
                                     <dt class="text-lg faqtitle">
                                         <button type="button" @click="open = !open" aria-controls="faq-1"
@@ -401,11 +400,6 @@
                                 </div>
 
                             </dl>
-
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -415,6 +409,9 @@
 
     {{-- footer --}}
     @include('layouts.footer')
+
+    {{-- js --}}
+    <script src="{{ asset('js/home.js') }}"></script>
 
 </body>
 
