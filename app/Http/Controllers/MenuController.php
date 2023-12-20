@@ -95,8 +95,7 @@ class MenuController extends Controller
     public function showDetail(string $id)
     {
 
-        // $menu = Menu::with('jadwal_pengiriman')->findOrFail($id);
-        // return view('member.listmenu-detail', ['menu' => $menu]);
+
         $menu = Menu::with('jadwal_pengiriman')->findOrFail($id);
 
         // Mendapatkan hari ini dalam bahasa Inggris
@@ -114,16 +113,14 @@ class MenuController extends Controller
 
         $hari_ini_bahasa_indonesia = $nama_hari[$hari_ini];
 
-        $jadwal_pengiriman = JadwalPengiriman::where(function ($query) use ($hari_ini_bahasa_indonesia, $nama_hari) {
-            $query->where('hari', '>', $hari_ini_bahasa_indonesia) // Mengambil hari setelah hari ini
-                ->orWhere(function ($query) use ($hari_ini_bahasa_indonesia, $nama_hari) {
-                    $query->where('hari', '<', $hari_ini_bahasa_indonesia)
-                        ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")');
-                });
-        })
-            ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")')
-            ->limit(7) // Ambil 7 hari ke depan, tidak termasuk hari saat ini
-            ->get();
+        $jadwal_pengiriman  = Menu::with(['jadwal_pengiriman' => function ($query) use ($hari_ini_bahasa_indonesia, $nama_hari) {
+            $query->where(function ($subQuery) use ($hari_ini_bahasa_indonesia, $nama_hari) {
+                $subQuery->where('hari', '>', $hari_ini_bahasa_indonesia) // Mengambil hari setelah hari ini
+                    ->orWhere('hari', '<', $hari_ini_bahasa_indonesia)
+                    ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")');
+            });
+        }])->findOrFail($id);
+
 
 
         return view('member.listmenu-detail', [
