@@ -114,16 +114,17 @@ class MenuController extends Controller
 
         $hari_ini_bahasa_indonesia = $nama_hari[$hari_ini];
 
-        // Query untuk mengambil jadwal pengiriman dari tabel jadwal_pengiriman
-        $jadwal_pengiriman = DB::table('jadwal_pengiriman')
-            ->where('hari', '>', $hari_ini_bahasa_indonesia) // Mengambil hari setelah hari ini
-            ->orWhere(function ($query) use ($hari_ini_bahasa_indonesia, $nama_hari) {
-                $query->where('hari', '<', $hari_ini_bahasa_indonesia)
-                    ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")');
-            })
+        $jadwal_pengiriman = JadwalPengiriman::where(function ($query) use ($hari_ini_bahasa_indonesia, $nama_hari) {
+            $query->where('hari', '>', $hari_ini_bahasa_indonesia) // Mengambil hari setelah hari ini
+                ->orWhere(function ($query) use ($hari_ini_bahasa_indonesia, $nama_hari) {
+                    $query->where('hari', '<', $hari_ini_bahasa_indonesia)
+                        ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")');
+                });
+        })
             ->orderByRaw('FIELD(hari, "' . implode('","', $nama_hari) . '")')
             ->limit(7) // Ambil 7 hari ke depan, tidak termasuk hari saat ini
             ->get();
+
 
         return view('member.listmenu-detail', [
             'menu' => $menu,
