@@ -42,7 +42,7 @@
                     Selesaikan Pembayaran
                 </button>
                 <div class="mt-2">
-                    <a href="menus/showmenu"
+                    <a href="{{ url()->previous() }}"
                         class="text-center block w-full border border-merahMM rounded-md shadow-sm py-2 px-4 text-base font-medium text-merahMM hover:bg-red-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
                         Kembali
                     </a>
