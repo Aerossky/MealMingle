@@ -9,10 +9,10 @@
         "autoprefixer": "^10.4.16",
         "axios": "^1.1.2",
         "flowbite": "^2.1.1",
-        "laravel-vite-plugin": "^0.8.0",
+        "laravel-vite-plugin": "^1.3.0",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.3.5",
-        "vite": "^4.0.0"
+        "vite": "^6.3.5"
     },
     "dependencies": {
         "alpinejs": "^3.13.2"
