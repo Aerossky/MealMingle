@@ -19,14 +19,14 @@
         <h1 class="text-2xl font-bold mb-4">Detail Pembayaran</h1>
         <form action="{{ route('keranjang.bayar', ['id' => Auth::id()]) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <p class="mb-2">Total Pembayaran: <span id="totalAmount"
+            <p class="mb-4">Total Pembayaran: <span id="totalAmount"
                     class="font-bold">Rp.{{ number_format($keranjang->total_harga, 0, ',', '.') }}</span></p>
-            <div class="flex gap-3 justify-start items-center">
-                <p class="mb-4">Nomor Rekening: <span id="accountNumber" class="font-bold">8291025595</span> (A/N. JOSEPH
-                    KARUNIA WIJAYA)
+
+            {{-- Informasi pembayaran diganti dengan pesan untuk menghubungi admin --}}
+            <div class="mb-4 p-4 bg-yellow-100 border border-yellow-400 rounded-lg">
+                <p class="text-yellow-800">
+                    <strong>Penting:</strong> Untuk informasi rekening pembayaran, silakan hubungi admin terlebih dahulu.
                 </p>
-                <button type="button" id="copyButton"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Salin</button>
             </div>
 
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="bukti">Upload Bukti
@@ -57,8 +57,6 @@
         </form>
 
     </div>
-
-
 
     <!-- Main modal -->
     <div id="default-modal" tabindex="-1" aria-hidden="true"
@@ -93,8 +91,6 @@
                     <div class="mt-2"></div>
                     <img class="max-w-lg" src="{{ asset('img/contohPembayaran1.jpg') }}" alt="contoh pembayaran"
                         srcset="">
-
-
                 </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -105,24 +101,4 @@
         </div>
     </div>
 
-
-    {{-- library clipboard.js --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script>
-        var copyButton = document.getElementById('copyButton');
-        var totalAmount = document.getElementById('totalAmount');
-        var accountNumber = document.getElementById('accountNumber');
-
-        var clipboardTotal = new ClipboardJS(copyButton, {
-            text: function() {
-                return totalAmount.innerText;
-            }
-        });
-
-        var clipboardAccount = new ClipboardJS(copyButton, {
-            text: function() {
-                return accountNumber.innerText;
-            }
-        });
-    </script>
 @endsection
