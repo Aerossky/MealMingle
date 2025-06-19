@@ -25,7 +25,8 @@
             {{-- Informasi pembayaran diganti dengan pesan untuk menghubungi admin --}}
             <div class="mb-4 p-4 bg-yellow-100 border border-yellow-400 rounded-lg">
                 <p class="text-yellow-800">
-                    <strong>Penting:</strong> Untuk informasi rekening pembayaran, silakan hubungi admin terlebih dahulu.
+                    <strong>Penting:</strong> MealMingle sudah tidak lagi beroperasi. Website ini ditampilkan sebagai bagian
+                    dari portofolio pengembang. Terima kasih atas dukungan Anda.
                 </p>
             </div>
 
