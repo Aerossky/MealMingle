@@ -3,154 +3,193 @@
 
 @section('content')
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <section class="mx-auto my-auto px-5 dark:bg-gray-900 w-auto h-auto py-5 ">
 
-        <div class="flex flex-col xl:flex-row max-w-lg md:max-w-full md:gap-4 md:p-2">
+    <section class="bg-white dark:bg-gray-900 py-8 antialiased">
+        <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
 
-            <div class="xl:w-full xl:flex xl:flex-col">
-                <div class="xl:flex">
-                    <!-- Product Image -->
-                    <div class="w-full max-w-md">
-                        <img src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Produk"
-                            class="w-full object-cover rounded cursor-pointer">
-                    </div>
+                <!-- Product Image Section -->
+                <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+                    <div class="relative group">
+                        <img src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="{{ $menu->nama_makanan }}"
+                            class="w-full h-96 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105">
 
-                    <!-- Product Details -->
-                    <div class="ml-4">
-                        <!-- Product Name -->
-                        <h2 class="text-2xl font-bold text-gray-900 mt-4">{{ $menu->nama_makanan }}</h2>
-
-                        <!-- Tenant Name -->
-                        <h2 class="text-lg font-normal  text-gray-400 mb-4">{{ $menu->tenant->nama_tenant }}</h2>
-
-                        <!-- Product Description -->
-                        <div class="text-gray-700">
-                            <p>{{ $menu->deskripsi }}</p>
+                        <!-- Badge for availability -->
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                                <iconify-icon icon="mdi:check-circle" class="w-3 h-3 inline mr-1"></iconify-icon>
+                                Tersedia
+                            </span>
                         </div>
                     </div>
                 </div>
 
-
-                {{-- list dummy produk --}}
-                {{-- <div class="hidden xl:block mt-2">
-                    <h1 class="font-medium text-xl">Makanan Serupa</h1>
-
-                    <div class="flex flex-wrap mt-2">
-
-                        <div class="relative mr-4 group">
-                            <a href="">
-                                <img class="w-52 h-52 object-cover rounded"
-                                    src="{{ asset('storage/menu/' . $menu->foto_produk) }}" alt="Foto Makanan">
-                                <p class="mt-2">{{ $menu->nama_makanan }}</p>
-
-
-                                <div
-                                    class="opacity-0 group-hover:opacity-60 bg-white absolute top-0 left-0 bottom-5 right-0 p-2 rounded-b z-10 duration-700 flex justify-center items-center">
-                                    <p class="text-black text-center my-auto text-lg font-semibold">
-                                        {{ number_format($menu->harga_produk, 0, ',', '.') }}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div> --}}
-
-
-
-            </div>
-
-            {{-- add to cart --}}
-            <div
-                class="flex flex-col w-full xl:w-1/3 justify-items-start my-auto md:mt-3 md:border md:rounded-xl md:p-4 md:col-span-4">
-                <div class="invisible md:visible justify-start my-auto mb-4">
-                    <label for="addToCart" class="font-bold">Atur Jumlah dan Catatan</label>
-                </div>
-
-                <form action="{{ route('keranjangitem.tambah', ['id' => $menu->id]) }}" method="POST">
-                    @csrf
-                    <!-- Quantity Section -->
+                <!-- Product Details Section -->
+                <div class="mt-6 sm:mt-8 lg:mt-0">
+                    <!-- Tenant Badge -->
                     <div class="flex items-center mb-4">
-                        <label for="jumlah" class="mr-2 font-bold">Jumlah:</label>
-                        <input type="number" id="jumlah" name="jumlah" min="1" value="1"
-                            class="w-16 p-2 border border-gray-300 rounded">
-                    </div>
-
-
-                    {{-- Hari --}}
-                    {{-- <div class="mb-4">
-                        <label for="hari" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Pilih Hari
-                            Anda Ingin Dikirim:
-                        </label>
-                        <select id="hari" name="hari"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                            <option value="" selected disabled>Pilih Hari</option>
-                            @foreach ($menu->jadwal_pengiriman as $jadwal)
-                                <option value="{{ $jadwal->hari }},{{ $jadwal->waktu }}">{{ $jadwal->hari }},
-                                    {{ $jadwal->waktu }}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
-
-                    <div class="mb-4">
-                        <label for="hari" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
-                            Pilih Hari dan Waktu Anda Ingin Dikirim:
-                        </label>
-                        <select id="hari" name="hari"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                            <option value="" selected disabled>Pilih Hari dan Waktu</option>
-                            @foreach ($jadwal_pengiriman->jadwal_pengiriman as $jadwal)
-                                <option value="{{ $jadwal->hari }},{{ $jadwal->waktu }}">
-                                    {{ $jadwal->hari }}, {{ $jadwal->waktu }}
-                                </option>
-                            @endforeach
-                    </div>
-
-                    <!-- Notes Section -->
-                    <div class="mb-4">
-                        <label for="note_item" class="block text-gray-700 text-sm font-bold mb-2">Catatan:</label>
-                        <textarea id="note_item" name="note_item" rows="4" placeholder="Ex. Sambal Dipisah"
-                            class="w-full p-2 border border-gray-300 rounded"></textarea>
-                    </div>
-
-                    <!-- Subtotal Section -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Subtotal:</label>
-                        <div class="flex items-center">
-                            <span class="text-gray-800">Rp&nbsp</span>
-                            <span class="text-xl font-bold">{{ number_format($menu->harga_produk, 0, ',', '.') }}</span>
+                        <div
+                            class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full flex items-center">
+                            {{ $menu->tenant->nama_tenant }}
                         </div>
                     </div>
 
-                    <!-- Add to Cart Button -->
+                    <!-- Product Name -->
+                    <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl dark:text-white mb-2">
+                        {{ $menu->nama_makanan }}
+                    </h1>
 
-                    {{-- kalau belum login --}}
-                    @if (Auth::check())
-                        <button type="submit"
-                            class="text-center w-full bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded-lg duration-300">
-                            Add to Cart
-                        </button>
-                    @else
-                        <div class="">
-                            <a href="/signin"
-                                class="text-center block bg-merahMM hover:bg-red-700 text-white px-4 py-2 rounded-lg duration-300 w-full">
-                                Add to Cart
-                            </a>
+                    <!-- Price -->
+                    <div class="mb-6">
+                        <p class="text-3xl font-bold text-merahMM">
+                            Rp {{ number_format($menu->harga_produk, 0, ',', '.') }}
+                        </p>
+                    </div>
 
+                    <!-- Description -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Deskripsi</h3>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-gray-700 leading-relaxed">{{ $menu->deskripsi }}</p>
                         </div>
-                    @endif
+                    </div>
 
-                </form>
+                    <!-- Order Form -->
+                    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <iconify-icon icon="mdi:cart-plus" class="w-5 h-5 mr-2 text-merahMM"></iconify-icon>
+                            Atur Pesanan Anda
+                        </h3>
 
-                <div class="my-2"></div>
-                <a href="{{ url()->previous() }}"
-                    class="text-center bg-transparent border border-merahMM text-merahMM hover:bg-merahMM hover:text-white px-4 py-2 rounded-lg transition-colors duration-300">
-                    Kembali
-                </a>
+                        <form action="{{ route('keranjangitem.tambah', ['id' => $menu->id]) }}" method="POST"
+                            class="space-y-4">
+                            @csrf
+
+                            <!-- Quantity Section -->
+                            <div>
+                                <label for="jumlah" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <iconify-icon icon="mdi:counter" class="w-4 h-4 inline mr-1"></iconify-icon>
+                                    Jumlah
+                                </label>
+                                <div class="flex items-center">
+                                    <button type="button" id="decreaseBtn"
+                                        class="p-2 bg-gray-100 hover:bg-gray-200 rounded-l-lg border border-gray-300">
+                                        <iconify-icon icon="mdi:minus" class="w-4 h-4"></iconify-icon>
+                                    </button>
+                                    <input type="number" id="jumlah" name="jumlah" min="1" value="1"
+                                        class="w-16 text-center border-t border-b border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-merahMM">
+                                    <button type="button" id="increaseBtn"
+                                        class="p-2 bg-gray-100 hover:bg-gray-200 rounded-r-lg border border-gray-300">
+                                        <iconify-icon icon="mdi:plus" class="w-4 h-4"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Delivery Schedule -->
+                            <div>
+                                <label for="hari" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <iconify-icon icon="mdi:clock-outline" class="w-4 h-4 inline mr-1"></iconify-icon>
+                                    Jadwal Pengiriman
+                                </label>
+                                <select id="hari" name="hari" required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-merahMM focus:border-transparent">
+                                    <option value="" selected disabled>Pilih Hari dan Waktu</option>
+                                    @if (isset($menu->jadwal_pengiriman) && $menu->jadwal_pengiriman->count() > 0)
+                                        @foreach ($menu->jadwal_pengiriman as $jadwal)
+                                            <option value="{{ $jadwal->hari }},{{ $jadwal->waktu }}">
+                                                {{ $jadwal->hari }}, {{ $jadwal->waktu }}
+                                            </option>
+                                        @endforeach
+                                    @else
+                                        <option value="" disabled>Tidak ada jadwal tersedia</option>
+                                    @endif
+                                </select>
+                            </div>
+
+                            <!-- Notes -->
+                            <div>
+                                <label for="note_item" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <iconify-icon icon="mdi:note-text-outline" class="w-4 h-4 inline mr-1"></iconify-icon>
+                                    Catatan Khusus
+                                </label>
+                                <textarea id="note_item" name="note_item" rows="3" placeholder="Contoh: Sambal dipisah, tidak pedas, dll."
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-merahMM focus:border-transparent"></textarea>
+                            </div>
+
+                            <!-- Subtotal -->
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-lg font-medium text-gray-700">Subtotal:</span>
+                                    <span id="subtotal" class="text-2xl font-bold text-merahMM">
+                                        Rp {{ number_format($menu->harga_produk, 0, ',', '.') }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="space-y-3">
+                                @if (Auth::check())
+                                    <button type="submit"
+                                        class="w-full bg-merahMM hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                                        <iconify-icon icon="mdi:cart-plus" class="w-5 h-5 mr-2"></iconify-icon>
+                                        Tambah ke Keranjang
+                                    </button>
+                                @else
+                                    <a href="/signin"
+                                        class="w-full bg-merahMM hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                                        <iconify-icon icon="mdi:login" class="w-5 h-5 mr-2"></iconify-icon>
+                                        Login untuk Memesan
+                                    </a>
+                                @endif
+
+                                <a href="{{ url()->previous() }}"
+                                    class="w-full bg-transparent border-2 border-merahMM text-merahMM hover:bg-merahMM hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                                    <iconify-icon icon="mdi:arrow-left" class="w-5 h-5 mr-2"></iconify-icon>
+                                    Kembali
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </section>
+
+    <!-- JavaScript for quantity controls and subtotal calculation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const decreaseBtn = document.getElementById('decreaseBtn');
+            const increaseBtn = document.getElementById('increaseBtn');
+            const quantityInput = document.getElementById('jumlah');
+            const subtotalElement = document.getElementById('subtotal');
+            const basePrice = {{ $menu->harga_produk }};
+
+            function updateSubtotal() {
+                const quantity = parseInt(quantityInput.value) || 1;
+                const subtotal = basePrice * quantity;
+                subtotalElement.textContent = 'Rp ' + subtotal.toLocaleString('id-ID');
+            }
+
+            decreaseBtn.addEventListener('click', function() {
+                const currentValue = parseInt(quantityInput.value) || 1;
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                    updateSubtotal();
+                }
+            });
+
+            increaseBtn.addEventListener('click', function() {
+                const currentValue = parseInt(quantityInput.value) || 1;
+                quantityInput.value = currentValue + 1;
+                updateSubtotal();
+            });
+
+            quantityInput.addEventListener('input', function() {
+                const value = parseInt(this.value) || 1;
+                if (value < 1) this.value = 1;
+                updateSubtotal();
+            });
+        });
+    </script>
 
 @endsection
